@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+artifacts/runs/
+artifacts/figures/
+artifacts_smoke/
+*.npz
+!tests/fixtures/*.npz
+.DS_Store
+*.egg-info/
+dist/
+build/

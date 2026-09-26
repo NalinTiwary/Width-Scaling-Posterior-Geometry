@@ -1,0 +1,68 @@
+# Frozen cylinder experiment protocol (design doc §3.1, §4).
+# Do not retune widths/seeds/prior to chase a desired trend.
+
+architecture:
+  hidden_layers: 1
+  activation: tanh
+  classes: 2
+  input_dim: 32
+
+widths: [256, 1024, 4096]
+prior:
+  sigma: 0.5
+  b0: 1.0
+  center_seeds: [0, 1, 2]
+  center_bank_pairs: 2048
+
+data:
+  n: 32
+  d: 32
+  seed: 2027
+  probe_seed: 2028
+  projection_seed: 2029
+  n_probes: 8
+  n_projections: 8
+
+theorem:
+  s: 1
+  delta_rule: m_inv   # δ = m^{-1}
+  M2: 1.0
+  M4: 1.0
+  c2: 0.769800358919501          # 4 / (3 * sqrt(3))
+
+sampling:
+  kernel: elliptical_slice
+  n_chains: 4
+  burnin: 2000
+  retained_initial: 4000
+  retained_extensions: [8000, 16000]
+  likelihood_eval_cap_per_target: 1000000
+  init: prior
+
+pcn_crosscheck:
+  width: 1024
+  center_seed: 0
+  n_chains: 4
+  beta0: 0.2
+  adapt_burnin: true
+  target_accept: 0.3
+  beta_clip: [0.001, 0.999]
+  adapt_scale: 0.05
+
+diagnostics:
+  rhat_max: 1.01
+  bulk_ess_min: 1000
+  tail_ess_min: 400
+  quantile_ess_min: 400
+  head_quantiles: [0.95, 0.99]
+
+curvature:
+  states_per_chain: 32
+  K: 33                  # n + 1
+  eigen_residual_tol: 1.0e-8
+  d_th_violation_tol: 1.0e-6
+
+device: auto             # auto | cpu | cuda  (MPS unsupported with float64)
+dtype: float64
+artifacts_dir: artifacts
+seed_master: 0
