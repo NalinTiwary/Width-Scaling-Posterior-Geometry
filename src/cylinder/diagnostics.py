@@ -131,6 +131,15 @@ def exit_episodes_detail(inside: np.ndarray) -> list[dict[str, int]]:
     return out
 
 
+def posterior_idata(data_vars: dict[str, np.ndarray]):
+    """(chain, draw) arrays -> ArviZ posterior; 1.x takes a group dict, 0.x a kwarg."""
+    import arviz as az
+
+    if int(az.__version__.split(".")[0]) >= 1:
+        return az.from_dict({"posterior": data_vars})
+    return az.from_dict(posterior=data_vars)
+
+
 def arviz_diagnostics(
     arrays: dict[str, np.ndarray],
     head_quantiles: Optional[list[float]] = None,
@@ -157,7 +166,7 @@ def arviz_diagnostics(
         else:
             raise ValueError(f"Unsupported array ndim for {name}: {arr.ndim}")
 
-    idata = az.from_dict({"posterior": data_vars})
+    idata = posterior_idata(data_vars)
     summary = az.summary(
         idata,
         kind="diagnostics",

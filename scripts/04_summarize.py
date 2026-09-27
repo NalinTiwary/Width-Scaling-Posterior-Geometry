@@ -15,7 +15,11 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "src"))
 
 from cylinder.config import artifacts_root, load_config  # noqa: E402
-from cylinder.diagnostics import coverage_summary, order_stat_quantile  # noqa: E402
+from cylinder.diagnostics import (  # noqa: E402
+    coverage_summary,
+    order_stat_quantile,
+    posterior_idata,
+)
 from cylinder.io import atomic_save_json, run_dir_name  # noqa: E402
 from cylinder.theorem import prior_cdf_H, theorem_bundle  # noqa: E402
 
@@ -179,12 +183,10 @@ def main() -> None:
                 try:
                     import arviz as az
 
-                    idata = az.from_dict(
+                    idata = posterior_idata(
                         {
-                            "posterior": {
-                                f"p{k}": obs["p_probe"][:, :T, k]
-                                for k in range(obs["p_probe"].shape[-1])
-                            }
+                            f"p{k}": obs["p_probe"][:, :T, k]
+                            for k in range(obs["p_probe"].shape[-1])
                         }
                     )
                     ess = az.ess(idata, method="bulk")

@@ -1,5 +1,7 @@
 numpy>=1.24
 scipy>=1.11
+# arviz<0.18 (the last line for Python 3.9) imports scipy.signal.gaussian, removed in scipy 1.13
+scipy<1.13; python_version < "3.10"
 # Install a CUDA build of torch matching the cluster driver, e.g.:
 #   pip install torch --index-url https://download.pytorch.org/whl/cu124
 torch>=2.1
