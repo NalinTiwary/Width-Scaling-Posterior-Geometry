@@ -64,13 +64,16 @@ def main() -> None:
                 print(f"skip missing {run_dir.name}")
                 continue
             obs = np.load(run_dir / "observables.npz")
-            Z = obs["z"]  # (C, T, p)
-            C, T, p = Z.shape
-            # trim NaNs
-            valid_T = int(np.isfinite(Z[:, :, 0]).all(axis=0).sum())
-            Z = Z[:, :valid_T]
-            T = valid_T
-            idxs = curvature_state_indices(T, n_per_chain)
+            if "z_curv" in obs.files:
+                Zc = obs["z_curv"]  # (C, n_per_chain, p)
+                idxs = np.asarray(obs["curv_indices"], dtype=np.int64)
+            else:
+                # Older runs stored every draw; select the same prespecified states.
+                Z = obs["z"]
+                valid_T = int(np.isfinite(Z[:, :, 0]).all(axis=0).sum())
+                idxs = curvature_state_indices(valid_T, n_per_chain)
+                Zc = Z[:, idxs]
+            C = Zc.shape[0]
             bank = load_centers(artifacts / f"centers_seed{seed}.npz")
             theta0 = assemble_theta0(bank["U"], m=m, b0=float(cfg["prior"]["b0"]))
 
@@ -81,7 +84,10 @@ def main() -> None:
 
             for c in range(C):
                 for j, t in enumerate(idxs):
-                    z = Z[c, t]
+                    z = Zc[c, j]
+                    if not np.all(np.isfinite(z)):
+                        # Chain stopped early (likelihood budget) before this slot.
+                        continue
                     theta = theta0 + sigma * z
                     H = float(np.max(np.abs(theta[0 :: (1 + d)])))
                     inside = int(H <= bun["B_m"])
@@ -134,7 +140,11 @@ def main() -> None:
                         if d_minus_in
                         else np.nan
                     ),
-                    "max_eigen_residual": max(r["max_eigen_residual"] for r in state_records),
+                    "max_eigen_residual": (
+                        max(r["max_eigen_residual"] for r in state_records)
+                        if state_records
+                        else np.nan
+                    ),
                 }
             )
             atomic_save_npz(

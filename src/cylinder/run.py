@@ -21,6 +21,7 @@ from .io import (
 )
 from .observables import (
     compute_observables_torch_full,
+    curvature_state_indices,
     empty_observable_buffers,
     fill_draw,
 )
@@ -43,6 +44,7 @@ def run_target(
     chain_ids: Optional[list[int]] = None,
     n_retained: Optional[int] = None,
     overwrite: bool = False,
+    skip_existing: bool = False,
 ) -> Path:
     """
     Run all (or selected) chains for one scientific target and write
@@ -106,19 +108,27 @@ def run_target(
         "kernel": kernel,
         "B_m": bun["B_m"],
     }
-    if meta_path.exists() and not overwrite:
-        import json
-
-        with open(meta_path) as f:
-            old = json.load(f)
-        validate_resume(old, expected_identity)
-
     n_chains = int(cfg["sampling"]["n_chains"])
     if chain_ids is None:
         chain_ids = list(range(n_chains))
     burnin = int(cfg["sampling"]["burnin"])
     if n_retained is None:
         n_retained = int(cfg["sampling"]["retained_initial"])
+
+    if meta_path.exists() and not overwrite:
+        import json
+
+        with open(meta_path) as f:
+            old = json.load(f)
+        validate_resume(old, expected_identity)
+        if (
+            skip_existing
+            and (out_dir / "observables.npz").exists()
+            and int(old.get("n_retained", 0)) >= n_retained
+            and sorted(old.get("chain_ids", [])) == list(range(n_chains))
+        ):
+            print(f"Skipping completed target {out_dir.name} (T={old['n_retained']})")
+            return out_dir
     lik_cap = int(cfg["sampling"]["likelihood_eval_cap_per_target"])
     # Per-chain share of the target budget (conservative).
     per_chain_cap = max(1, lik_cap // n_chains)
@@ -136,8 +146,20 @@ def run_target(
         n_probes=X_probe_np.shape[0],
         n_proj=proj["U"].shape[0],
     )
-    # Store standardized z for curvature replay
-    Z_store = np.full((n_chains, n_retained, p), np.nan, dtype=np.float64)
+    # Full z at m=4096 is ~17 GB per target, so by default only the
+    # prespecified curvature states (design §6.1) are kept.
+    store_full_z = bool(cfg.get("curvature", {}).get("store_full_z", False))
+    n_curv = int(cfg["curvature"]["states_per_chain"])
+    curv_idx = curvature_state_indices(n_retained, n_curv)
+    curv_slots: dict[int, list[int]] = {}
+    for j, t in enumerate(curv_idx):
+        curv_slots.setdefault(int(t), []).append(j)
+    Z_curv = np.full((n_chains, n_curv, p), np.nan, dtype=np.float64)
+    Z_store = (
+        np.full((n_chains, n_retained, p), np.nan, dtype=np.float64)
+        if store_full_z
+        else None
+    )
 
     # Merge with an existing observables file when running a chain shard.
     obs_path = out_dir / "observables.npz"
@@ -148,8 +170,20 @@ def run_target(
         for key in buf:
             if key in prev.files:
                 buf[key][:, :use_T] = prev[key][:, :use_T]
-        if "z" in prev.files:
+        if "z_curv" in prev.files and prev_T == n_retained:
+            Z_curv[:] = prev["z_curv"]
+        if Z_store is not None and "z" in prev.files:
             Z_store[:, :use_T] = prev["z"][:, :use_T]
+
+    def record_state(c: int, t: int, z: torch.Tensor) -> None:
+        slots = curv_slots.get(t)
+        if slots is None and Z_store is None:
+            return
+        z_np = z.detach().cpu().numpy()
+        for j in slots or ():
+            Z_curv[c, j] = z_np
+        if Z_store is not None:
+            Z_store[c, t] = z_np
 
     total_lik = 0
     total_time = 0.0
@@ -191,7 +225,7 @@ def run_target(
                     z, theta0, sigma, X, y, X_probe, U_proj, m, bun["B_m"]
                 )
                 fill_draw(buf, c, t, obs)
-                Z_store[c, t] = z.detach().cpu().numpy()
+                record_state(c, t, z)
             synchronize(device)
             retained_time = time.perf_counter() - t0
             stats.wall_time_s = retained_time
@@ -242,7 +276,7 @@ def run_target(
                     z, theta0, sigma, X, y, X_probe, U_proj, m, bun["B_m"]
                 )
                 fill_draw(buf, c, t, obs)
-                Z_store[c, t] = z.detach().cpu().numpy()
+                record_state(c, t, z)
             synchronize(device)
             retained_time = time.perf_counter() - t0
             stats.wall_time_s = retained_time
@@ -262,10 +296,13 @@ def run_target(
         else:
             raise ValueError(f"Unknown kernel {kernel}")
 
+    z_arrays = {"z_curv": Z_curv, "curv_indices": curv_idx}
+    if Z_store is not None:
+        z_arrays["z"] = Z_store
     atomic_save_npz(
         out_dir / "observables.npz",
         **buf,
-        z=Z_store,
+        **z_arrays,
         B_m=np.array(bun["B_m"]),
         D_th=np.array(bun["D_th"]),
         m=np.array(m),

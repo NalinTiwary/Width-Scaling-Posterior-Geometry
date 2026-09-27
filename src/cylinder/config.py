@@ -20,3 +20,9 @@ def load_config(path: str | Path) -> dict[str, Any]:
 def artifacts_root(cfg: dict[str, Any], base: str | Path | None = None) -> Path:
     root = Path(base) if base is not None else Path.cwd()
     return (root / cfg.get("artifacts_dir", "artifacts")).resolve()
+
+
+def results_root(cfg: dict[str, Any], base: str | Path | None = None) -> Path:
+    """Lightweight, git-tracked export location (no .npz payloads)."""
+    root = Path(base) if base is not None else Path.cwd()
+    return (root / cfg.get("results_dir", "results")).resolve()

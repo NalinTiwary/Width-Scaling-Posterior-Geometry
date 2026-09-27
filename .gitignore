@@ -4,9 +4,11 @@ __pycache__/
 venv/
 .pytest_cache/
 .mypy_cache/
-artifacts/runs/
-artifacts/figures/
+artifacts/*
+!artifacts/cylinder_experiment_design.md
 artifacts_smoke/
+results_smoke/
+logs/
 *.npz
 !tests/fixtures/*.npz
 .DS_Store

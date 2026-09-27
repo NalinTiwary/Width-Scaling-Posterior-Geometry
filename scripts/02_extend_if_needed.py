@@ -99,7 +99,7 @@ def main() -> None:
                     f"{run_dir.name}: pass={report.get('pass')} "
                     f"T={report.get('T')} rhat={report.get('diagnostics', {}).get('rhat_max')}"
                 )
-                if args.extend and not report.get("pass") and not report.get("hit_budget"):
+                while args.extend and not report.get("pass") and not report.get("hit_budget"):
                     meta = json.loads((run_dir / "metadata.json").read_text())
                     current_T = int(meta.get("n_retained", 0))
                     next_T = None
@@ -111,6 +111,7 @@ def main() -> None:
                         print(f"  no further extension for {run_dir.name}")
                         report["unresolved"] = True
                         atomic_save_json(run_dir / "diagnostics.json", report)
+                        break
                     else:
                         print(f"  extending to T={next_T}")
                         run_target(
@@ -125,6 +126,9 @@ def main() -> None:
                         )
                         report = evaluate_run(run_dir, cfg)
                         atomic_save_json(run_dir / "diagnostics.json", report)
+                        print(
+                            f"  {run_dir.name}: pass={report.get('pass')} T={report.get('T')}"
+                        )
                 results.append({"run": run_dir.name, **{k: report.get(k) for k in ("pass", "T")}})
 
     # pCN cross-check presence

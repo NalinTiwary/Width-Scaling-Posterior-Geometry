@@ -1,0 +1,7 @@
+m,p,seed,coverage,exit_count,exit_episodes,mcse,mcse_estimable,all_inside,theorem_floor
+256,8448,0,1.0,0,0,,False,True,0.99609375
+256,8448,1,1.0,0,0,,False,True,0.99609375
+256,8448,2,1.0,0,0,,False,True,0.99609375
+1024,33792,0,1.0,0,0,,False,True,0.9990234375
+1024,33792,1,1.0,0,0,,False,True,0.9990234375
+1024,33792,2,1.0,0,0,,False,True,0.9990234375

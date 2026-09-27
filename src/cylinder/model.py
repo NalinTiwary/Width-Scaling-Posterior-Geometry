@@ -22,23 +22,16 @@ def pack_params(a: np.ndarray, W: np.ndarray) -> np.ndarray:
     Interleave neurons as [a_0, w_0, a_1, w_1, ..., a_{m-1}, w_{m-1}].
     a: (m,), W: (m, d)
     """
-    m, d = W.shape
-    out = np.empty(m * (1 + d), dtype=np.float64)
-    for j in range(m):
-        base = j * (1 + d)
-        out[base] = a[j]
-        out[base + 1 : base + 1 + d] = W[j]
-    return out
+    blocks = np.concatenate(
+        [np.asarray(a, dtype=np.float64)[:, None], np.asarray(W, dtype=np.float64)],
+        axis=1,
+    )
+    return blocks.ravel()
 
 
 def unpack_params(theta: np.ndarray, m: int, d: int) -> Tuple[np.ndarray, np.ndarray]:
-    a = np.empty(m, dtype=np.float64)
-    W = np.empty((m, d), dtype=np.float64)
-    for j in range(m):
-        base = j * (1 + d)
-        a[j] = theta[base]
-        W[j] = theta[base + 1 : base + 1 + d]
-    return a, W
+    blocks = np.asarray(theta, dtype=np.float64).reshape(m, 1 + d)
+    return blocks[:, 0].copy(), blocks[:, 1:].copy()
 
 
 def head_coefficients(theta: np.ndarray, m: int, d: int) -> np.ndarray:

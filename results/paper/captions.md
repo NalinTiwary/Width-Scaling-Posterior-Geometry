@@ -1,0 +1,13 @@
+# Figure captions (fill observed results after runs)
+
+## Figure 1
+Posterior coverage of the theorem-defined cylinder as network width grows. Each curve represents one paired prior-center construction, using four unrestricted elliptical slice chains per target. The horizontal axis is width on a logarithmic scale; the vertical axis is the retained fraction satisfying $\max_j|a_j|\le B_m$, with $B_m$ fixed from Lemma 4.1 using $s=1$. Hidden weights remain unrestricted. The dashed curve is the analytic lower bound $1-1/m$. [Describe observed results here.] Open markers denote no observed exits and do not imply zero Monte Carlo uncertainty. High occupancy supports the domain’s relevance despite increasing parameter dimension; it does not resolve the rate of rare exits.
+
+## Figure 2
+Negative likelihood curvature versus width on the high-mass cylinder. For each paired prior-center seed, vertical intervals bracket the empirical 95th percentile of $d_H=\sigma^2[-\lambda_{\min}(\nabla^2 V)]_+$ over 128 prespecified posterior states, restricted to the cylinder. Endpoints use the block-diagonal residual Hessian and a Rayleigh–Ritz projection of the full Hessian; they are numerical bounds, not confidence intervals. Axes are logarithmic for positive values. The dashed curve is the finite-width uniform envelope from Theorem 2. [Describe observed results here.] A decrease indicates less adverse likelihood curvature relative to Gaussian prior precision. Together with coverage, this tests the proposed mechanism on a region containing substantial posterior probability.
+
+## Figure S1
+How much of the permitted head radius is used by posterior draws? The horizontal axis is the maximum absolute head coefficient divided by the theorem cutoff; the vertical axis is its empirical CDF under unrestricted posterior sampling. The vertical line at one is the cylinder boundary. Solid curves show posterior draws; dashed curves show the exact Gaussian-prior maximum distribution. Concentration to the left of one explains near-unit coverage and quantifies cutoff conservatism. The prior reference is not substituted for posterior mass.
+
+## Figure S2
+Practical sampling efficiency of elliptical slice sampling across widths. Left: median bulk ESS across eight fixed predictive probabilities per 1,000 likelihood evaluations. Right: the same ESS per second on fixed hardware. Each point represents one prior-center seed with four chains. Unsuccessful slice-angle proposals count toward cost. These measurements concern this algorithm, implementation, and observable set; they do not estimate the PI/LSI constants or follow automatically from the continuous-time theorem.

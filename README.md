@@ -60,10 +60,26 @@ python scripts/01_run_target.py --config config.yaml --m 1024 --seed 0 --chain_i
 # completed set, or re-run the full target once all chain shards exist.
 ```
 
+## Cluster (SLURM): full suite + postprocessing
+
+```bash
+mkdir -p logs/cyl_suite && sbatch scripts/run_full_suite.sh
+# options via env, e.g.  WIDTHS="4096" sbatch scripts/run_full_suite.sh
+# local dry run:          CONFIG=config.smoke.yaml bash scripts/run_full_suite.sh
+```
+
+Runs preflight, tests, every target (skipping finished ones, so resubmitting
+resumes), protocol extensions, curvature, summaries, figures, and
+`06_export_results.py`. Commit `results/paper/` (metrics, per-run metadata and
+diagnostics, gzipped scalar traces, figures, `SUMMARY.md`, `manifest.json`);
+heavy `.npz` files stay in `artifacts/`.
+
 ## Artifacts
 
 See `artifacts/` after runs: `data.npz`, `centers_seed*.npz`, `runs/*/`,
 `curvature.csv`, `target_summary.csv`, `figure*.csv`, `figures/`.
+Only the 128 prespecified curvature states' `z` are stored per target
+(`curvature.store_full_z: true` keeps every draw, ~17 GB at m=4096).
 
 ## Smoke / figure check (short chains)
 

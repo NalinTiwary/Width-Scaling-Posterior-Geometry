@@ -24,6 +24,11 @@ def main() -> None:
     ap.add_argument("--chain_id", type=int, default=None)
     ap.add_argument("--n_retained", type=int, default=None)
     ap.add_argument("--overwrite", action="store_true")
+    ap.add_argument(
+        "--skip-existing",
+        action="store_true",
+        help="Return immediately if this target already finished with matching identity",
+    )
     args = ap.parse_args()
 
     cfg_path = Path(args.config)
@@ -46,6 +51,7 @@ def main() -> None:
         chain_ids=chain_ids,
         n_retained=args.n_retained,
         overwrite=args.overwrite,
+        skip_existing=args.skip_existing,
     )
     print(f"Wrote run directory: {out}")
 

@@ -1,0 +1,34 @@
+{
+  "results": [
+    {
+      "T": 4000,
+      "pass": false,
+      "run": "m256_seed0_ess"
+    },
+    {
+      "T": 4000,
+      "pass": false,
+      "run": "m256_seed1_ess"
+    },
+    {
+      "T": 4000,
+      "pass": false,
+      "run": "m256_seed2_ess"
+    },
+    {
+      "T": 4000,
+      "pass": true,
+      "run": "m1024_seed0_ess"
+    },
+    {
+      "T": 4000,
+      "pass": false,
+      "run": "m1024_seed1_ess"
+    },
+    {
+      "T": 4000,
+      "pass": false,
+      "run": "m1024_seed2_ess"
+    }
+  ]
+}
