@@ -25,21 +25,27 @@ def fig1_coverage(artifacts: Path, out: Path) -> None:
     df = pd.read_csv(path)
     fig, ax = plt.subplots(figsize=(5.5, 4.0))
     widths = sorted(df["m"].unique())
-    for seed, g in df.groupby("seed"):
-        g = g.sort_values("m")
+    seeds = sorted(df["seed"].unique())
+    for i, seed in enumerate(seeds):
+        g = df[df["seed"] == seed].sort_values("m")
+        color = f"C{i}"
+        # Seeds often coincide exactly (e.g. all at 1.0); dodge along log2(m) so each is visible.
+        x = g["m"].to_numpy(dtype=float) * 2.0 ** (0.08 * (i - (len(seeds) - 1) / 2))
         y = g["coverage"].to_numpy()
-        x = g["m"].to_numpy()
         all_inside = g["all_inside"].astype(bool).to_numpy()
-        ax.plot(x, y, "-", lw=1.0, label=f"seed {seed}")
+        ax.plot(x, y, "-", lw=1.0, color=color, label=f"seed {seed}")
         for xi, yi, inside, mcse_ok, mcse in zip(
             x, y, all_inside, g["mcse_estimable"], g["mcse"]
         ):
             if inside:
-                ax.plot(xi, yi, "o", mfc="none", mec="C0" if seed == 0 else None, ms=8)
+                ax.plot(xi, yi, "o", mfc="none", mec=color, ms=8)
             else:
-                ax.plot(xi, yi, "o", ms=6)
+                ax.plot(xi, yi, "o", color=color, ms=6)
             if bool(mcse_ok) and pd.notna(mcse) and mcse != "":
-                ax.errorbar(xi, yi, yerr=float(mcse), fmt="none", capsize=3, elinewidth=0.8)
+                ax.errorbar(
+                    xi, yi, yerr=float(mcse), fmt="none", ecolor=color, capsize=3, elinewidth=0.8
+                )
+    ax.plot([], [], "o", mfc="none", mec="0.4", ms=8, ls="none", label="no exits observed")
     # theorem floor
     m_grid = np.array(widths, dtype=float)
     ax.plot(m_grid, 1.0 - 1.0 / m_grid, "k--", lw=1.2, label="theorem lower bound")
