@@ -1,18 +1,18 @@
 {
   "results": [
     {
-      "T": 4000,
-      "pass": false,
+      "T": 16000,
+      "pass": true,
       "run": "m256_seed0_ess"
     },
     {
-      "T": 4000,
-      "pass": false,
+      "T": 8000,
+      "pass": true,
       "run": "m256_seed1_ess"
     },
     {
-      "T": 4000,
-      "pass": false,
+      "T": 8000,
+      "pass": true,
       "run": "m256_seed2_ess"
     },
     {
@@ -21,14 +21,29 @@
       "run": "m1024_seed0_ess"
     },
     {
-      "T": 4000,
-      "pass": false,
+      "T": 8000,
+      "pass": true,
       "run": "m1024_seed1_ess"
     },
     {
-      "T": 4000,
-      "pass": false,
+      "T": 8000,
+      "pass": true,
       "run": "m1024_seed2_ess"
+    },
+    {
+      "T": 8000,
+      "pass": true,
+      "run": "m4096_seed0_ess"
+    },
+    {
+      "T": 4000,
+      "pass": true,
+      "run": "m4096_seed1_ess"
+    },
+    {
+      "T": 8000,
+      "pass": true,
+      "run": "m4096_seed2_ess"
     }
   ]
 }

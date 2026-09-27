@@ -25,29 +25,29 @@
     "p_hat": 1.0
   },
   "diagnostics": {
-    "ess_bulk_min": 1772.0,
-    "ess_tail_min": 2187.0,
+    "ess_bulk_min": 1713.0,
+    "ess_tail_min": 2418.0,
     "n_variables": 52,
     "quantile_ess_H": {
-      "0.95": 12214.625552286598,
-      "0.99": 10946.109569826356
+      "0.95": 12524.950463316496,
+      "0.99": 11745.62768220539
     },
     "rhat_max": 1.0
   },
   "hit_budget": false,
-  "meta_likelihood_evals": 159166,
+  "meta_likelihood_evals": 159702,
   "pass": true,
   "stability_H": {
-    "delta": 0.0012396214827425922,
-    "mean_first": 2.4095056121520932,
-    "mean_second": 2.410745233634836,
-    "se_proxy": 0.0021809766803359315
+    "delta": 0.0027373449267158456,
+    "mean_first": 2.8087959521905637,
+    "mean_second": 2.8115332971172795,
+    "se_proxy": 0.001776063668885795
   },
   "stability_V": {
-    "delta": -0.05352250574698303,
-    "mean_first": 20.695562690950247,
-    "mean_second": 20.642040185203264,
-    "se_proxy": 0.018248540612733764
+    "delta": -0.08299603655261834,
+    "mean_first": 20.665937305003528,
+    "mean_second": 20.58294126845091,
+    "se_proxy": 0.018281564749358308
   },
   "status": "ok"
 }

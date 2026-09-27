@@ -15,36 +15,40 @@
   ],
   "chain_stats": [
     {
-      "bracket_shrinks": 11200,
+      "beta_final": 0.8138485685928509,
       "chain": 0,
-      "likelihood_evals": 23200,
-      "likelihood_evals_retained": 15398,
+      "likelihood_evals": 12000,
+      "likelihood_evals_retained": 8000,
+      "n_accepted": 2750,
       "n_updates": 6000,
-      "wall_time_retained_s": 7.85041278495919
+      "wall_time_retained_s": 6.033474177937023
     },
     {
-      "bracket_shrinks": 11323,
+      "beta_final": 0.7897303609906918,
       "chain": 1,
-      "likelihood_evals": 23323,
-      "likelihood_evals_retained": 15565,
+      "likelihood_evals": 12000,
+      "likelihood_evals_retained": 8000,
+      "n_accepted": 2831,
       "n_updates": 6000,
-      "wall_time_retained_s": 7.998139112023637
+      "wall_time_retained_s": 6.006022980902344
     },
     {
-      "bracket_shrinks": 12137,
+      "beta_final": 0.7760500648958315,
       "chain": 2,
-      "likelihood_evals": 24137,
-      "likelihood_evals_retained": 15957,
+      "likelihood_evals": 12000,
+      "likelihood_evals_retained": 8000,
+      "n_accepted": 2813,
       "n_updates": 6000,
-      "wall_time_retained_s": 7.856682742014527
+      "wall_time_retained_s": 6.009305234998465
     },
     {
-      "bracket_shrinks": 11565,
+      "beta_final": 0.7844506689772976,
       "chain": 3,
-      "likelihood_evals": 23565,
-      "likelihood_evals_retained": 15778,
+      "likelihood_evals": 12000,
+      "likelihood_evals_retained": 8000,
+      "n_accepted": 2783,
       "n_updates": 6000,
-      "wall_time_retained_s": 8.043466565897688
+      "wall_time_retained_s": 6.0132112769642845
     }
   ],
   "coverage_floor": 0.9990234375,
@@ -59,8 +63,8 @@
   "dtype": "torch.float64",
   "effective_device": "cuda",
   "hit_likelihood_budget": false,
-  "kernel": "ess",
-  "likelihood_evals": 94225,
+  "kernel": "pcn",
+  "likelihood_evals": 48000,
   "loss_normalization": "sum",
   "m": 1024,
   "n_chains": 4,
@@ -73,5 +77,5 @@
   "sigma": 0.5,
   "thread_count": 4,
   "torch_version": "2.8.0+cu128",
-  "wall_time_s": 31.748701204895042
+  "wall_time_s": 24.062013670802116
 }

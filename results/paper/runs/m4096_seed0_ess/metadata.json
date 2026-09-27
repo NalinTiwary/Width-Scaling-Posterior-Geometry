@@ -1,12 +1,12 @@
 {
   "A_n": 93.73488505791153,
-  "B_m": 8.739656067344313,
-  "D_th": 0.965973797184331,
+  "B_m": 8.928674760391324,
+  "D_th": 0.24604053235077286,
   "activation": "tanh",
   "architecture": "one_hidden_layer",
   "burnin": 2000,
-  "center_seed": 1,
-  "centers_hash_U": "feb0537431e161b0a71572993884c18c5841eabafa7834d9faf1df7186e7f1a4",
+  "center_seed": 0,
+  "centers_hash_U": "5b8b5219c257bee35209a8e72098dc8dea8fbdbe374bf31137291a9e7178c456",
   "chain_ids": [
     0,
     1,
@@ -15,39 +15,39 @@
   ],
   "chain_stats": [
     {
-      "bracket_shrinks": 19237,
+      "bracket_shrinks": 19676,
       "chain": 0,
-      "likelihood_evals": 39237,
-      "likelihood_evals_retained": 31381,
+      "likelihood_evals": 39676,
+      "likelihood_evals_retained": 31566,
       "n_updates": 10000,
-      "wall_time_retained_s": 13.087988746003248
+      "wall_time_retained_s": 25.308705426054075
     },
     {
-      "bracket_shrinks": 19502,
+      "bracket_shrinks": 20382,
       "chain": 1,
-      "likelihood_evals": 39502,
-      "likelihood_evals_retained": 31728,
+      "likelihood_evals": 40382,
+      "likelihood_evals_retained": 32068,
       "n_updates": 10000,
-      "wall_time_retained_s": 13.076618052087724
+      "wall_time_retained_s": 25.419960033032112
     },
     {
-      "bracket_shrinks": 19079,
+      "bracket_shrinks": 20023,
       "chain": 2,
-      "likelihood_evals": 39079,
-      "likelihood_evals_retained": 31373,
+      "likelihood_evals": 40023,
+      "likelihood_evals_retained": 31987,
       "n_updates": 10000,
-      "wall_time_retained_s": 13.03125700505916
+      "wall_time_retained_s": 25.388559408020228
     },
     {
-      "bracket_shrinks": 19193,
+      "bracket_shrinks": 19621,
       "chain": 3,
-      "likelihood_evals": 39193,
-      "likelihood_evals_retained": 31341,
+      "likelihood_evals": 39621,
+      "likelihood_evals_retained": 31805,
       "n_updates": 10000,
-      "wall_time_retained_s": 13.010246843099594
+      "wall_time_retained_s": 25.344094656058587
     }
   ],
-  "coverage_floor": 0.99609375,
+  "coverage_floor": 0.999755859375,
   "cuda_available": true,
   "cuda_device_count": 1,
   "cuda_device_name": "NVIDIA A10",
@@ -60,18 +60,18 @@
   "effective_device": "cuda",
   "hit_likelihood_budget": false,
   "kernel": "ess",
-  "likelihood_evals": 157011,
+  "likelihood_evals": 159702,
   "loss_normalization": "sum",
-  "m": 256,
+  "m": 4096,
   "n_chains": 4,
   "n_retained": 8000,
   "omp_num_threads": "4",
-  "p": 8448,
-  "projections_hash": "a713693ad6a9b854a36458f0316b75aebd7bc93f3ab497e1fc1ab681e48c73e9",
+  "p": 135168,
+  "projections_hash": "999ca4cb8217efea9edde272de81f55e695524c0d1802a7ace1e2cc4dc79efae",
   "requested_device": "auto",
   "schema_version": 1,
   "sigma": 0.5,
   "thread_count": 4,
   "torch_version": "2.8.0+cu128",
-  "wall_time_s": 52.206110646249726
+  "wall_time_s": 101.461319523165
 }
