@@ -1,0 +1,54 @@
+{
+  "T": 4000,
+  "T_planned": 4000,
+  "checks": {
+    "all_ok": false,
+    "bulk_ess_ok": false,
+    "quantile_ess_ok": true,
+    "rhat_ok": false,
+    "tail_ess_ok": false
+  },
+  "coverage": {
+    "T": 4000,
+    "all_inside": true,
+    "chain_exit_counts": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "exit_count": 0,
+    "exit_episodes": 0,
+    "mcse": NaN,
+    "mcse_estimable": false,
+    "n_chains": 4,
+    "n_draws": 16000,
+    "p_hat": 1.0
+  },
+  "diagnostics": {
+    "ess_bulk_min": 132.0,
+    "ess_tail_min": 213.0,
+    "n_variables": 20,
+    "quantile_ess_H": {
+      "0.95": 1797.5464731233228,
+      "0.99": 2187.7162688025883
+    },
+    "rhat_max": 1.05
+  },
+  "hit_budget": false,
+  "likelihood_evals": 131200,
+  "pass": false,
+  "stability_H": {
+    "delta": 0.008072783984042875,
+    "mean_first": 2.9819365176847743,
+    "mean_second": 2.990009301668817,
+    "se_proxy": 0.0023037969047013424
+  },
+  "stability_V": {
+    "delta": 0.25176491447113847,
+    "mean_first": 105.71151451927089,
+    "mean_second": 105.96327943374203,
+    "se_proxy": 0.05882951382020331
+  },
+  "status": "ok"
+}
