@@ -52,19 +52,23 @@ def _fmt(v, nd: int = 4) -> str:
 
 
 def write_traces(rd: Path, dst: Path) -> None:
-    obs = np.load(rd / "observables.npz")
-    T = int(np.isfinite(obs["H"]).all(axis=0).sum())
-    with gzip.open(dst / "traces.csv.gz", "wt", newline="", encoding="utf-8", compresslevel=9) as f:
+    with np.load(rd / "observables.npz") as z:
+        HB, inside, Vv, f0 = z["H_over_B"], z["inside"], z["V"], z["f_sub"][:, :, 0]
+    T = int(np.isfinite(HB).all(axis=0).sum())
+    with gzip.open(dst / "traces.csv.gz", "wt", newline="", encoding="utf-8", compresslevel=6) as f:
         w = csv.writer(f)
         w.writerow(["chain", "t", "H_over_B", "inside", "V", "f_sub_0"])
-        for c in range(obs["H"].shape[0]):
-            for t in range(T):
-                w.writerow([c, t, f"{obs['H_over_B'][c, t]:.8g}", int(obs["inside"][c, t]),
-                            f"{obs['V'][c, t]:.10g}", f"{obs['f_sub'][c, t, 0]:.8g}"])
+        for c in range(HB.shape[0]):
+            w.writerows(
+                (c, t, f"{h:.8g}", int(i), f"{v:.10g}", f"{g:.8g}")
+                for t, h, i, v, g in zip(range(T), HB[c, :T].tolist(), inside[c, :T].tolist(),
+                                         Vv[c, :T].tolist(), f0[c, :T].tolist())
+            )
 
 
 def write_curvature_csv(rd: Path, dst: Path) -> None:
-    cz = np.load(rd / "curvature.npz")
+    with np.load(rd / "curvature.npz") as z:
+        cz = {k: z[k] for k in z.files}
     idx = cz["indices"]
     keys = ("H", "inside", "ell", "u", "d_minus", "d_plus", "max_eigen_residual")
     with open(dst / "curvature_states.csv", "w", newline="", encoding="utf-8") as f:
