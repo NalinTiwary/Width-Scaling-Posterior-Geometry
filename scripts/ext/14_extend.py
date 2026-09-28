@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Diagnostics for every finished target; extend unresolved ones 4000 → 8000 → 16000 retained
+Diagnostics for every finished target; extend unresolved ones through sampling.retained_extensions
 updates (rerun from the same seeds) unless the likelihood-evaluation cap was reached.
 """
 
@@ -39,11 +39,17 @@ def evaluate(rd: Path, cfg: dict) -> dict:
     checks = diagnostics_pass(diag, rhat_max=float(dc["rhat_max"]), bulk_ess_min=float(dc["bulk_ess_min"]),
                               tail_ess_min=float(dc["tail_ess_min"]), quantile_ess_min=float(dc["quantile_ess_min"]))
     cov = coverage_summary(obs["inside"][:, :T])
+    table = diag["summary_table"]
+    protocol_max = int(cfg["sampling"].get("protocol_max_retained", max(cfg["sampling"]["retained_extensions"])))
     return {
         "status": "ok",
         "T": T,
         "T_planned": int(meta["n_retained"]),
-        "diagnostics": {k: v for k, v in diag.items() if k != "summary_table"},
+        "beyond_protocol": T > protocol_max,
+        "diagnostics": {**{k: v for k, v in diag.items() if k != "summary_table"},
+                        "ess_bulk_argmin": str(table["ess_bulk"].idxmin()),
+                        "ess_bulk_by_observable": {str(k): float(v) for k, v in table["ess_bulk"].items()},
+                        "rhat_by_observable": {str(k): float(v) for k, v in table["r_hat"].items()}},
         "checks": checks,
         "coverage": {k: v for k, v in cov.items() if k != "batch_means"},
         "stability_V": half_chain_stability(obs["V"][:, :T]),

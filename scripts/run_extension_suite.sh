@@ -37,7 +37,7 @@
 #   VALIDATE_LIGHT  1 = shorter matched-sampling validation runs (default 0)
 #   RUN_TESTS       1 = run pytest before sampling (default 1)
 #   RUN_PROFILE     1 = profile n=128,m=4096 before the grid (default 1; ALL_PROFILE=1 for all settings)
-#   EXTEND          1 = extend targets failing diagnostics to 8000 then 16000 (default 1)
+#   EXTEND          1 = extend targets failing diagnostics through sampling.retained_extensions (default 1)
 #   OVERWRITE       1 = rerun targets from scratch; 0 = skip finished ones (default 0)
 #   POST            1 = run summaries/figures/export at the end (default 1; set 0 for parallel split jobs)
 #   POST_ONLY       1 = skip sampling, only redo diagnostics/postprocessing/export (default 0)

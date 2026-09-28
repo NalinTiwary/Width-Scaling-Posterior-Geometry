@@ -92,6 +92,7 @@ def main() -> None:
     post = cfg.get("postprocess", {})
     cutoff_width = int(post.get("cutoff_width", 4096))
     diag_ratio = float(post.get("matched_n_over_sqrt_m", 2.0))
+    protocol_max = int(cfg["sampling"].get("protocol_max_retained", max(cfg["sampling"]["retained_extensions"])))
     for t in all_targets(cfg):
         rd = run_dir(artifacts, t)
         if not (rd / "metadata.json").exists():
@@ -116,7 +117,9 @@ def main() -> None:
             "p_sampled": meta["p"], "p_full": meta["p_full"], "coordinates": meta["coordinates"],
             "B": th["B"], "D_th": th["D_th"], "curvature_margin": th["curvature_margin"],
             "n_over_sqrt_m": th["n_over_sqrt_m"], "M2": th["M2"], "M4": th["M4"],
-            "T": T, "diagnostics_pass": diag.get("pass"), "unresolved": diag.get("unresolved", False),
+            "T": T, "beyond_protocol": T > protocol_max,
+            "diagnostics_pass": diag.get("pass"), "unresolved": diag.get("unresolved", False),
+            "limiting_observable": dd.get("ess_bulk_argmin"),
             "hit_budget": meta["hit_likelihood_budget"], "rhat_max": dd.get("rhat_max"),
             "ess_bulk_min": dd.get("ess_bulk_min"), "ess_tail_min": dd.get("ess_tail_min"),
             "coverage": float(inside.mean()) if T else float("nan"),

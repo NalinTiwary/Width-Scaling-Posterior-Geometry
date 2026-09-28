@@ -109,11 +109,15 @@ def summary_md(out: Path, manifest: dict) -> None:
                 f"| {r['all_reps_pass_diagnostics']} |"
             )
         L.append("")
-    L += ["## Targets", "", "| target | status | T | diag pass | R̂ max | bulk ESS min | coverage | budget hit |",
-          "|---|---|---|---|---|---|---|---|"]
+    L += ["## Targets", "",
+          "T beyond the addendum's retained-update cap (`sampling.protocol_max_retained`) is marked †. Limiting = observable with the lowest bulk ESS.", "",
+          "| target | status | T | diag pass | R̂ max | bulk ESS min | limiting | coverage | budget hit |",
+          "|---|---|---|---|---|---|---|---|---|"]
     for t in manifest["targets"]:
-        L.append(f"| {t['name']} | {t['status']} | {t.get('T', '—')} | {t.get('pass', '—')} | "
-                 f"{_fmt(t.get('rhat_max'))} | {_fmt(t.get('ess_bulk_min'))} | {_fmt(t.get('coverage'))} | "
+        T = f"{t['T']}{' †' if t.get('beyond_protocol') else ''}" if "T" in t else "—"
+        L.append(f"| {t['name']} | {t['status']} | {T} | {t.get('pass', '—')} | "
+                 f"{_fmt(t.get('rhat_max'))} | {_fmt(t.get('ess_bulk_min'))} | {t.get('limiting') or '—'} | "
+                 f"{_fmt(t.get('coverage'))} | "
                  f"{t.get('hit_budget', '—')} |")
     figs = sorted((out / "figures").glob("*.png")) if (out / "figures").exists() else []
     if figs:
@@ -158,6 +162,8 @@ def main() -> None:
             rec.update(status="done", T=diag.get("T", meta["n_retained"]), **{"pass": diag.get("pass")},
                        rhat_max=diag.get("diagnostics", {}).get("rhat_max"),
                        ess_bulk_min=diag.get("diagnostics", {}).get("ess_bulk_min"),
+                       limiting=diag.get("diagnostics", {}).get("ess_bulk_argmin"),
+                       beyond_protocol=diag.get("beyond_protocol", False),
                        coverage=diag.get("coverage", {}).get("p_hat"),
                        hit_budget=meta["hit_likelihood_budget"], device=meta["effective_device"])
         targets.append(rec)

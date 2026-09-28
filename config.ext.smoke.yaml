@@ -45,7 +45,8 @@ sampling:
   n_chains: 2
   burnin: 20
   retained_initial: 80
-  retained_extensions: [160]
+  retained_extensions: [160, 320]
+  protocol_max_retained: 160
   likelihood_eval_cap_per_target: 200000
 
 observables:
