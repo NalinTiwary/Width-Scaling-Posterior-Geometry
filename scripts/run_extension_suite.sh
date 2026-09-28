@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --job-name=cyl_ext
-#SBATCH --time=72:00:00                    # 27 targets + extensions; split with FILTER if the queue limit is lower
+#SBATCH --time=24:00:00                    # Queue limit; split with FILTER and resubmit to resume
 #SBATCH --mail-type=ALL,FAIL
 #SBATCH --mail-user="nalint2@illinois.edu"  # Email when job starts/finishes/fails
 #SBATCH --nodes=1
