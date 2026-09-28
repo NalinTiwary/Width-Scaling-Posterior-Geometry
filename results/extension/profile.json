@@ -1,0 +1,18 @@
+{
+  "settings": [
+    {
+      "device": "cuda",
+      "est_target_minutes_T_initial": 1.080412000968742,
+      "evals_per_update": 4.02,
+      "kind": "orth",
+      "m": 4096,
+      "n": 128,
+      "p": 528384,
+      "s_per_curvature_state": 0.024115975595123018,
+      "s_per_eval": 0.000607908688907266,
+      "s_per_update": 0.0024437929294072094,
+      "setting": "orth_n128_m4096"
+    }
+  ],
+  "updates_per_setting": 150
+}

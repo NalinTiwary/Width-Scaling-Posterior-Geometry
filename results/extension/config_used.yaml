@@ -1,0 +1,77 @@
+# Larger-sample extension (cylinder_larger_sample_extension.md, 28 Sep 2026).
+# Frozen before any posterior runs. Do not retune to chase a trend.
+
+architecture:
+  hidden_layers: 1
+  activation: tanh
+  classes: 2
+
+prior:
+  sigma: 0.5
+  b0: 1.0
+
+controlled:
+  d: 256
+  # (n, m) in the addendum's execution order (§7): n=128 first, then n=64, then n=256.
+  settings:
+    - [128, 4096]
+    - [128, 1024]
+    - [128, 16384]
+    - [64, 1024]
+    - [64, 4096]
+    - [256, 4096]
+    - [256, 16384]
+  replicates: [0, 1, 2]
+  input_seed_base: 1000
+  label_seed_base: 2000
+  center_seed_base: 3000
+  center_bank_rows: 8192
+  teacher_scale: 2.0
+
+realdata:
+  enabled: true
+  classes: [0, 6]          # T-shirt/top vs shirt; y = 1 for the second class
+  n_per_class: 128         # n = 256
+  pca_dim: 32
+  widths: [4096, 16384]
+  replicates: [0, 1, 2]
+  subset_seed_base: 4000
+  center_seed_base: 5000
+  center_bank_rows: 8192
+  raw_dir: data/raw/fashion-mnist
+  processed_dir: data/fmnist   # committed: PCA map + replicate subsets
+
+sampling:
+  kernel: elliptical_slice
+  n_chains: 4
+  burnin: 2000
+  retained_initial: 4000
+  retained_extensions: [8000, 16000]
+  likelihood_eval_cap_per_target: 1000000
+
+observables:
+  n_train_subset: 8        # f at the first 8 training rows (common to all nested n)
+  n_projections: 8
+  projection_seed: 2029
+
+diagnostics:
+  rhat_max: 1.01
+  bulk_ess_min: 1000
+  tail_ess_min: 400
+  quantile_ess_min: 400
+  head_quantiles: [0.95, 0.99]
+
+curvature:
+  states_per_chain: 64     # 256 prespecified states per target
+  upper_bracket_blocks: 32 # orth: worst distinct neuron blocks for the Rayleigh bound
+  bisection_iters: 100
+  eigen_residual_tol: 1.0e-8
+
+postprocess:
+  cutoff_width: 4096            # Appendix B: H/B CDF width (must exist for every n)
+  matched_n_over_sqrt_m: 2.0   # matched-diagonal table
+
+device: auto
+artifacts_dir: artifacts_ext
+results_dir: results/extension
+seed_master: 0
