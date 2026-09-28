@@ -9,8 +9,13 @@ artifacts/*
 artifacts_smoke/
 results_smoke/
 logs/
+artifacts_ext/
+artifacts_ext_smoke/
+results_ext_smoke/
+data/raw/
 *.npz
 !tests/fixtures/*.npz
+!data/fmnist/*.npz
 .DS_Store
 *.egg-info/
 dist/

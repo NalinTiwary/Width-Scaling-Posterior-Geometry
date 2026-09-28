@@ -74,6 +74,24 @@ resumes), protocol extensions, curvature, summaries, figures, and
 diagnostics, gzipped scalar traces, figures, `SUMMARY.md`, `manifest.json`);
 heavy `.npz` files stay in `artifacts/`.
 
+## Larger-sample extension (n = 64, 128, 256; Fashion-MNIST appendix)
+
+```bash
+mkdir -p logs/cyl_ext && sbatch scripts/run_extension_suite.sh
+# split across jobs (shared artifacts_ext/), then postprocess once:
+#   FILTER='orth_n(64|128)_' POST=0 sbatch scripts/run_extension_suite.sh
+#   FILTER='orth_n256_|fmnist_' POST=0 RUN_VALIDATE=0 RUN_PROFILE=0 sbatch scripts/run_extension_suite.sh
+#   POST_ONLY=1 bash scripts/run_extension_suite.sh
+# local dry run: CONFIG=config.ext.smoke.yaml bash scripts/run_extension_suite.sh
+```
+
+Config `config.ext.yaml`, code in `src/cylinder/ext/` and `scripts/ext/10–17`.
+Orthonormal targets are sampled in exact reduced coordinates `(a_j, z_j = X_n w_j)`;
+curvature brackets use a batched arrowhead eigensolver (validated against dense
+Hessians by `11_validate.py`, which aborts the suite on failure). The processed
+Fashion-MNIST PCA map and subsets are committed in `data/fmnist/`, so the cluster
+needs no download. Commit `results/extension/`; heavy arrays stay in `artifacts_ext/`.
+
 ## Artifacts
 
 See `artifacts/` after runs: `data.npz`, `centers_seed*.npz`, `runs/*/`,

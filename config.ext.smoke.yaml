@@ -1,0 +1,76 @@
+# Smoke version of config.ext.yaml: same code paths and data constructions,
+# tiny widths/chains so the whole extension pipeline runs in minutes on CPU.
+
+architecture:
+  hidden_layers: 1
+  activation: tanh
+  classes: 2
+
+prior:
+  sigma: 0.5
+  b0: 1.0
+
+controlled:
+  d: 256
+  settings:
+    - [128, 256]
+    - [128, 64]
+    - [128, 1024]
+    - [64, 64]
+    - [64, 256]
+    - [256, 256]
+    - [256, 1024]
+  replicates: [0, 1]
+  input_seed_base: 1000
+  label_seed_base: 2000
+  center_seed_base: 3000
+  center_bank_rows: 8192
+  teacher_scale: 2.0
+
+realdata:
+  enabled: true
+  classes: [0, 6]
+  n_per_class: 128
+  pca_dim: 32
+  widths: [256, 1024]
+  replicates: [0, 1]
+  subset_seed_base: 4000
+  center_seed_base: 5000
+  center_bank_rows: 8192
+  raw_dir: data/raw/fashion-mnist
+  processed_dir: data/fmnist
+
+sampling:
+  kernel: elliptical_slice
+  n_chains: 2
+  burnin: 20
+  retained_initial: 80
+  retained_extensions: [160]
+  likelihood_eval_cap_per_target: 200000
+
+observables:
+  n_train_subset: 8
+  n_projections: 8
+  projection_seed: 2029
+
+diagnostics:
+  rhat_max: 1.2
+  bulk_ess_min: 10
+  tail_ess_min: 5
+  quantile_ess_min: 5
+  head_quantiles: [0.95, 0.99]
+
+curvature:
+  states_per_chain: 4
+  upper_bracket_blocks: 32
+  bisection_iters: 100
+  eigen_residual_tol: 1.0e-8
+
+postprocess:
+  cutoff_width: 256            # Appendix B: H/B CDF width (must exist for every n)
+  matched_n_over_sqrt_m: 8.0   # matched-diagonal table
+
+device: auto
+artifacts_dir: artifacts_ext_smoke
+results_dir: results_ext_smoke
+seed_master: 0
