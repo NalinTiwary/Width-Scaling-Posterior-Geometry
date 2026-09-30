@@ -1,7 +1,7 @@
 # Larger-sample extension results
 
-Generated 2026-09-30T20:41:48+00:00 on `wirelessprv-10-192-36-27.near.illinois.edu`, commit `b3173c87b8`, config `config.ext.yaml`.
-Targets done: 0/27.
+Generated 2026-09-29T05:53:19+00:00 on `ccc0315.campuscluster.illinois.edu` (SLURM job 10965820), commit `f047d78ea1`, config `config.ext.yaml`.
+Targets done: 27/27.
 
 ## Validation
 
@@ -35,33 +35,33 @@ T beyond the addendum's retained-update cap (`sampling.protocol_max_retained`) i
 
 | target | status | T | diag pass | R̂ max | bulk ESS min | limiting | coverage | budget hit |
 |---|---|---|---|---|---|---|---|---|
-| orth_n128_m4096_r0 | missing | — | — | None | None | — | None | — |
-| orth_n128_m4096_r1 | missing | — | — | None | None | — | None | — |
-| orth_n128_m4096_r2 | missing | — | — | None | None | — | None | — |
-| orth_n128_m1024_r0 | missing | — | — | None | None | — | None | — |
-| orth_n128_m1024_r1 | missing | — | — | None | None | — | None | — |
-| orth_n128_m1024_r2 | missing | — | — | None | None | — | None | — |
-| orth_n128_m16384_r0 | missing | — | — | None | None | — | None | — |
-| orth_n128_m16384_r1 | missing | — | — | None | None | — | None | — |
-| orth_n128_m16384_r2 | missing | — | — | None | None | — | None | — |
-| orth_n64_m1024_r0 | missing | — | — | None | None | — | None | — |
-| orth_n64_m1024_r1 | missing | — | — | None | None | — | None | — |
-| orth_n64_m1024_r2 | missing | — | — | None | None | — | None | — |
-| orth_n64_m4096_r0 | missing | — | — | None | None | — | None | — |
-| orth_n64_m4096_r1 | missing | — | — | None | None | — | None | — |
-| orth_n64_m4096_r2 | missing | — | — | None | None | — | None | — |
-| orth_n256_m4096_r0 | missing | — | — | None | None | — | None | — |
-| orth_n256_m4096_r1 | missing | — | — | None | None | — | None | — |
-| orth_n256_m4096_r2 | missing | — | — | None | None | — | None | — |
-| orth_n256_m16384_r0 | missing | — | — | None | None | — | None | — |
-| orth_n256_m16384_r1 | missing | — | — | None | None | — | None | — |
-| orth_n256_m16384_r2 | missing | — | — | None | None | — | None | — |
-| fmnist_n256_m4096_r0 | missing | — | — | None | None | — | None | — |
-| fmnist_n256_m4096_r1 | missing | — | — | None | None | — | None | — |
-| fmnist_n256_m4096_r2 | missing | — | — | None | None | — | None | — |
-| fmnist_n256_m16384_r0 | missing | — | — | None | None | — | None | — |
-| fmnist_n256_m16384_r1 | missing | — | — | None | None | — | None | — |
-| fmnist_n256_m16384_r2 | missing | — | — | None | None | — | None | — |
+| orth_n128_m4096_r0 | done | 16000 | True | 1 | 1164 | V | 1 | False |
+| orth_n128_m4096_r1 | done | 40000 † | True | 1 | 2620 | V | 1 | False |
+| orth_n128_m4096_r2 | done | 16000 | True | 1 | 1028 | V | 1 | False |
+| orth_n128_m1024_r0 | done | 40000 † | True | 1 | 2052 | V | 1 | False |
+| orth_n128_m1024_r1 | done | 16000 | True | 1 | 1081 | V | 1 | False |
+| orth_n128_m1024_r2 | done | 16000 | True | 1 | 1058 | V | 1 | False |
+| orth_n128_m16384_r0 | done | 40000 † | True | 1 | 2396 | V | 1 | False |
+| orth_n128_m16384_r1 | done | 16000 | True | 1 | 1049 | V | 1 | False |
+| orth_n128_m16384_r2 | done | 16000 | True | 1 | 1040 | V | 1 | False |
+| orth_n64_m1024_r0 | done | 16000 | True | 1 | 1903 | V | 1 | False |
+| orth_n64_m1024_r1 | done | 16000 | True | 1 | 2002 | V | 1 | False |
+| orth_n64_m1024_r2 | done | 16000 | True | 1 | 1854 | V | 1 | False |
+| orth_n64_m4096_r0 | done | 16000 | True | 1 | 1791 | V | 1 | False |
+| orth_n64_m4096_r1 | done | 16000 | True | 1 | 2030 | V | 1 | False |
+| orth_n64_m4096_r2 | done | 16000 | True | 1 | 1868 | V | 1 | False |
+| orth_n256_m4096_r0 | done | 40000 † | False | 1.01 | 1134 | V | 1 | False |
+| orth_n256_m4096_r1 | done | 40000 † | False | 1.01 | 1227 | V | 1 | False |
+| orth_n256_m4096_r2 | done | 40000 † | False | 1.01 | 1048 | V | 1 | False |
+| orth_n256_m16384_r0 | done | 40000 † | True | 1 | 1252 | V | 1 | False |
+| orth_n256_m16384_r1 | done | 40000 † | True | 1 | 1306 | V | 1 | False |
+| orth_n256_m16384_r2 | done | 40000 † | True | 1 | 1115 | V | 1 | False |
+| fmnist_n256_m4096_r0 | done | 16000 | False | 1.01 | 648 | — | 1 | False |
+| fmnist_n256_m4096_r1 | done | 16000 | False | 1.01 | 476 | — | 1 | False |
+| fmnist_n256_m4096_r2 | done | 16000 | False | 1.01 | 496 | — | 1 | False |
+| fmnist_n256_m16384_r0 | done | 16000 | False | 1.01 | 571 | — | 1 | False |
+| fmnist_n256_m16384_r1 | done | 16000 | False | 1.01 | 543 | — | 1 | False |
+| fmnist_n256_m16384_r2 | done | 4000 | False | 1.05 | 132 | — | 1 | False |
 
 ## Figures
 
