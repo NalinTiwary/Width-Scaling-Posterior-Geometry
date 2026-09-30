@@ -95,7 +95,8 @@ def write_summary(cfg: dict[str, Any], root: Path) -> str:
     if calp.exists():
         cal = pd.read_csv(calp)
         passcols = [c for c in cal.columns if c.startswith("pass")]
-        fails = cal[~cal[passcols].fillna(True).astype(bool).all(axis=1)]
+        ok = cal[passcols].apply(lambda s: s.map(lambda v: True if pd.isna(v) else str(v).lower() in ("true", "1", "1.0")))
+        fails = cal[~ok.all(axis=1)]
         lines.append(f"- Known-distribution calibration rows: {len(cal)}; rows with a failed statistical check: "
                      f"{len(fails)} (audits: {sorted(set(fails.get('audit', pd.Series(dtype=str)).dropna()))}).")
     ep = load(root, "endpoint_comparisons")
@@ -103,7 +104,7 @@ def write_summary(cfg: dict[str, Any], root: Path) -> str:
         lines.append(f"- Endpoint step comparisons: {int(_b(ep['pass']).sum())} of {len(ep)} rows pass "
                      "(tables/endpoint_comparisons.csv).")
     if len(ta):
-        be = ta[_b(ta["reference_budget_exhausted"].fillna(False))]["target_id"].tolist()
+        be = ta[_b(ta["reference_budget_exhausted"])]["target_id"].tolist()
         lines.append(f"- Reference budget exhausted: {be or 'none'}. Code fixes during the campaign: see "
                      "manifest.json (code_fixes).")
     lines += ["", "## 7. Predictive check", ""]

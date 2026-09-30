@@ -109,6 +109,9 @@ def analyze(cfg: dict[str, Any], root: Path) -> dict[str, pd.DataFrame]:
         fh = steps[t.arch]["h"]
         dyn = _dyn_final(tdir, fh)
         runs = _j(tdir / "analysis" / "dynamics_runs.json") or {}
+        scal = _j(tdir / "analysis" / "step_calibration.json") or {}
+        dyn_grads = sum(int(c.get("grad_evals") or 0) for c in scal.get("candidates", [])) + \
+            sum(int(s.get("grad_evals_run") or 0) for s in runs.values())
         for hid, summ in runs.items():
             a = _j(tdir / "analysis" / f"dynamics_{hid}_stage_{summ['final_stage']}.json") if summ.get("final_stage") else None
             if not a:
@@ -122,7 +125,7 @@ def analyze(cfg: dict[str, Any], root: Path) -> dict[str, pd.DataFrame]:
                 row = {**r, "role": role, "architecture_dynamics_status": steps[t.arch]["status"],
                        "acceptance_min": min(a["acceptance_per_chain"]),
                        "max_rejection_streak": max(a["max_rejection_streak_per_chain"]),
-                       "grad_evals_target_total": summ.get("grad_evals_target_total")}
+                       "grad_evals_run": summ.get("grad_evals_run"), "grad_evals_target_total": dyn_grads}
                 if role == "production_final" and steps[t.arch]["status"] not in ("validated",):
                     row["validity"] = False
                     row["failure_reason"] = (row.get("failure_reason") or "") + \
@@ -141,7 +144,7 @@ def analyze(cfg: dict[str, Any], root: Path) -> dict[str, pd.DataFrame]:
             "reference_transitions_per_chain": _flat(ref.get("transitions_per_chain")),
             "reference_likelihood_evals_per_chain": _flat(ref.get("likelihood_evals_per_chain")),
             "reference_wall_s": ref.get("wall_s"), "device": ref.get("device"),
-            "dynamics_grad_evals_total": max([s.get("grad_evals_target_total") or 0 for s in runs.values()] or [0]),
+            "dynamics_grad_evals_total": dyn_grads,
             "probe_gradient_evals_cumulative": static.get("probe_gradient_evals_cumulative"),
             "probe_gradient_evals_final_subset": static.get("probe_gradient_evals_final_subset"),
             "static_selected_per_chain": static.get("per_chain_selected"),

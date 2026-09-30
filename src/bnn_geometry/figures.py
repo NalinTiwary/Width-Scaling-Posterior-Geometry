@@ -464,7 +464,7 @@ def figure_s2(cfg, root: Path, dpi: int) -> dict[str, Any]:
             if "estimate" not in g:
                 continue
             x = _xoff(np.array(widths, float), rep, reps)
-            v = _bool(g["validity"].fillna(False)) if "validity" in g else pd.Series(False, index=g.index)
+            v = _bool(g["validity"]) if "validity" in g else pd.Series(False, index=g.index)
             for xi, (_, r), vi in zip(x, g.iterrows(), v):
                 if np.isfinite(r.get("estimate", np.nan)):
                     err = [[r["estimate"] - r["mc_low"]], [r["mc_high"] - r["estimate"]]] \

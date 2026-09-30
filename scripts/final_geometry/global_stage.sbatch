@@ -13,7 +13,7 @@
 #SBATCH --output=logs/final_geometry/%x_%j.out
 #SBATCH --error=logs/final_geometry/%x_%j.err
 #
-# Campaign-wide steps between the target arrays. Env STEPS is a space-separated list of:
+# Campaign-wide steps between the target arrays. Env STEPS is a '+'-separated list of:
 #   freeze            validate-config, plan, freeze (data, centers, manifest, full pytest), benchmark
 #   select-step       architecture-wide pCNL step from all targets' calibration   (job B)
 #   controls          iid Gaussian-prior spectral reference                         (job B)
@@ -27,7 +27,7 @@ source "$(dirname "$0")/common.sh" 2>/dev/null || source scripts/final_geometry/
 banner "global steps: $STEPS"
 
 rc=0
-for step in $STEPS; do
+for step in ${STEPS//+/ }; do
     t0=$SECONDS
     case "$step" in
         freeze)

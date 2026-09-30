@@ -130,6 +130,44 @@ def test_truncated_file_detected(tmp_path):
         tr.read(["burnin"])
 
 
+class _Killed(BaseException):
+    pass
+
+
+@pytest.mark.parametrize("kill_after_unlinks", [1, 3, 6, 10**6])
+def test_kill_during_consolidation_resumes(tmp_path, monkeypatch, kill_after_unlinks):
+    """SIGKILL while chunks are merged into segment files (or before the checkpoint records it)."""
+    import pathlib
+    ref = _run_all(_traj(tmp_path / "ref"))
+    tr = _traj(tmp_path / "x")
+    orig_unlink, orig_save = pathlib.Path.unlink, Trajectory._save
+    calls = {"n": 0}
+
+    def unlink(self, *a, **k):
+        if ".chunk" in self.name:
+            calls["n"] += 1
+            if calls["n"] > kill_after_unlinks:
+                raise _Killed()
+        return orig_unlink(self, *a, **k)
+
+    def save(self):
+        if calls["n"] > 0:  # consolidation finished, checkpoint not yet updated
+            raise _Killed()
+        return orig_save(self)
+
+    tr.run_segment("burnin", 20)
+    monkeypatch.setattr(pathlib.Path, "unlink", unlink)
+    monkeypatch.setattr(Trajectory, "_save", save)
+    with pytest.raises(_Killed):
+        tr.run_segment("calibration", 24, archive_stride=8)
+    monkeypatch.undo()
+    tr = _run_all(_reopen(tr))
+    for ca, cb in zip(ref.read(["calibration", "production_s1"]), tr.read(["calibration", "production_s1"])):
+        for k in ca:
+            assert np.array_equal(ca[k], cb[k]), k
+    assert not list((tmp_path / "x").rglob("*.chunk*.h5"))
+
+
 def test_stale_chunks_after_checkpoint_are_discarded(tmp_path):
     """A chunk written after the last restart record (job killed between the two writes) is redone."""
     ref = _run_all(_traj(tmp_path / "ref"))

@@ -234,7 +234,7 @@ def run_dynamics(ctx: TargetContext, h: float, *, max_stage: Optional[int] = Non
     summary = {"h": h, "h_id": h_id(h), "final_stage": k, "stage_pass": bool(res and res["stage_pass"]),
                "acceptance_fail": bool(res and res["acceptance_fail"]), "budget_exhausted": tr.budget_exhausted(),
                "T_per_chain": None if res is None else res["T_per_chain"], "mode": "fixed" if max_stage else "production",
-               "grad_evals_target_total": ctx.dynamics_grad_evals()}
+               "grad_evals_run": tr.grad_evals()}
     runs = ctx.load_analysis("dynamics_runs") or {}
     runs[h_id(h)] = summary
     ctx.save_analysis("dynamics_runs", runs)

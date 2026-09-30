@@ -22,11 +22,18 @@
 #   RETRIES=n            continuation arrays after each array                         [2]
 #   CONFIG, OUT, DEVICE  forwarded to python -m bnn_geometry                          [configs/campaign.yaml]
 #   DRY_RUN=1            print the sbatch commands only
+#   SKIP_PREFLIGHT=1     skip the login-node checks in preflight.sh
+#   TIME_LIMIT=hh:mm:ss  time limit for every job (default: 24 h arrays, per-step global limits)
+#
+# GPU smoke test of the whole chain at the real model sizes with short chains (~1 h of GPU time,
+# short jobs backfill quickly; results are not scientific):
+#   CONFIG=configs/scale_smoke.yaml RETRIES=0 TIME_LIMIT=01:00:00 bash scripts/final_geometry/submit.sh
 #
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 FROM="${FROM:-0}"
 RETRIES="${RETRIES:-2}"
+ARRAY_TIME="${TIME_LIMIT:-24:00:00}"
 CONFIG="${CONFIG:-configs/campaign.yaml}"
 DRY_RUN="${DRY_RUN:-0}"
 D=scripts/final_geometry
@@ -36,6 +43,10 @@ N=$(PYTHONPATH=src python3 -c "
 from bnn_geometry import config as C
 print(len(C.targets(C.load('$CONFIG'))))")
 ARRAY="0-$((N - 1))"
+
+if [ "${SKIP_PREFLIGHT:-0}" != "1" ] && [ "$DRY_RUN" != "1" ]; then
+    bash "$D/preflight.sh" || { echo "Not submitting: fix the failures above (or SKIP_PREFLIGHT=1)."; exit 1; }
+fi
 EXPORTS="ALL,CONFIG=$CONFIG${OUT:+,OUT=$OUT}${DEVICE:+,DEVICE=$DEVICE}"
 
 order="0 A B C D E F"
@@ -58,15 +69,15 @@ submit() {  # submit <label> <dependency-type> <sbatch args...>; sets $prev
 }
 
 target_array() {  # target_array <step-letter> <stage>
-    submit "$1 $2" afterany --job-name="bnn_$1_$2" --array="$ARRAY" --export="$EXPORTS,STAGE=$2" "$D/target_stage.sbatch"
-    for i in $(seq 1 "$RETRIES"); do
+    submit "$1 $2" afterany --job-name="bnn_$1_$2" --array="$ARRAY" --time="$ARRAY_TIME" --export="$EXPORTS,STAGE=$2" "$D/target_stage.sbatch"
+    for ((i = 1; i <= RETRIES; i++)); do
         submit "$1 $2 (continuation $i)" afterany --job-name="bnn_$1_$2_c$i" --array="$ARRAY" \
-            --export="$EXPORTS,STAGE=$2" "$D/target_stage.sbatch"
+            --time="$ARRAY_TIME" --export="$EXPORTS,STAGE=$2" "$D/target_stage.sbatch"
     done
 }
 
 global_job() {  # global_job <label> <dep> <time> <steps>
-    submit "$1" "$2" --job-name="bnn_${1%% *}" --time="$3" --export="$EXPORTS,STEPS=$4" "$D/global_stage.sbatch"
+    submit "$1" "$2" --job-name="bnn_${1%% *}" --time="${TIME_LIMIT:-$3}" --export="$EXPORTS,STEPS=$4" "$D/global_stage.sbatch"
 }
 
 echo "Campaign config $CONFIG: $N targets, arrays $ARRAY, $RETRIES continuation(s) per array, starting at $FROM"
@@ -77,16 +88,16 @@ for step in $order; do
         0) global_job "0 freeze" afterok 08:00:00 "freeze" ;;
         A) # the reference arrays must not start if freezing/tests failed
            submit "A reference" afterok --job-name=bnn_A_reference --array="$ARRAY" \
-               --export="$EXPORTS,STAGE=reference" "$D/target_stage.sbatch"
-           for i in $(seq 1 "$RETRIES"); do
+               --time="$ARRAY_TIME" --export="$EXPORTS,STAGE=reference" "$D/target_stage.sbatch"
+           for ((i = 1; i <= RETRIES; i++)); do
                submit "A reference (continuation $i)" afterany --job-name="bnn_A_reference_c$i" --array="$ARRAY" \
-                   --export="$EXPORTS,STAGE=reference" "$D/target_stage.sbatch"
+                   --time="$ARRAY_TIME" --export="$EXPORTS,STAGE=reference" "$D/target_stage.sbatch"
            done ;;
-        B) global_job "B select-step+controls" afterany 06:00:00 "select-step controls" ;;
+        B) global_job "B select-step+controls" afterany 06:00:00 "select-step+controls" ;;
         C) target_array C production ;;
         D) global_job "D endpoint-decision" afterany 04:00:00 "endpoint-decision" ;;
         E) target_array E refine ;;
-        F) global_job "F final+post" afterany 12:00:00 "refine-decision post" ;;
+        F) global_job "F final+post" afterany 12:00:00 "refine-decision+post" ;;
     esac
 done
 [ "$started" = "1" ] || { echo "unknown FROM=$FROM (use one of: $order)"; exit 1; }

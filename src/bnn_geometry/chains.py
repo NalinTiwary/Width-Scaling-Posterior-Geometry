@@ -138,6 +138,8 @@ class Trajectory:
         if cur is None:
             cur = {"name": segment, "n": int(n), "k": 0, "archive_stride": int(archive_stride),
                    "t_start": time.time()}
+            for c in self.chains:
+                segment_path(self.chain_dir(c), segment).unlink(missing_ok=True)
             self.ck["current"] = cur
         elif cur["n"] != int(n) or cur["archive_stride"] != int(archive_stride):
             raise StorageError(f"{self.path}: segment {segment} was started with different length/stride")
@@ -261,6 +263,15 @@ class Trajectory:
         for c in self.chains:
             cd = self.chain_dir(c)
             chunks = list_chunks(cd, segment)
+            sp = segment_path(cd, segment)
+            if sp.exists():
+                # The segment file is written atomically before any chunk is removed, so an existing one
+                # means an earlier consolidation of this chain completed before the process was killed.
+                arr, attrs = read_trace_file(sp, ["draw"])
+                validate_trace(arr, attrs, expect_first=0, expect_n=n, hashes=self.hashes, chain=c, where=str(sp))
+                for _, p in chunks:
+                    p.unlink()
+                continue
             parts, pos = [], 0
             for start, p in chunks:
                 arr, attrs = read_trace_file(p)
