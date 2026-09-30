@@ -1,15 +1,16 @@
 {
-  "T": 16000,
-  "T_planned": 16000,
+  "T": 40000,
+  "T_planned": 40000,
+  "beyond_protocol": true,
   "checks": {
-    "all_ok": false,
-    "bulk_ess_ok": false,
+    "all_ok": true,
+    "bulk_ess_ok": true,
     "quantile_ess_ok": true,
-    "rhat_ok": false,
+    "rhat_ok": true,
     "tail_ess_ok": true
   },
   "coverage": {
-    "T": 16000,
+    "T": 40000,
     "all_inside": true,
     "chain_exit_counts": [
       0,
@@ -22,33 +23,78 @@
     "mcse": NaN,
     "mcse_estimable": false,
     "n_chains": 4,
-    "n_draws": 64000,
+    "n_draws": 160000,
     "p_hat": 1.0
   },
   "diagnostics": {
-    "ess_bulk_min": 451.0,
-    "ess_tail_min": 794.0,
+    "ess_bulk_argmin": "V",
+    "ess_bulk_by_observable": {
+      "H": 15176.0,
+      "V": 1115.0,
+      "f_sub_0": 3395.0,
+      "f_sub_1": 3225.0,
+      "f_sub_2": 3002.0,
+      "f_sub_3": 2957.0,
+      "f_sub_4": 3392.0,
+      "f_sub_5": 3419.0,
+      "f_sub_6": 3212.0,
+      "f_sub_7": 3703.0,
+      "mean_sq_head": 5419.0,
+      "projections_0": 2796.0,
+      "projections_1": 2835.0,
+      "projections_2": 2814.0,
+      "projections_3": 2512.0,
+      "projections_4": 2666.0,
+      "projections_5": 3029.0,
+      "projections_6": 2622.0,
+      "projections_7": 2850.0,
+      "z_sq_over_p": 4794.0
+    },
+    "ess_bulk_min": 1115.0,
+    "ess_tail_min": 1855.0,
     "n_variables": 20,
     "quantile_ess_H": {
-      "0.95": 9026.513131436075,
-      "0.99": 9892.289763101558
+      "0.95": 22444.139249133998,
+      "0.99": 23910.655816241866
     },
-    "rhat_max": 1.01
+    "rhat_by_observable": {
+      "H": 1.0,
+      "V": 1.0,
+      "f_sub_0": 1.0,
+      "f_sub_1": 1.0,
+      "f_sub_2": 1.0,
+      "f_sub_3": 1.0,
+      "f_sub_4": 1.0,
+      "f_sub_5": 1.0,
+      "f_sub_6": 1.0,
+      "f_sub_7": 1.0,
+      "mean_sq_head": 1.0,
+      "projections_0": 1.0,
+      "projections_1": 1.0,
+      "projections_2": 1.0,
+      "projections_3": 1.0,
+      "projections_4": 1.0,
+      "projections_5": 1.0,
+      "projections_6": 1.0,
+      "projections_7": 1.0,
+      "z_sq_over_p": 1.0
+    },
+    "rhat_max": 1.0
   },
   "hit_budget": false,
-  "likelihood_evals": 356575,
-  "pass": false,
+  "likelihood_evals": 833544,
+  "pass": true,
   "stability_H": {
-    "delta": 0.0021046931726349527,
-    "mean_first": 2.9838193783673286,
-    "mean_second": 2.9859240715399635,
-    "se_proxy": 0.0011642444511425704
+    "delta": 0.004328183954222187,
+    "mean_first": 2.983931045313703,
+    "mean_second": 2.9882592292679253,
+    "se_proxy": 0.0007366591542723478
   },
   "stability_V": {
-    "delta": -0.284339433876454,
-    "mean_first": 166.18852534616744,
-    "mean_second": 165.90418591229098,
-    "se_proxy": 0.03850826408515182
+    "delta": -0.4657370825173359,
+    "mean_first": 166.005437155795,
+    "mean_second": 165.53970007327766,
+    "se_proxy": 0.023729449051268236
   },
   "status": "ok"
 }

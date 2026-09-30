@@ -46,7 +46,8 @@ sampling:
   n_chains: 4
   burnin: 2000
   retained_initial: 4000
-  retained_extensions: [8000, 16000]
+  retained_extensions: [8000, 16000, 40000]
+  protocol_max_retained: 16000     # addendum cap; longer runs are flagged beyond_protocol
   likelihood_eval_cap_per_target: 1000000
 
 observables:

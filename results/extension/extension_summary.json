@@ -8,9 +8,9 @@
       "unresolved": false
     },
     {
-      "T": 16000,
+      "T": 40000,
       "hit_budget": false,
-      "pass": false,
+      "pass": true,
       "target": "orth_n128_m4096_r1",
       "unresolved": false
     },
@@ -22,9 +22,9 @@
       "unresolved": false
     },
     {
-      "T": 16000,
+      "T": 40000,
       "hit_budget": false,
-      "pass": false,
+      "pass": true,
       "target": "orth_n128_m1024_r0",
       "unresolved": false
     },
@@ -43,9 +43,9 @@
       "unresolved": false
     },
     {
-      "T": 16000,
+      "T": 40000,
       "hit_budget": false,
-      "pass": false,
+      "pass": true,
       "target": "orth_n128_m16384_r0",
       "unresolved": false
     },
@@ -106,87 +106,45 @@
       "unresolved": false
     },
     {
-      "T": 16000,
+      "T": 40000,
       "hit_budget": false,
       "pass": false,
       "target": "orth_n256_m4096_r0",
-      "unresolved": false
+      "unresolved": true
     },
     {
-      "T": 16000,
+      "T": 40000,
       "hit_budget": false,
       "pass": false,
       "target": "orth_n256_m4096_r1",
-      "unresolved": false
+      "unresolved": true
     },
     {
-      "T": 16000,
+      "T": 40000,
       "hit_budget": false,
       "pass": false,
       "target": "orth_n256_m4096_r2",
-      "unresolved": false
+      "unresolved": true
     },
     {
-      "T": 16000,
+      "T": 40000,
       "hit_budget": false,
-      "pass": false,
+      "pass": true,
       "target": "orth_n256_m16384_r0",
       "unresolved": false
     },
     {
-      "T": 16000,
+      "T": 40000,
       "hit_budget": false,
-      "pass": false,
+      "pass": true,
       "target": "orth_n256_m16384_r1",
       "unresolved": false
     },
     {
-      "T": 16000,
+      "T": 40000,
       "hit_budget": false,
-      "pass": false,
+      "pass": true,
       "target": "orth_n256_m16384_r2",
-      "unresolved": false
-    },
-    {
-      "T": 16000,
-      "hit_budget": false,
-      "pass": false,
-      "target": "fmnist_n256_m4096_r0",
-      "unresolved": false
-    },
-    {
-      "T": 16000,
-      "hit_budget": false,
-      "pass": false,
-      "target": "fmnist_n256_m4096_r1",
-      "unresolved": false
-    },
-    {
-      "T": 8000,
-      "hit_budget": false,
-      "pass": false,
-      "target": "fmnist_n256_m4096_r2",
-      "unresolved": false
-    },
-    {
-      "T": 4000,
-      "hit_budget": false,
-      "pass": false,
-      "target": "fmnist_n256_m16384_r0",
-      "unresolved": false
-    },
-    {
-      "T": 4000,
-      "hit_budget": false,
-      "pass": false,
-      "target": "fmnist_n256_m16384_r1",
-      "unresolved": false
-    },
-    {
-      "T": 4000,
-      "hit_budget": false,
-      "pass": false,
-      "target": "fmnist_n256_m16384_r2",
       "unresolved": false
     }
   ]

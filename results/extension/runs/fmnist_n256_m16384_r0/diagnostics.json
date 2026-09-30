@@ -1,15 +1,15 @@
 {
-  "T": 4000,
-  "T_planned": 4000,
+  "T": 16000,
+  "T_planned": 16000,
   "checks": {
     "all_ok": false,
     "bulk_ess_ok": false,
     "quantile_ess_ok": true,
     "rhat_ok": false,
-    "tail_ess_ok": false
+    "tail_ess_ok": true
   },
   "coverage": {
-    "T": 4000,
+    "T": 16000,
     "all_inside": true,
     "chain_exit_counts": [
       0,
@@ -22,33 +22,34 @@
     "mcse": NaN,
     "mcse_estimable": false,
     "n_chains": 4,
-    "n_draws": 16000,
+    "n_draws": 64000,
     "p_hat": 1.0
   },
   "diagnostics": {
-    "ess_bulk_min": 122.0,
-    "ess_tail_min": 244.0,
+    "ess_bulk_min": 571.0,
+    "ess_tail_min": 1177.0,
     "n_variables": 20,
     "quantile_ess_H": {
-      "0.95": 1481.242895578515,
-      "0.99": 1803.8821448438966
+      "0.95": 5848.262442801007,
+      "0.99": 5232.0567697853885
     },
-    "rhat_max": 1.04
+    "rhat_max": 1.01
   },
   "hit_budget": false,
-  "likelihood_evals": 131080,
+  "likelihood_evals": 392059,
   "pass": false,
   "stability_H": {
-    "delta": 0.017473136698764158,
-    "mean_first": 2.979489886093343,
-    "mean_second": 2.9969630227921074,
-    "se_proxy": 0.002316053197178201
+    "delta": 0.004710485725850866,
+    "mean_first": 2.986585663024751,
+    "mean_second": 2.991296148750602,
+    "se_proxy": 0.0011774999703042196
   },
   "stability_V": {
-    "delta": 0.05323517784007947,
-    "mean_first": 112.10622317771038,
-    "mean_second": 112.15945835555046,
-    "se_proxy": 0.05817685098987457
+    "delta": 0.15516015110334536,
+    "mean_first": 111.93942734020553,
+    "mean_second": 112.09458749130887,
+    "se_proxy": 0.02985132018656108
   },
-  "status": "ok"
+  "status": "ok",
+  "unresolved": true
 }

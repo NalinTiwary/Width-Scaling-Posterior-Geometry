@@ -1,6 +1,7 @@
 {
   "T": 16000,
   "T_planned": 16000,
+  "beyond_protocol": false,
   "checks": {
     "all_ok": true,
     "bulk_ess_ok": true,
@@ -26,12 +27,57 @@
     "p_hat": 1.0
   },
   "diagnostics": {
+    "ess_bulk_argmin": "V",
+    "ess_bulk_by_observable": {
+      "H": 14214.0,
+      "V": 1868.0,
+      "f_sub_0": 4411.0,
+      "f_sub_1": 5236.0,
+      "f_sub_2": 4797.0,
+      "f_sub_3": 4032.0,
+      "f_sub_4": 4337.0,
+      "f_sub_5": 4917.0,
+      "f_sub_6": 5280.0,
+      "f_sub_7": 5228.0,
+      "mean_sq_head": 6411.0,
+      "projections_0": 4426.0,
+      "projections_1": 4288.0,
+      "projections_2": 4480.0,
+      "projections_3": 4376.0,
+      "projections_4": 3734.0,
+      "projections_5": 4327.0,
+      "projections_6": 4748.0,
+      "projections_7": 4244.0,
+      "z_sq_over_p": 6827.0
+    },
     "ess_bulk_min": 1868.0,
     "ess_tail_min": 2622.0,
     "n_variables": 20,
     "quantile_ess_H": {
       "0.95": 17424.953389708277,
       "0.99": 22575.83004653082
+    },
+    "rhat_by_observable": {
+      "H": 1.0,
+      "V": 1.0,
+      "f_sub_0": 1.0,
+      "f_sub_1": 1.0,
+      "f_sub_2": 1.0,
+      "f_sub_3": 1.0,
+      "f_sub_4": 1.0,
+      "f_sub_5": 1.0,
+      "f_sub_6": 1.0,
+      "f_sub_7": 1.0,
+      "mean_sq_head": 1.0,
+      "projections_0": 1.0,
+      "projections_1": 1.0,
+      "projections_2": 1.0,
+      "projections_3": 1.0,
+      "projections_4": 1.0,
+      "projections_5": 1.0,
+      "projections_6": 1.0,
+      "projections_7": 1.0,
+      "z_sq_over_p": 1.0
     },
     "rhat_max": 1.0
   },
