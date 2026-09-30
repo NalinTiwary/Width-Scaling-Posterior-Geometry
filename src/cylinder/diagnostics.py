@@ -170,7 +170,7 @@ def arviz_diagnostics(
     summary = az.summary(
         idata,
         kind="diagnostics",
-        round_to=None,
+        round_to="none",  # None means ArviZ's default rounding, which would bias the R̂ < 1.01 check
     )
     # summary index = variable names; columns include r_hat, ess_bulk, ess_tail
     rhat_max = float(summary["r_hat"].max()) if "r_hat" in summary else np.nan
