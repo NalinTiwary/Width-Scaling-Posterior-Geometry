@@ -1,11 +1,12 @@
 {
   "T": 16000,
   "T_planned": 16000,
+  "beyond_protocol": false,
   "checks": {
     "all_ok": false,
     "bulk_ess_ok": false,
     "quantile_ess_ok": true,
-    "rhat_ok": false,
+    "rhat_ok": true,
     "tail_ess_ok": true
   },
   "coverage": {
@@ -26,14 +27,59 @@
     "p_hat": 1.0
   },
   "diagnostics": {
-    "ess_bulk_min": 476.0,
-    "ess_tail_min": 971.0,
+    "ess_bulk_argmin": "projections_6",
+    "ess_bulk_by_observable": {
+      "H": 3331.928185640021,
+      "V": 562.9374035168371,
+      "f_sub_0": 905.3367201680326,
+      "f_sub_1": 1264.53050574321,
+      "f_sub_2": 957.1354799038439,
+      "f_sub_3": 1098.2060208149985,
+      "f_sub_4": 997.8010091500987,
+      "f_sub_5": 749.2389969926581,
+      "f_sub_6": 873.209565428312,
+      "f_sub_7": 933.1986704028702,
+      "mean_sq_head": 1080.6763189439444,
+      "projections_0": 603.9916920666474,
+      "projections_1": 750.0324356546062,
+      "projections_2": 641.8981522031643,
+      "projections_3": 678.3815638969136,
+      "projections_4": 558.5963401569335,
+      "projections_5": 677.941584783852,
+      "projections_6": 476.1744812769627,
+      "projections_7": 750.8564999310224,
+      "z_sq_over_p": 1430.4584967963951
+    },
+    "ess_bulk_min": 476.1744812769627,
+    "ess_tail_min": 971.2905467856359,
     "n_variables": 20,
     "quantile_ess_H": {
       "0.95": 5791.346150749092,
       "0.99": 6923.246863007521
     },
-    "rhat_max": 1.01
+    "rhat_by_observable": {
+      "H": 1.0009653539470327,
+      "V": 1.0054376905541367,
+      "f_sub_0": 1.0033663495939849,
+      "f_sub_1": 1.0009519009571266,
+      "f_sub_2": 1.0025365389054894,
+      "f_sub_3": 1.0018124051697084,
+      "f_sub_4": 1.0041504031371196,
+      "f_sub_5": 1.0074422372817577,
+      "f_sub_6": 1.001925144423083,
+      "f_sub_7": 1.0045262383119509,
+      "mean_sq_head": 1.0017469663185905,
+      "projections_0": 1.0060619155371635,
+      "projections_1": 1.0026860092134569,
+      "projections_2": 1.0056785935170924,
+      "projections_3": 1.0014221580785219,
+      "projections_4": 1.0062984661464103,
+      "projections_5": 1.0020588476300787,
+      "projections_6": 1.0096228382877313,
+      "projections_7": 1.0040846518113644,
+      "z_sq_over_p": 1.0010930717424618
+    },
+    "rhat_max": 1.0096228382877313
   },
   "hit_budget": false,
   "likelihood_evals": 395802,
