@@ -17,6 +17,20 @@ data/raw/
 !tests/fixtures/*.npz
 !data/fmnist/*.npz
 .DS_Store
+# final geometry campaign: heavy traces/checkpoints stay on scratch; tables, figures, JSON records are committed
+results/final_geometry/targets/*/reference/
+results/final_geometry/targets/*/dynamics/
+results/final_geometry/targets/*/dynamics_calibration/
+results/final_geometry/targets/*/static_cache.npz
+results/final_geometry/targets/*/analysis/*.npz
+results/final_geometry/controls/prior_predictive/
+results/final_geometry/**/*.h5
+results/final_geometry/**/*.pt
+results/final_geometry/benchmark_tmp/
+results/fixture/
+!results/final_geometry/data/*.npz
+!results/final_geometry/centers/*.npz
+!results/final_geometry/controls/prior_spectral_values.npz
 *.egg-info/
 dist/
 build/
