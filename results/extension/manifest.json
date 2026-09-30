@@ -1,364 +1,121 @@
 {
   "config": "config.ext.yaml",
   "config_sha256": "41304c96221969a6e84b74338e96341561cf08c24d6783ff43c1846125f1f39c",
-  "generated_utc": "2026-09-29T05:53:19+00:00",
-  "git_commit": "f047d78ea1492567db911ca78629a71a10b6bc75",
+  "generated_utc": "2026-09-30T20:41:48+00:00",
+  "git_commit": "b3173c87b8d6879f95fe3a97e13044f20f111ded",
   "git_dirty": true,
-  "hostname": "ccc0315.campuscluster.illinois.edu",
-  "n_done": 27,
+  "hostname": "wirelessprv-10-192-36-27.near.illinois.edu",
+  "n_done": 0,
   "n_expected": 27,
-  "slurm_job_id": "10965820",
+  "slurm_job_id": null,
   "targets": [
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1164.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n128_m4096_r0",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 40000,
-      "beyond_protocol": true,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 2620.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n128_m4096_r1",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1028.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n128_m4096_r2",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 40000,
-      "beyond_protocol": true,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 2052.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n128_m1024_r0",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1081.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n128_m1024_r1",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1058.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n128_m1024_r2",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 40000,
-      "beyond_protocol": true,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 2396.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n128_m16384_r0",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1049.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n128_m16384_r1",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1040.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n128_m16384_r2",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1903.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n64_m1024_r0",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 2002.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n64_m1024_r1",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1854.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n64_m1024_r2",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1791.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n64_m4096_r0",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 2030.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n64_m4096_r1",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1868.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n64_m4096_r2",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 40000,
-      "beyond_protocol": true,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1134.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n256_m4096_r0",
-      "pass": false,
-      "rhat_max": 1.01,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 40000,
-      "beyond_protocol": true,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1227.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n256_m4096_r1",
-      "pass": false,
-      "rhat_max": 1.01,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 40000,
-      "beyond_protocol": true,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1048.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n256_m4096_r2",
-      "pass": false,
-      "rhat_max": 1.01,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 40000,
-      "beyond_protocol": true,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1252.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n256_m16384_r0",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 40000,
-      "beyond_protocol": true,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1306.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n256_m16384_r1",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 40000,
-      "beyond_protocol": true,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 1115.0,
-      "hit_budget": false,
-      "limiting": "V",
       "name": "orth_n256_m16384_r2",
-      "pass": true,
-      "rhat_max": 1.0,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 648.0,
-      "hit_budget": false,
-      "limiting": null,
       "name": "fmnist_n256_m4096_r0",
-      "pass": false,
-      "rhat_max": 1.01,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 476.0,
-      "hit_budget": false,
-      "limiting": null,
       "name": "fmnist_n256_m4096_r1",
-      "pass": false,
-      "rhat_max": 1.01,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 496.0,
-      "hit_budget": false,
-      "limiting": null,
       "name": "fmnist_n256_m4096_r2",
-      "pass": false,
-      "rhat_max": 1.01,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 571.0,
-      "hit_budget": false,
-      "limiting": null,
       "name": "fmnist_n256_m16384_r0",
-      "pass": false,
-      "rhat_max": 1.01,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 16000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 543.0,
-      "hit_budget": false,
-      "limiting": null,
       "name": "fmnist_n256_m16384_r1",
-      "pass": false,
-      "rhat_max": 1.01,
-      "status": "done"
+      "status": "missing"
     },
     {
-      "T": 4000,
-      "beyond_protocol": false,
-      "coverage": 1.0,
-      "device": "cuda",
-      "ess_bulk_min": 132.0,
-      "hit_budget": false,
-      "limiting": null,
       "name": "fmnist_n256_m16384_r2",
-      "pass": false,
-      "rhat_max": 1.05,
-      "status": "done"
+      "status": "missing"
     }
   ]
 }
