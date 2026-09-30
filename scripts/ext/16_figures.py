@@ -35,8 +35,8 @@ def _xaxis(ax, widths) -> None:
 
 def _save(fig, out: Path, name: str) -> None:
     out.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out / f"{name}.pdf")
-    fig.savefig(out / f"{name}.png", dpi=150)
+    fig.savefig(out / f"{name}.pdf", metadata={"CreationDate": None})
+    fig.savefig(out / f"{name}.png", dpi=150, metadata={"Software": None})
     plt.close(fig)
     print(f"Wrote {name}")
 

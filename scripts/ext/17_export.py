@@ -2,7 +2,7 @@
 """
 Export lightweight, git-trackable extension results (no .npz) to results_dir:
 tables, figure sidecars, figures, captions, validation/profile/data summaries, per-target
-metadata + diagnostics + per-state curvature CSV + gzipped scalar traces, manifest.json and
+metadata + diagnostics + per-state curvature CSV (+ gzipped scalar traces with --traces), manifest.json and
 SUMMARY.md.
 """
 
@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import csv
 import gzip
+import io
 import hashlib
 import json
 import os
@@ -55,7 +56,9 @@ def write_traces(rd: Path, dst: Path) -> None:
     with np.load(rd / "observables.npz") as z:
         HB, inside, Vv, f0 = z["H_over_B"], z["inside"], z["V"], z["f_sub"][:, :, 0]
     T = int(np.isfinite(HB).all(axis=0).sum())
-    with gzip.open(dst / "traces.csv.gz", "wt", newline="", encoding="utf-8", compresslevel=6) as f:
+    with open(dst / "traces.csv.gz", "wb") as raw, \
+            gzip.GzipFile(fileobj=raw, mode="wb", compresslevel=6, mtime=0) as gz, \
+            io.TextIOWrapper(gz, encoding="utf-8", newline="") as f:
         w = csv.writer(f)
         w.writerow(["chain", "t", "H_over_B", "inside", "V", "f_sub_0"])
         for c in range(HB.shape[0]):
@@ -128,7 +131,8 @@ def summary_md(out: Path, manifest: dict) -> None:
 def main() -> None:
     ap = base_parser(__doc__)
     ap.add_argument("--out", default=None)
-    ap.add_argument("--no-traces", action="store_true")
+    ap.add_argument("--traces", action="store_true",
+                    help="Also export per-target gzipped scalar traces (H/B, inside, V, f_sub_0)")
     args = ap.parse_args()
     cfg, cfg_path, art, res = load(args)
     out = Path(args.out).resolve() if args.out else res
@@ -155,8 +159,10 @@ def main() -> None:
                 if (rd / fn).exists():
                     shutil.copy2(rd / fn, dst / fn)
             write_curvature_csv(rd, dst)
-            if not args.no_traces:
+            if args.traces:
                 write_traces(rd, dst)
+            elif (dst / "traces.csv.gz").exists():
+                (dst / "traces.csv.gz").unlink()
             meta = json.loads((rd / "metadata.json").read_text())
             diag = json.loads((rd / "diagnostics.json").read_text()) if (rd / "diagnostics.json").exists() else {}
             rec.update(status="done", T=diag.get("T", meta["n_retained"]), **{"pass": diag.get("pass")},

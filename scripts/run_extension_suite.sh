@@ -25,7 +25,7 @@
 #
 # Heavy per-target arrays stay in artifacts_ext/ (git-ignored). Everything worth keeping
 # (CSV/JSON tables, validation/profile reports, per-target metadata + diagnostics + per-state
-# curvature brackets + gzipped scalar traces, figures, SUMMARY.md, manifest.json) is exported to
+# curvature brackets, figures, SUMMARY.md, manifest.json) is exported to
 # results/extension/, which is small enough to commit.
 #
 # Env options (all optional):
@@ -41,6 +41,7 @@
 #   OVERWRITE       1 = rerun targets from scratch; 0 = skip finished ones (default 0)
 #   POST            1 = run summaries/figures/export at the end (default 1; set 0 for parallel split jobs)
 #   POST_ONLY       1 = skip sampling, only redo diagnostics/postprocessing/export (default 0)
+#   TRACES          1 = also export per-target traces.csv.gz (~1-3 MB each; default 0)
 #   RESULTS_DIR     export dir override (default: config `results_dir`)
 #   SETUP_VENV      1 = create .venv and pip install requirements-cuda.txt if missing
 #   CYL_DIR         project root override
@@ -112,6 +113,7 @@ DEV_ARGS=()
 [ -n "${DEVICE:-}" ] && DEV_ARGS+=(--device "$DEVICE")
 EXPORT_ARGS=()
 [ -n "${RESULTS_DIR:-}" ] && EXPORT_ARGS+=(--out "$RESULTS_DIR")
+[ "${TRACES:-0}" = "1" ] && EXPORT_ARGS+=(--traces)
 FILTER_ARGS=()
 [ -n "$FILTER" ] && FILTER_ARGS+=(--filter "$FILTER")
 LIST_ARGS=()
