@@ -1,0 +1,20 @@
+{
+  "n_inspected": 196608,
+  "n_outside": 0,
+  "n_ambiguous": 0,
+  "n_targets": 12,
+  "widths": [
+    32,
+    64,
+    128,
+    256
+  ],
+  "n": 128,
+  "a": 2.5,
+  "per_target_inspected": [
+    16384
+  ],
+  "campaign_id": "final_geometry_v15_20260930",
+  "fixture": false,
+  "targets_without_reference_pass": []
+}

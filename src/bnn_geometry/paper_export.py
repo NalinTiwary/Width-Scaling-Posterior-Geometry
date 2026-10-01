@@ -21,8 +21,11 @@ from . import config as C
 from .storage import StorageError, read_json, read_trace_file, segment_path, torch_load, validate_trace
 
 OBSERVABLE = "summed_training_cross_entropy"
-SELECTION_RULE = "last_102400_retained_production_transitions"
 DEFAULT_WINDOW = 102400
+
+
+def selection_rule(window: int) -> str:
+    return f"last_{int(window)}_retained_production_transitions"
 
 
 def sha256_file(path: Path, bufsize: int = 1 << 22) -> str:
@@ -179,7 +182,7 @@ def export_target(cfg: dict[str, Any], root: Path, t: C.Target, out_dir: Path, *
         contains_rejected_transitions=np.bool_(True), target_hash=np.str_(spec["target_hash"]),
         sampler_code_hash=np.str_(spec.get("sampler_code_hash", "")), execution_hash=np.str_(exec_hash),
         source_run_ids=np.asarray([f"{exec_hash[:16]}/chain_{c}" for c in ck["chains"]]),
-        source_filenames=np.asarray(files), selection_rule=np.str_(SELECTION_RULE),
+        source_filenames=np.asarray(files), selection_rule=np.str_(selection_rule(window)),
         discard_transitions=np.int64(n_discard), retained_transitions_per_chain=np.int64(n_ret),
         acceptance_window=np.asarray([float(np.mean(a)) for a in A_rows]))
     log = {"target_id": t.target_id, "architecture": t.arch, "m": t.m, "replicate": t.rep, "h": h,
@@ -220,7 +223,7 @@ def export_all(cfg: dict[str, Any], root: Path, *, h: float = 0.01, window: int 
             w.writeheader()
             w.writerows(rows)
     (out / "loss_export_log.json").write_text(json.dumps(
-        {"h": h, "window": window, "selection_rule": SELECTION_RULE, "observable": OBSERVABLE,
+        {"h": h, "window": window, "selection_rule": selection_rule(window), "observable": OBSERVABLE,
          "code_revision": C.code_revision(), "exported": logs, "failures": fails}, indent=2))
     print(f"exported {len(logs)} targets, {len(fails)} failures -> {tr_dir}")
     return 0 if not fails else 1

@@ -1,0 +1,22 @@
+logical_input,path,dataset,shape,dtype,sha256,mapping
+spectral_state_table,tables/spectral_states.csv,csv rows,"(196608, 18)",float64 S,a3dbb61bbe62f41dd0639eb29e4f6df9f5f75ef0d03edb5ba3cd55d99a1b2468,one row per archived reference state of each deep target and chain
+target_specification,targets/deep_m0032_r0/spec.json,json,-,json,c0e00494227db1650a28f9bb594d6793ca3b912ad31202efc8901f8dde0dc93d,"deep_m0032_r0: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0032_r1/spec.json,json,-,json,dea7701f9579b8763843c5c82ccd6f891ea0a341d084e9ba6bba79619adb515f,"deep_m0032_r1: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0032_r2/spec.json,json,-,json,f6f91375a5ccaf0ff006475384cbc18be08f7ed4ef4c6a96f16610697166bb93,"deep_m0032_r2: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0064_r0/spec.json,json,-,json,82b6962b029fef9fb097ff3c59eb4b06c63470c0e82bf51e6b18da729c464f20,"deep_m0064_r0: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0064_r1/spec.json,json,-,json,425295e69f14cd082174bcfa765bfd83e11512a4cc273f05f82ce30100a9bc72,"deep_m0064_r1: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0064_r2/spec.json,json,-,json,24195e71bfd792e0635649908bb2fdd087d9d979bb689a7aa959d81cb97d8005,"deep_m0064_r2: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0128_r0/spec.json,json,-,json,bea86f20c9eabc2eb15ea0954d3409a5da4d88cdc41a82ab2414a17ae995c2ef,"deep_m0128_r0: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0128_r1/spec.json,json,-,json,728916ca96dffcecac93fa7d7d55e6db04106aaf6947be1793d527baf7f4ecae,"deep_m0128_r1: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0128_r2/spec.json,json,-,json,6dd78eac207f28236413a96a674138e9062c21011aebb5bf166d8e500fea31de,"deep_m0128_r2: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0256_r0/spec.json,json,-,json,295a49ef5e5f3d1341203cbd6e94fd8da99bb774a2e4d836ffe8e12726f05885,"deep_m0256_r0: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0256_r1/spec.json,json,-,json,b4893933e99164175a627b6224610a652ffbafc68baada95500111ca96abb0bf,"deep_m0256_r1: architecture, m, n, sigma, data/center hashes, sampler identity"
+target_specification,targets/deep_m0256_r2/spec.json,json,-,json,a11c63efa887f7a56feb1947a79047405217802da341b7c013ab66ba06a7b6a3,"deep_m0256_r2: architecture, m, n, sigma, data/center hashes, sampler identity"
+spectral_summary,tables/spectral_summary.csv,csv rows (chain_id='all' pooled),"(60, 50)",float64,e0384c2d1c861b11594337634508b6db681f3b14bcbdf5d50a4b9eeb5ef98347,"per-target quantiles, inspected/exit counts, SVD backend cross-check"
+prior_spectral_reference,controls/prior_spectral_values.npz,m32,"(4096,)",float64,893a8b8173a7b415e332588ac136107f52f853d3960d4f8c237dd4135b46fb73,"iid N(0,1) 32x32 W2 matrices, S per matrix, shared across replicates"
+prior_spectral_reference,controls/prior_spectral_values.npz,m64,"(4096,)",float64,893a8b8173a7b415e332588ac136107f52f853d3960d4f8c237dd4135b46fb73,"iid N(0,1) 64x64 W2 matrices, S per matrix, shared across replicates"
+prior_spectral_reference,controls/prior_spectral_values.npz,m128,"(4096,)",float64,893a8b8173a7b415e332588ac136107f52f853d3960d4f8c237dd4135b46fb73,"iid N(0,1) 128x128 W2 matrices, S per matrix, shared across replicates"
+prior_spectral_reference,controls/prior_spectral_values.npz,m256,"(4096,)",float64,893a8b8173a7b415e332588ac136107f52f853d3960d4f8c237dd4135b46fb73,"iid N(0,1) 256x256 W2 matrices, S per matrix, shared across replicates"
+prior_spectral_summary,controls/prior_spectral.csv,csv rows,"(4, 21)",float64,a9538f62f21d6a665bfd0e4933d9ffb212f8a6fe91e560b6a7a6ffdd7b137ce2,campaign prior quantiles (cross-check)
+predictive_check,tables/predictive_scores.csv,csv rows,-,csv,74375458cd752b81da478168e69dcd66db783d38b8f63fbf9fed4417cc10d0bd,prior/posterior predictive NLS
+reference_diagnostics,tables/target_audit.csv,csv rows,-,csv,03f744a3257cb41b011282f7acb045403531d097583f7445393a513ecb770bdc,per-target reference status

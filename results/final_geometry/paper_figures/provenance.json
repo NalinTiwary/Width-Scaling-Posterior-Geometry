@@ -1,0 +1,39 @@
+{
+  "campaign_id": "final_geometry_v15_20260930",
+  "campaign_root": "/Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry",
+  "code_revision": "619bb6ddcb2177710b4081456bb6678006020590-dirty",
+  "versions": {
+    "python": "3.9.6",
+    "numpy": "1.26.4",
+    "matplotlib": "3.9.4",
+    "pandas": "2.3.3"
+  },
+  "figure_metrics_sha256": "debf8b891ff73d60cb9124a60cbab663ddca35ffda81911dc13528c04ed31116",
+  "plot_style_sha256": "588f7e526c9041450fcfd61150b78cc24dc61d2569e0a2ce504838df8f690998",
+  "selfcheck_sha256": "d10bafd6962479dbd1352abe09747aa99a1d02e54766ff29c28a6f949bf77e64",
+  "last_steps": [
+    "selfcheck",
+    "spectral",
+    "render",
+    "text"
+  ],
+  "regenerate_figures_from_tables": "python -m bnn_geometry.paper_figures.render --tables /Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry/paper_figures/tables --figures /Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry/paper_figures/figures",
+  "full_build": "python -m bnn_geometry paper-figures",
+  "outputs": [
+    "captions.tex",
+    "figure_results.md",
+    "figures/figure_1_spectral_domain.pdf",
+    "figures/figure_1_spectral_domain.png",
+    "input_map.csv",
+    "recovery_log.md",
+    "selfcheck_result.txt",
+    "tables/spectral_counts.json",
+    "tables/spectral_crosscheck.csv",
+    "tables/spectral_plot.csv",
+    "tables/spectral_prior_states.csv",
+    "tables/spectral_prior_summary.csv",
+    "tables/spectral_replicate_summary.csv",
+    "tables/spectral_states.csv.gz"
+  ],
+  "loss_trace_npz_sha256": {}
+}

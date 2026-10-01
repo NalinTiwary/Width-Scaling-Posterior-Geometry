@@ -1,0 +1,12 @@
+test_affine_invariance (__main__.CalculationChecks.test_affine_invariance) ... ok
+test_ar1_sanity (__main__.CalculationChecks.test_ar1_sanity) ... ok
+test_chain_and_replicate_aggregation (__main__.CalculationChecks.test_chain_and_replicate_aggregation) ... ok
+test_fft_matches_direct (__main__.CalculationChecks.test_fft_matches_direct) ... ok
+test_invalid_input_is_rejected (__main__.CalculationChecks.test_invalid_input_is_rejected) ... ok
+test_rejections_and_indices (__main__.CalculationChecks.test_rejections_and_indices) ... ok
+test_spectral_quantiles_and_counts (__main__.CalculationChecks.test_spectral_quantiles_and_counts) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.232s
+
+OK

@@ -1,0 +1,240 @@
+{
+  "analysis_version": "two_figures_20261001",
+  "common": {
+    "font_family": "DejaVu Sans",
+    "font_size": 8,
+    "title_size": 9,
+    "label_size": 8,
+    "tick_size": 7,
+    "legend_size": 7,
+    "background": "white",
+    "grid_color": "#E6E6E6",
+    "grid_linewidth": 0.5,
+    "pdf_fonttype": 42,
+    "png_dpi": 300,
+    "rasterize_lines": false,
+    "figure_text_alignment": {
+      "ha": "center",
+      "va": "top"
+    },
+    "figure_legend_loc": "center"
+  },
+  "spectral": {
+    "figure_inches": [
+      3.45,
+      2.85
+    ],
+    "axes_rect": [
+      0.18,
+      0.3,
+      0.78,
+      0.54
+    ],
+    "title_figure_xy": [
+      0.57,
+      0.975
+    ],
+    "count_figure_xy": [
+      0.57,
+      0.91
+    ],
+    "quantile_legend_figure_xy": [
+      0.57,
+      0.14
+    ],
+    "role_legend_figure_xy": [
+      0.57,
+      0.045
+    ],
+    "widths": [
+      32,
+      64,
+      128,
+      256
+    ],
+    "x_scale": "log2",
+    "x_padding_log2": 0.12,
+    "y_limits_default": [
+      0.7,
+      1.04
+    ],
+    "y_ticks": [
+      0.7,
+      0.8,
+      0.9,
+      1.0
+    ],
+    "boundary": 1.0,
+    "boundary_color": "#000000",
+    "boundary_dash": [
+      5,
+      3
+    ],
+    "boundary_linewidth": 1.1,
+    "boundary_label_axes_x": 0.97,
+    "boundary_label_data_y": 1.012,
+    "cutoff_a": 2.5,
+    "quantile_method": "linear",
+    "replicate_summary": "median_with_min_max_whiskers",
+    "quantiles": {
+      "0.50": {
+        "color": "#0072B2",
+        "marker": "o",
+        "label": "Median"
+      },
+      "0.95": {
+        "color": "#E69F00",
+        "marker": "s",
+        "label": "95th"
+      },
+      "0.99": {
+        "color": "#D55E00",
+        "marker": "^",
+        "label": "99th"
+      }
+    },
+    "posterior_linewidth": 1.8,
+    "posterior_marker_size": 4.2,
+    "whisker_linewidth": 0.8,
+    "whisker_cap_points": 2,
+    "prior_linewidth": 1.0,
+    "prior_dash": [
+      3,
+      2
+    ],
+    "prior_alpha": 0.65,
+    "prior_marker_size": 6.0,
+    "prior_marker_face": "none",
+    "prior_marker_edgewidth": 0.8,
+    "show_gaussian_edge_line": false
+  },
+  "acf": {
+    "figure_inches": [
+      6.9,
+      3.0
+    ],
+    "axes_rects": [
+      [
+        0.085,
+        0.28,
+        0.41,
+        0.56
+      ],
+      [
+        0.565,
+        0.28,
+        0.41,
+        0.56
+      ]
+    ],
+    "title_figure_xy": [
+      [
+        0.29,
+        0.9
+      ],
+      [
+        0.77,
+        0.9
+      ]
+    ],
+    "legend_figure_xy": [
+      [
+        0.29,
+        0.075
+      ],
+      [
+        0.77,
+        0.075
+      ]
+    ],
+    "shared_note_figure_xy": [
+      0.53,
+      0.985
+    ],
+    "architecture_widths": {
+      "shallow": [
+        64,
+        256,
+        1024,
+        4096
+      ],
+      "deep": [
+        32,
+        64,
+        128,
+        256
+      ]
+    },
+    "h": 0.01,
+    "n": 128,
+    "chains_per_replicate": 4,
+    "replicates": 3,
+    "window": "last_102400_retained",
+    "window_length": 102400,
+    "stride": 1,
+    "acf_convention": "unadjusted_mean_centered_zero_padded_fft",
+    "initial_max_lag": 400,
+    "extension_max_lags": [
+      800,
+      1600,
+      3200
+    ],
+    "extension_absolute_endpoint_threshold": 0.1,
+    "x_scale": "linear",
+    "y_scale": "linear",
+    "y_limits_default": [
+      -0.08,
+      1.02
+    ],
+    "y_ticks": [
+      0,
+      0.2,
+      0.4,
+      0.6,
+      0.8,
+      1.0
+    ],
+    "median_linewidth": 1.8,
+    "range_alpha": 0.12,
+    "marker_size": 3.2,
+    "markers_at_eighths_excluding_zero": true,
+    "zero_color": "#777777",
+    "zero_linewidth": 0.7,
+    "within_replicate": "mean_of_four_chain_acfs",
+    "across_replicate": "pointwise_median",
+    "band": "observed_replicate_range_not_confidence_interval",
+    "fixed_result_lags": [
+      25,
+      50,
+      100,
+      200,
+      400
+    ],
+    "width_styles": {
+      "32": {
+        "color": "#0072B2",
+        "marker": "o"
+      },
+      "64": {
+        "color": "#56B4E9",
+        "marker": "s"
+      },
+      "128": {
+        "color": "#009E73",
+        "marker": "^"
+      },
+      "256": {
+        "color": "#E69F00",
+        "marker": "D"
+      },
+      "1024": {
+        "color": "#D55E00",
+        "marker": "v"
+      },
+      "4096": {
+        "color": "#CC79A7",
+        "marker": "P"
+      }
+    }
+  }
+}
