@@ -1,9 +1,9 @@
 {
   "campaign_id": "final_geometry_v15_20260930",
-  "campaign_root": "/Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry",
-  "code_revision": "619bb6ddcb2177710b4081456bb6678006020590-dirty",
+  "campaign_root": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry",
+  "code_revision": "66d902c968a1e56627efe6accb4fed6af34d59ab",
   "versions": {
-    "python": "3.9.6",
+    "python": "3.9.25",
     "numpy": "1.26.4",
     "matplotlib": "3.9.4",
     "pandas": "2.3.3"
@@ -17,7 +17,7 @@
     "render",
     "text"
   ],
-  "regenerate_figures_from_tables": "python -m bnn_geometry.paper_figures.render --tables /Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry/paper_figures/tables --figures /Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry/paper_figures/figures",
+  "regenerate_figures_from_tables": "python -m bnn_geometry.paper_figures.render --tables /scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry/paper_figures/tables --figures /scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry/paper_figures/figures",
   "full_build": "python -m bnn_geometry paper-figures",
   "outputs": [
     "captions.tex",
@@ -25,6 +25,9 @@
     "figures/figure_1_spectral_domain.pdf",
     "figures/figure_1_spectral_domain.png",
     "input_map.csv",
+    "input_map_loss.csv",
+    "loss_export_log.json",
+    "provenance.json",
     "recovery_log.md",
     "selfcheck_result.txt",
     "tables/spectral_counts.json",
@@ -35,5 +38,29 @@
     "tables/spectral_replicate_summary.csv",
     "tables/spectral_states.csv.gz"
   ],
-  "loss_trace_npz_sha256": {}
+  "loss_trace_npz_sha256": {
+    "deep_m0032_r0.npz": "900735633e7bc8f2c6e31ae0faa158c20ab7e32a42c16383b7407f2e5a632276",
+    "deep_m0032_r1.npz": "e85cacf861e7da01dc0f879702c4e11dcc3a684ff4393d6c0c920c9fa5a7a521",
+    "deep_m0032_r2.npz": "72644dab93db9bc89ae090d735c219ad9896e85f980a1a5e0c3f349da5545637",
+    "deep_m0064_r0.npz": "ace2d6340fe71498bd484ee7b965a5f1fbd269600ed9a745528660de43d2b971",
+    "deep_m0064_r1.npz": "2e30bd84477f29d14683074c9b30a788e34d9381434d7d9b0e86b71dd1f2be57",
+    "deep_m0064_r2.npz": "5e79f6cf83baf3011c349e040a1df1a87bac48058d9590dc3b6c1768ccf53afd",
+    "deep_m0128_r0.npz": "16a3097cf87ca10498981811a8069267520d1e06fc5e495b41dd2e7807aa7384",
+    "deep_m0128_r1.npz": "3ff9117d70c78ef14968f9038e32302cfbccbb8c75e88b68f41c31dbfa8c7a05",
+    "deep_m0128_r2.npz": "fe6aeceea6567da0dfea5a5cff84f638591a0457edff84b8a3df3b4b3a8c5a80",
+    "deep_m0256_r0.npz": "b64aa931855fe04b2d36b2718898c686ce37b1f7594173dc36eb4e38aeec2b20",
+    "deep_m0256_r1.npz": "80d29b503d6aca77956278dd4a2fa56629e69a9b174598e7e96150a640148594",
+    "deep_m0256_r2.npz": "ff737cf0ca598cbf816dd92824dfd2549266c18e16a3c936f7016c559191ff5c",
+    "shallow_m0064_r0.npz": "af1438f4f8d1a7f307a675af97fda85b625ff5ffd5da1babc4cce4fc50f7786e",
+    "shallow_m0064_r2.npz": "4cd37f09f5a088d032c6a9805e4c6ae0eb3e87b6f1e6611189c176b36beaeef9",
+    "shallow_m0256_r0.npz": "4e69c95835d504c9920145ca59b23dab400ad4b0c12c90368073c89adb3c1340",
+    "shallow_m0256_r1.npz": "1ae44cd23c75afcf05601db3b7d40065f4aa68ddba521d3347a095d306a2eea9",
+    "shallow_m0256_r2.npz": "3f9242a89817114a3cb6db4fbb698e69b41898236c976c281a4493ab0168545b",
+    "shallow_m1024_r0.npz": "032312eacbb94531124b7dfd0efd7356e209802e987cd363961d4f7781371850",
+    "shallow_m1024_r1.npz": "2614be4cd64c0ab23a2d085db0e106998b25d8569a15589f76be99b1e79d76eb",
+    "shallow_m1024_r2.npz": "431ee3cb5249807a205438481c09874628755c46bec49f55e975d4c54b0c9cd2",
+    "shallow_m4096_r0.npz": "6e969146204a87ee560387e21be1972fb1d2124d34fd6626c05d6d3b00044a84",
+    "shallow_m4096_r1.npz": "84153ae032ff6b57c0b8a25b550915e7c3c2abea39f08cd5f7f7eff23ca1f623",
+    "shallow_m4096_r2.npz": "bfab344a2b4084b769d292c03553fa996b87722dabeaff66075c2e683f157188"
+  }
 }

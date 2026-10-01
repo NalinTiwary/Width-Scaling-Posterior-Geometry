@@ -7,6 +7,6 @@ test_rejections_and_indices (__main__.CalculationChecks) ... ok
 test_spectral_quantiles_and_counts (__main__.CalculationChecks) ... ok
 
 ----------------------------------------------------------------------
-Ran 7 tests in 0.147s
+Ran 7 tests in 0.221s
 
 OK
