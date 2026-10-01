@@ -29,8 +29,10 @@ def build(cfg: dict[str, Any], root: Path, dest: Optional[Path], *, steps=LOCAL_
         print("bundled selfcheck:", run["selfcheck"])
     if "main" in steps:
         from .main_figures import build_main
+        from .reference_table import reference_table
         from .supplements import appendix_table
         run["main"] = build_main(cfg, root, L, device=device, width_in=width_in)
+        reference_table(cfg, root, L)
         s1_diag = L.tables / "supplement_diagnostics.csv"
         if not s1_diag.exists():
             appendix_table(cfg, root, L, None)
