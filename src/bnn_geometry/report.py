@@ -202,15 +202,24 @@ def audit(cfg: dict[str, Any], root: Path) -> dict[str, Any]:
         chk(f"validity_column:{tab}", len(df) == 0 or "validity" in df, tab)
     ep = load(root, "endpoint_comparisons")
     if len(ep):
-        eqT = True
-        for r in ep[ep["kind"] == "family"].itertuples():
+        from .context import h_id
+        s2 = float(cfg["model"]["sigma"]) ** 2
+        Ts = [float(x) * s2 for x in cfg["dynamics"]["cumulative_retained_time_over_sigma_squared"]]
+        uneq = []
+        # The run summaries are overwritten when a trajectory is reused as refined production, so compare the
+        # stage-specific analyses that each decision row was computed from.
+        for r in ep[ep["kind"] == "family"].drop_duplicates(["target_id", "h"]).itertuples():
             tdir = root / "targets" / r.target_id / "analysis"
-            from .context import h_id
-            runs = read_json(tdir / "dynamics_runs.json")
-            a, b = runs.get(h_id(r.h)), runs.get(h_id(r.h_half))
-            if not a or not b or abs(a["T_per_chain"] - b["T_per_chain"]) > max(r.h, 1e-12) * 1.0001:
-                eqT = False
-        chk("step_comparisons_equal_physical_duration", eqT)
+            k = next((i + 1 for i, T in enumerate(Ts) if abs(T - r.T_per_chain) <= 1e-9 * T), None)
+            pa = tdir / f"dynamics_{h_id(r.h)}_stage_{k}.json"
+            pb = tdir / f"dynamics_{h_id(r.h_half)}_stage_{k}.json"
+            if k is None or not pa.exists() or not pb.exists():
+                uneq.append(f"{r.target_id}:h={r.h}:missing_stage_{k}")
+                continue
+            ta_, tb_ = read_json(pa)["T_per_chain"], read_json(pb)["T_per_chain"]
+            if abs(ta_ - r.T_per_chain) > r.h * 1.0001 or abs(tb_ - r.T_per_chain) > r.h * 1.0001:
+                uneq.append(f"{r.target_id}:h={r.h}:T={ta_} vs {tb_}")
+        chk("step_comparisons_equal_physical_duration", not uneq, uneq)
     missing = [f"{f}.{e}" for f in FIGURES for e in ("pdf", "png", "csv", "json") if not (root / "figures" / f"{f}.{e}").exists()]
     chk("figures_present", not missing, missing)
     capok = True

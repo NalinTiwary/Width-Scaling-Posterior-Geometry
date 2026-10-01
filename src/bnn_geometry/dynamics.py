@@ -321,7 +321,7 @@ def endpoint_decision(cfg: dict[str, Any], root: Path, round_: int) -> dict[str,
                              "mcse_h": fa[fam]["mcse"], "mcse_h_half": fb[fam]["mcse"],
                              "relative_difference": rd, "threshold": rel_max,
                              "precision_h": fa[fam]["precision_pass"], "precision_h_half": fb[fam]["precision_pass"],
-                             "pass": ok, "T_per_chain": a["T_per_chain"]})
+                             "pass": ok, "T_per_chain": a["T_per_chain"], "T_per_chain_h_half": b["T_per_chain"]})
                 if not ok:
                     fails.append(f"{t.target_id}:{fam}")
             ref = {r["observable"]: r for r in a["reference_comparison"]}
