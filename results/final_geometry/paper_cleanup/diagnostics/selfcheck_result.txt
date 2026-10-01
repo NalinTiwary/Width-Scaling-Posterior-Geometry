@@ -3,47 +3,47 @@ test_cdf_replicate_aggregation_and_context (__main__.Checks) ... ok
 test_ecdf_threshold_equality_and_conversion (__main__.Checks) ... ok
 test_fft_against_direct_and_affine (__main__.Checks) ... ok
 test_prediction_normalizes_each_point (__main__.Checks) ... ok
-test_render_integrity_and_input_rejection (__main__.Checks) ... /private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+test_render_integrity_and_input_rejection (__main__.Checks) ... /scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:85: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
   parse = parser.parseString(pattern)
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_fontconfig_pattern.py:89: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
   parser.resetCache()
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2010: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2010: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
   p.space          = oneOf(self._space_widths)("space")
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2012: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2012: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
   p.style_literal  = oneOf(
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2015: PyparsingDeprecationWarning: 'leaveWhitespace' deprecated - use 'leave_whitespace'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2015: PyparsingDeprecationWarning: 'leaveWhitespace' deprecated - use 'leave_whitespace'
   p.symbol         = Regex(
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2024: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2024: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
   p.start_group    = Optional(r"\math" + oneOf(self._fontnames)("font")) + "{"
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2027: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2027: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
   p.delim          = oneOf(self._delims)
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:1984: PyparsingDeprecationWarning: 'setName' deprecated - use 'set_name'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:1984: PyparsingDeprecationWarning: 'setName' deprecated - use 'set_name'
   val.setName(key)
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:1987: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:1987: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
   val.setParseAction(getattr(self, key))
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:1748: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:1748: PyparsingDeprecationWarning: 'setParseAction' deprecated - use 'set_parse_action'
   return Empty().setParseAction(raise_error)
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2088: PyparsingDeprecationWarning: 'endQuoteChar' argument is deprecated, use 'end_quote_char'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2088: PyparsingDeprecationWarning: 'endQuoteChar' argument is deprecated, use 'end_quote_char'
   p.text = cmd(r"\text", QuotedString('{', '\\', endQuoteChar="}"))
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2097: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2097: PyparsingDeprecationWarning: 'oneOf' deprecated - use 'one_of'
   + OneOrMore(oneOf(["_", "^"]) - p.placeable)("subsuper")
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2146: PyparsingDeprecationWarning: 'unquoteResults' argument is deprecated, use 'unquote_results'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2146: PyparsingDeprecationWarning: 'unquoteResults' argument is deprecated, use 'unquote_results'
   p.math_string   = QuotedString('$', '\\', unquoteResults=False)
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2147: PyparsingDeprecationWarning: 'leaveWhitespace' deprecated - use 'leave_whitespace'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2147: PyparsingDeprecationWarning: 'leaveWhitespace' deprecated - use 'leave_whitespace'
   p.non_math      = Regex(r"(?:(?:\\[$])|[^$])*").leaveWhitespace()
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2170: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2170: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
   result = self._expression.parseString(s)
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2197: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2197: PyparsingDeprecationWarning: 'parseString' deprecated - use 'parse_string'
   return self._math_expression.parseString(toks[0][1:-1], parseAll=True)
-/private/tmp/py39env/lib/python3.9/site-packages/pyparsing/util.py:466: PyparsingDeprecationWarning: 'parseAll' argument is deprecated, use 'parse_all'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/pyparsing/util.py:466: PyparsingDeprecationWarning: 'parseAll' argument is deprecated, use 'parse_all'
   return fn(self, *args, **kwargs)
-/private/tmp/py39env/lib/python3.9/site-packages/matplotlib/_mathtext.py:2178: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
+/scratch/nalint2/Width-Scaling-Posterior-Geometry/.venv/lib64/python3.9/site-packages/matplotlib/_mathtext.py:2178: PyparsingDeprecationWarning: 'resetCache' deprecated - use 'reset_cache'
   ParserElement.resetCache()
 ok
 test_replicate_and_chain_separation (__main__.Checks) ... ok
 test_step_index_and_duration (__main__.Checks) ... ok
 
 ----------------------------------------------------------------------
-Ran 8 tests in 0.732s
+Ran 8 tests in 0.795s
 
 OK

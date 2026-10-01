@@ -253,6 +253,282 @@
       },
       "finished": "2026-10-01T16:55:06",
       "status": "ok"
+    },
+    {
+      "steps": [
+        "export-supplements"
+      ],
+      "code_revision": "6ef451948235159678c345fa5449c96901c4758e",
+      "started": "2026-10-01T16:59:46",
+      "source_root": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry",
+      "window": 102400,
+      "duration": 512.0,
+      "figure_width_in": 6.75,
+      "finished": "2026-10-01T17:00:59",
+      "status": "ok"
+    },
+    {
+      "steps": [
+        "selfcheck",
+        "main",
+        "supplements",
+        "text"
+      ],
+      "code_revision": "6ef451948235159678c345fa5449c96901c4758e",
+      "started": "2026-10-01T17:01:02",
+      "source_root": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry",
+      "window": 102400,
+      "duration": 512.0,
+      "figure_width_in": 6.75,
+      "selfcheck": "OK",
+      "main": {
+        "theory_context": {
+          "weight_layers": 3,
+          "n": 128,
+          "sigma": 1.0,
+          "r0": 0.0,
+          "hidden_center_max_normalized_opnorm": 0.0,
+          "statistic": "opnorm_W2_over_sqrt_m",
+          "target_manifest_sha256": "2e84d80ed5dd28051670d56cc4476b1d080dd3bd8677a61d14e84db204a82020",
+          "target_manifest": "final_geometry/manifest.json",
+          "config_sha256": "6f12a8a931a9b7f70a8efa32b22b58b9ac0d3e098f3ae89f9b7be39c7f860474",
+          "center_files_sha256": {
+            "rep_0.npz": "3b6c22295a874109ed2fa2b0eb5f0bf95f46fd448809a394fd2bd06f5c29707f",
+            "rep_1.npz": "ab47e8495a97754f4e02aef53e330740246b2f23b15068001c253ea473966dd3",
+            "rep_2.npz": "9e265f77c7b5bd84cf7fe048668125a8024036629af4540cf518d1a22d43e6aa"
+          },
+          "prior_center_later_hidden": "zero",
+          "admissibility_threshold": 2.0,
+          "historical_normalizer_a": 2.5,
+          "verification": "W2 block of each deep target's model prior center (theta0) computed from the saved center/data files; sigma from the frozen configuration"
+        },
+        "spectral_export": {
+          "rows": 196608,
+          "source": "paper_figures/tables/spectral_states.csv.gz",
+          "source_sha256": "4b76e41328176bd0592c6f8ce84c324f8ac29e72ecedf38f5f989bc8fd33596e",
+          "conversion": "T = 2.5 * S (historical normalizer inverted once)",
+          "quantile_crosscheck_max_abs": 4.440892098500626e-16,
+          "unit_checks": [
+            {
+              "target_id": "deep_m0032_r0",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 1.0818033008050719e-14
+            },
+            {
+              "target_id": "deep_m0032_r1",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 1.0919415604671811e-14
+            },
+            {
+              "target_id": "deep_m0032_r2",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 1.1275286875431476e-14
+            },
+            {
+              "target_id": "deep_m0064_r0",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 1.6394096182304674e-14
+            },
+            {
+              "target_id": "deep_m0064_r1",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 1.4333782866042338e-14
+            },
+            {
+              "target_id": "deep_m0064_r2",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 1.769815396273453e-14
+            },
+            {
+              "target_id": "deep_m0128_r0",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 2.5806051469367755e-14
+            },
+            {
+              "target_id": "deep_m0128_r1",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 2.868860754721026e-14
+            },
+            {
+              "target_id": "deep_m0128_r2",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 4.8033042423998095e-14
+            },
+            {
+              "target_id": "deep_m0256_r0",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 7.52078358817306e-14
+            },
+            {
+              "target_id": "deep_m0256_r1",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 5.5200582537102514e-14
+            },
+            {
+              "target_id": "deep_m0256_r2",
+              "check": "campaign_independent_lapack_svd_20_states",
+              "pass": true,
+              "max_rel_diff": 7.421811241754055e-14
+            },
+            {
+              "target_id": "deep_m0032_r0",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 8.996048501431635e-15
+            },
+            {
+              "target_id": "deep_m0032_r1",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 7.617270556629496e-15
+            },
+            {
+              "target_id": "deep_m0032_r2",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 5.068082827919761e-15
+            },
+            {
+              "target_id": "deep_m0064_r0",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 1.1379212594345231e-14
+            },
+            {
+              "target_id": "deep_m0064_r1",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 1.3074670147609751e-14
+            },
+            {
+              "target_id": "deep_m0064_r2",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 1.1603691286769508e-14
+            },
+            {
+              "target_id": "deep_m0128_r0",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 2.6591453035826797e-14
+            },
+            {
+              "target_id": "deep_m0128_r1",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 3.0868941720798315e-14
+            },
+            {
+              "target_id": "deep_m0128_r2",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 2.9367148562482275e-14
+            },
+            {
+              "target_id": "deep_m0256_r0",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 5.9998519745966e-14
+            },
+            {
+              "target_id": "deep_m0256_r1",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 5.41357997267421e-14
+            },
+            {
+              "target_id": "deep_m0256_r2",
+              "check": "fresh_direct_svd_T_from_archived_W2",
+              "pass": true,
+              "max_rel_diff": 7.103149988438354e-14
+            }
+          ],
+          "csv": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry/paper_cleanup/exports/spectral_states.csv"
+        },
+        "acf_export": {
+          "rows": 9624,
+          "source": "paper_figures/tables/acf_replicate.csv",
+          "source_sha256": "3ddcd289d44049ecf6c0ce8c58841a911cbbd94048875627d1885500d583a91a"
+        },
+        "threshold_rows": 4,
+        "prior_rows": 4
+      },
+      "supplements": {
+        "s1": {
+          "K": 400,
+          "K_history": [
+            {
+              "K": 400,
+              "median_mean8_at_K": {
+                "shallow_m64": 0.008950687714095757,
+                "shallow_m256": 0.0013570468804379068,
+                "shallow_m1024": 0.0031730332830205736,
+                "shallow_m4096": 0.0014910686250586623,
+                "deep_m32": 0.004906358132710644,
+                "deep_m64": 0.004227878037902333,
+                "deep_m128": -0.002117498143670958,
+                "deep_m256": -0.0004406140012206672
+              }
+            }
+          ],
+          "window": 102400,
+          "h": 0.01,
+          "endpoint_threshold": 0.1,
+          "remains_correlated_at_max_K": false,
+          "estimator": "per chain and test point: mean-subtracted unadjusted ACF (zero-padded FFT); mean over 4 chains then 8 points per replicate; pointwise median/min/max over 3 replicates",
+          "all_series_valid": true,
+          "n_series": 216,
+          "n_invalid": 0,
+          "n_drift_flags": 0
+        },
+        "s1_figures": [
+          "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry/paper_cleanup/figures/supplement_s1_prediction_acf.pdf",
+          "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry/paper_cleanup/figures/supplement_s1_prediction_acf.png"
+        ],
+        "s2": {
+          "t_max": 2.0,
+          "t_history": [
+            {
+              "t_max": 2.0,
+              "median_at_t_max": {
+                "m32_h0.01": 0.055713329012892,
+                "m32_h0.005": 0.07122337708470927,
+                "m256_h0.01": 0.002480542043055199,
+                "m256_h0.005": 0.0001936673533837652
+              }
+            }
+          ],
+          "duration": 512.0,
+          "steps": [
+            0.01,
+            0.005
+          ],
+          "widths": [
+            32,
+            256
+          ],
+          "all_series_valid": true,
+          "n_invalid": 0,
+          "n_drift_flags": 0
+        },
+        "s2_figures": [
+          "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry/paper_cleanup/figures/supplement_s2_step_size.pdf",
+          "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry/paper_cleanup/figures/supplement_s2_step_size.png"
+        ]
+      },
+      "finished": "2026-10-01T17:03:44",
+      "status": "ok"
     }
   ]
 }

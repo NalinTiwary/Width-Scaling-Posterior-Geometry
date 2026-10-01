@@ -1,0 +1,27 @@
+{
+  "K": 400,
+  "K_history": [
+    {
+      "K": 400,
+      "median_mean8_at_K": {
+        "shallow_m64": 0.008950687714095757,
+        "shallow_m256": 0.0013570468804379068,
+        "shallow_m1024": 0.0031730332830205736,
+        "shallow_m4096": 0.0014910686250586623,
+        "deep_m32": 0.004906358132710644,
+        "deep_m64": 0.004227878037902333,
+        "deep_m128": -0.002117498143670958,
+        "deep_m256": -0.0004406140012206672
+      }
+    }
+  ],
+  "window": 102400,
+  "h": 0.01,
+  "endpoint_threshold": 0.1,
+  "remains_correlated_at_max_K": false,
+  "estimator": "per chain and test point: mean-subtracted unadjusted ACF (zero-padded FFT); mean over 4 chains then 8 points per replicate; pointwise median/min/max over 3 replicates",
+  "all_series_valid": true,
+  "n_series": 216,
+  "n_invalid": 0,
+  "n_drift_flags": 0
+}

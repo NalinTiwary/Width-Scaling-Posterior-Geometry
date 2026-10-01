@@ -1,20 +1,16 @@
 {
   "display_lags": [
     0,
-    200
-  ],
-  "source_lags": [
-    0,
     400
   ],
   "ylim": [
     -0.08,
     1.02
   ],
-  "acf_rows": 9624,
-  "aggregation": "pointwise median and min/max of 3 four-chain replicate curves",
-  "source_file": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry/paper_cleanup/exports/loss_acf_replicates.csv",
-  "source_sha256": "6e4deb74ba3de410e4fabdb2348b5b1d04e13f1affe0cb990fae283a1b3bf406",
+  "source": "tables/prediction_acf_replicates.csv",
+  "aggregation": "pointwise median and min/max of 3 replicate curves (each: mean over 8 points of 4-chain-mean ACFs)",
+  "source_file": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry/paper_cleanup/tables/prediction_acf_replicates.csv",
+  "source_sha256": "f01fcaebb90345506af10674e360e57d451c6a9c61e6d66328794b0bb83b6eec",
   "figure_inches": [
     6.75,
     2.65

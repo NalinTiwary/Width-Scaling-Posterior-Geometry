@@ -507,13 +507,13 @@
       "T": 2.0289742444580137
     }
   ],
-  "source_file": "/Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry/paper_cleanup/exports/spectral_states.csv",
+  "source_file": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/final_geometry/paper_cleanup/exports/spectral_states.csv",
   "source_sha256": "f07ed4b2cf046a160fcedc7856d9709c375bf2406fbfbdced4f9f738baa8359a",
   "figure_inches": [
     6.75,
     2.65
   ],
-  "python": "3.9.6",
+  "python": "3.9.25",
   "numpy": "1.26.4",
   "matplotlib": "3.9.4",
   "rc": {
