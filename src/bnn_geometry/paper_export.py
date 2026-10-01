@@ -94,8 +94,13 @@ def export_target(cfg: dict[str, Any], root: Path, t: C.Target, out_dir: Path, *
         raise StorageError(f"{t.target_id}: discard segment has {ck['done']['discard']['n']} != {n_discard}")
     runs = read_json(tdir / "analysis" / "dynamics_runs.json")
     run = runs.get(h_dir_name(h)) or {}
-    if run.get("final_stage") != len(stages):
-        raise StorageError(f"{t.target_id}: dynamics_runs final_stage {run.get('final_stage')} != {len(stages)} stages")
+    # An endpoint trajectory first run as a fixed-length half-step check can hold more stages than the later
+    # production analysis needed; every stage is the same continuous chain, so all of them are retained.
+    fs = run.get("final_stage")
+    if not isinstance(fs, int) or fs < 1 or fs > len(stages):
+        raise StorageError(f"{t.target_id}: dynamics_runs final_stage {fs} inconsistent with {len(stages)} stages")
+    if not (tdir / "analysis" / f"dynamics_{h_dir_name(h)}_stage_{len(stages)}.json").exists():
+        raise StorageError(f"{t.target_id}: no campaign analysis for stage_{len(stages)}")
     hashes = {k: ck["hashes"][k] for k in ("target_hash", "execution_hash")}
 
     V_rows, A_rows, starts, ends, files, rows = [], [], [], [], [], []
@@ -188,7 +193,8 @@ def export_target(cfg: dict[str, Any], root: Path, t: C.Target, out_dir: Path, *
     log = {"target_id": t.target_id, "architecture": t.arch, "m": t.m, "replicate": t.rep, "h": h,
            "trajectory": str(traj.relative_to(root)), "execution_hash": exec_hash,
            "execution_hash_matches_campaign": exec_ok, "sampler_code_hash_matches": code_ok,
-           "segments": order, "discard_transitions": n_discard, "retained_per_chain": n_ret, "window": window,
+           "segments": order, "production_analysis_final_stage": fs, "retained_stages": len(stages),
+           "discard_transitions": n_discard, "retained_per_chain": n_ret, "window": window,
            "iteration_start": starts, "iteration_end": ends, "mean_V_matches_campaign_analysis": True,
            "end_state_V_max_rel_diff": end_check, "npz": str(npz.relative_to(root)), "npz_sha256": sha256_file(npz),
            "source_status": "recovered_existing_trace"}
