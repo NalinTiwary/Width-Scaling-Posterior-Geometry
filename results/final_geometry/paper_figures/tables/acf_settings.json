@@ -1,0 +1,56 @@
+{
+  "analysis_scope": "fixed_step_discrete_sampler",
+  "observable": "summed_training_cross_entropy",
+  "h": 0.01,
+  "window": 102400,
+  "stride": 1,
+  "K": 400,
+  "K_history": [
+    {
+      "K": 400,
+      "median_at_K": {
+        "shallow_m64": 0.003458574408746579,
+        "shallow_m256": -0.00021157797127127013,
+        "shallow_m1024": -0.0013967982423165825,
+        "shallow_m4096": -0.003538061581136109,
+        "deep_m32": 0.016211042460029714,
+        "deep_m64": 0.004733073665532588,
+        "deep_m128": 0.0022411492199845696,
+        "deep_m256": 0.0060351725785602285
+      }
+    }
+  ],
+  "endpoint_threshold": 0.1,
+  "loss_remains_correlated_at_max_K": false,
+  "replicates": [
+    0,
+    1,
+    2
+  ],
+  "widths": {
+    "shallow": [
+      64,
+      256,
+      1024,
+      4096
+    ],
+    "deep": [
+      32,
+      64,
+      128,
+      256
+    ]
+  },
+  "n": 128,
+  "chains_per_replicate": 4,
+  "acf_convention": "unadjusted_mean_centered_zero_padded_fft",
+  "within_replicate": "mean_of_four_chain_acfs",
+  "across_replicate": "pointwise_median",
+  "band": "observed_replicate_range_not_confidence_interval",
+  "fixed_step_loss_acf_status": "pass",
+  "failed_targets": [],
+  "previous_continuous_time_status_preserved": "dynamics_unresolved (original audit unchanged)",
+  "campaign_id": "final_geometry_v15_20260930",
+  "fixture": false,
+  "sampler_code_hash": "da9fce1736759e23ddf4db09160fd725ef9b1df3977f729f3ab5bbfe2825845a"
+}

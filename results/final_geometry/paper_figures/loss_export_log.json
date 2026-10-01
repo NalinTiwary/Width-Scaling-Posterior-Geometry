@@ -3,7 +3,7 @@
   "window": 102400,
   "selection_rule": "last_102400_retained_production_transitions",
   "observable": "summed_training_cross_entropy",
-  "code_revision": "66d902c968a1e56627efe6accb4fed6af34d59ab",
+  "code_revision": "9e9d406c61493d42704bfdcd3c487207dd0847f3",
   "exported": [
     {
       "target_id": "shallow_m0064_r0",
@@ -20,6 +20,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -42,6 +44,45 @@
       "source_status": "recovered_existing_trace"
     },
     {
+      "target_id": "shallow_m0064_r1",
+      "architecture": "shallow",
+      "m": 64,
+      "replicate": 1,
+      "h": 0.01,
+      "trajectory": "targets/shallow_m0064_r1/dynamics/h_0p01",
+      "execution_hash": "a3f404d53243d0ccbf6732c536f61801bf5c58c221f2fc83ed7b8725ce4acfea",
+      "execution_hash_matches_campaign": true,
+      "sampler_code_hash_matches": true,
+      "segments": [
+        "discard",
+        "stage_1",
+        "stage_2",
+        "stage_3"
+      ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 3,
+      "discard_transitions": 2000,
+      "retained_per_chain": 204800,
+      "window": 102400,
+      "iteration_start": [
+        104401,
+        104401,
+        104401,
+        104401
+      ],
+      "iteration_end": [
+        206800,
+        206800,
+        206800,
+        206800
+      ],
+      "mean_V_matches_campaign_analysis": true,
+      "end_state_V_max_rel_diff": 1.2191630040561442e-16,
+      "npz": "paper_figures/loss_traces/shallow_m0064_r1.npz",
+      "npz_sha256": "f0a4ca1d59b3b80b1d41f6b81aebb5b6b4d438ec71c59bfc452b111d978ec768",
+      "source_status": "recovered_existing_trace"
+    },
+    {
       "target_id": "shallow_m0064_r2",
       "architecture": "shallow",
       "m": 64,
@@ -56,6 +97,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -92,6 +135,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -128,6 +173,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -164,6 +211,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -200,6 +249,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -236,6 +287,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -272,6 +325,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -308,6 +363,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -344,6 +401,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -380,6 +439,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -416,6 +477,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -453,6 +516,8 @@
         "stage_2",
         "stage_3"
       ],
+      "production_analysis_final_stage": 3,
+      "retained_stages": 3,
       "discard_transitions": 2000,
       "retained_per_chain": 204800,
       "window": 102400,
@@ -489,6 +554,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -525,6 +592,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -561,6 +630,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -597,6 +668,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -634,6 +707,8 @@
         "stage_2",
         "stage_3"
       ],
+      "production_analysis_final_stage": 3,
+      "retained_stages": 3,
       "discard_transitions": 2000,
       "retained_per_chain": 204800,
       "window": 102400,
@@ -670,6 +745,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -706,6 +783,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -742,6 +821,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -778,6 +859,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -814,6 +897,8 @@
         "stage_1",
         "stage_2"
       ],
+      "production_analysis_final_stage": 2,
+      "retained_stages": 2,
       "discard_transitions": 2000,
       "retained_per_chain": 102400,
       "window": 102400,
@@ -836,10 +921,5 @@
       "source_status": "recovered_existing_trace"
     }
   ],
-  "failures": [
-    {
-      "target_id": "shallow_m0064_r1",
-      "error": "StorageError: shallow_m0064_r1: dynamics_runs final_stage 2 != 3 stages"
-    }
-  ]
+  "failures": []
 }
