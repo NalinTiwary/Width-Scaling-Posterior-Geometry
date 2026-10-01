@@ -96,36 +96,81 @@ def acf_facts(L: Layout) -> Optional[dict[str, Any]]:
     return facts
 
 
+def _lags(ks: list[int]) -> str:
+    ks = [str(k) for k in ks]
+    return ks[0] if len(ks) == 1 else ", ".join(ks[:-1]) + " and " + ks[-1]
+
+
 def _describe(arch: str, a: dict[str, Any]) -> str:
-    ws, lags, med, neg, n = a["widths"], a["lags"], a["median"], a["n_negative"], a["n_rep"]
-    k_ref = 100 if 100 in lags else lags[len(lags) // 2]
-    vals = ", ".join(f"{med[k_ref][m]:.2f} (m={m})" for m in ws)
-    all_neg = [k for k in lags if neg[k] == n]
-    early = [k for k in lags if k <= 100]
-    late = [k for k in lags if k >= 200]
+    ws, lags, med, neg, n, dmed = (a["widths"], a["lags"], a["median"], a["n_negative"], a["n_rep"],
+                                   a["delta_median"])
+    lo, hi = ws[0], ws[-1]
     name = "deep" if arch == "deep" else "shallow"
-    if all_neg == lags:
-        trend = (f"the widest network has lower replicate-mean loss autocorrelation than the narrowest in all {n} "
-                 f"replicates at every reported lag ({', '.join(map(str, lags))})")
-    elif early and all(neg[k] == n for k in early):
-        trend = (f"the widest network decorrelates faster at early/moderate lags ({', '.join(map(str, early))}; all "
-                 f"{n} replicates), while at lags {', '.join(map(str, late))} the replicate differences are mixed "
-                 f"({', '.join(f'{neg[k]}/{n}' for k in late)} negative) as the curves approach zero")
-    elif all(neg[k] == 0 for k in lags):
-        trend = f"the widest network does not show lower loss autocorrelation than the narrowest at any reported lag"
-    else:
-        trend = ("the width effect is mixed: the widest-minus-narrowest difference is negative in "
-                 + ", ".join(f"{neg[k]}/{n} replicates at lag {k}" for k in lags))
-    s = f"In the {name} model, {trend}. At lag {k_ref} the pointwise-median ACF is {vals}"
-    if a["monotone_decreasing"].get(k_ref):
-        drops = np.diff([med[k_ref][m] for m in ws])
-        if len(drops) >= 2 and abs(drops[1:].sum()) < 0.25 * abs(drops.sum()):
-            s += f"; most of the reduction occurs between m={ws[0]} and m={ws[1]}, followed by a plateau"
-        else:
-            s += ", decreasing monotonically with width"
-    else:
-        s += ", not monotone in width"
-    return s + "."
+    agree = [k for k in lags if neg[k] == n]
+    against = [k for k in lags if neg[k] == 0]
+    mixed = [k for k in lags if 0 < neg[k] < n]
+    parts = []
+    if agree:
+        diffs = ", ".join(f"{dmed[k]:+.2f} at lag {k}" for k in agree)
+        parts.append(f"the widest network (m={hi}) has lower loss autocorrelation than the narrowest (m={lo}) in all "
+                     f"{n} replicates at lags {_lags(agree)} (pointwise-median differences {diffs})")
+    if against:
+        parts.append(f"the widest network has higher autocorrelation in all {n} replicates at lags {_lags(against)}")
+    if mixed:
+        near0 = max(abs(med[k][m]) for k in mixed for m in ws)
+        parts.append(f"at lag{'s' if len(mixed) > 1 else ''} {_lags(mixed)} the sign differs across replicates "
+                     f"({', '.join(f'{neg[k]}/{n}' for k in mixed)} lower at m={hi}), where all medians are within "
+                     f"{near0:.3f} of zero")
+    s = f"In the {name} model, " + "; ".join(parts) + "."
+    sh = _shape(a)
+    if sh and sh[0] == "plateau":
+        s += (f" Most of the reduction occurs between m={ws[0]} and m={ws[1]}; the curves for m={ws[1]} to m={hi} "
+              f"nearly coincide (within {sh[1]:.3f} at lags {_lags(sh[2])}).")
+    elif sh and sh[0] == "monotone":
+        s += f" The pointwise-median autocorrelation decreases monotonically with width at lags {_lags(sh[1])}."
+    return s
+
+
+def _shape(a: dict[str, Any]):
+    """Pattern across intermediate widths over the lags where all replicates agree on the narrow-wide ordering."""
+    ws, med, neg, n = a["widths"], a["median"], a["n_negative"], a["n_rep"]
+    agree = [k for k in a["lags"] if neg[k] == n]
+    mono = [k for k in agree if a["monotone_decreasing"].get(k)]
+    shape_lags = [k for k in agree if k <= 100] or agree
+    if not shape_lags or len(ws) < 3:
+        return None
+    first = np.mean([med[k][ws[0]] - med[k][ws[1]] for k in shape_lags])
+    total = np.mean([med[k][ws[0]] - med[k][ws[-1]] for k in shape_lags])
+    spread = max(max(med[k][m] for m in ws[1:]) - min(med[k][m] for m in ws[1:]) for k in shape_lags)
+    if total > 0 and first >= 0.75 * total and not set(shape_lags) <= set(mono):
+        return ("plateau", spread, shape_lags)
+    if mono:
+        return ("monotone", mono)
+    return None
+
+
+def _short(arch: str, a: dict[str, Any]) -> str:
+    """One caption clause per architecture; the numbers live in figure_results.md."""
+    ws, neg, n = a["widths"], a["n_negative"], a["n_rep"]
+    agree = [k for k in a["lags"] if neg[k] == n]
+    mixed = [k for k in a["lags"] if 0 < neg[k] < n]
+    if not agree:
+        return f"in the {arch} model the width ordering is not consistent across replicates"
+    s = (f"in the {arch} model, autocorrelation is lower at m={ws[-1]} than at m={ws[0]} in all {n} replicates "
+         f"through lag {max(agree)}")
+    sh = _shape(a)
+    if sh and sh[0] == "plateau":
+        s += f", with most of the change between m={ws[0]} and m={ws[1]} and nearly coincident curves beyond"
+    elif sh and sh[0] == "monotone":
+        s += f" and decreases monotonically with width over that range"
+    if mixed:
+        s += f", and all curves are near zero by lag {min(mixed)}"
+    return s
+
+
+def acf_caption_effect(fa: dict[str, Any]) -> str:
+    c = "; ".join(_short(a, fa["arch"][a]) for a in ("deep", "shallow")) + "."
+    return c[0].upper() + c[1:]
 
 
 def acf_sentence(fa: dict[str, Any]) -> str:
@@ -151,7 +196,7 @@ def write_all(L: Layout, *, export_log: Optional[dict] = None) -> dict[str, Path
               r"$ at every width. Each chain contributes its final $" + _tex_n(fa["settings"]["window"]) +
               r"$ retained transitions, including rejected moves. Curves show pointwise medians across three "
               r"data/center replicates after averaging four chains within each replicate; shaded regions show the "
-              r"replicate range. " + _texify_m(acf_sentence(fa)) + r" Lag is measured in sampler iterations, so "
+              r"replicate range. " + _texify_m(acf_caption_effect(fa)) + r" Lag is measured in sampler iterations, so "
               r"the figure compares the implemented discrete kernels.")
         cap += ["% Figure 2: figures/figure_2_loss_acf.pdf", r"\newcommand{\FigTwoCaption}{" + c2 + "}"]
     else:
@@ -181,8 +226,9 @@ def write_all(L: Layout, *, export_log: Optional[dict] = None) -> dict[str, Path
                f"`analysis_scope = {st['analysis_scope']}`; displayed lag range K = {st['K']} "
                f"(extension history: {[h['K'] for h in st['K_history']]}); window {st['window']:,} transitions per "
                f"chain at h = {st['h']:g}.", "", acf_sentence(fa), "",
-               "_The two sentences above are generated mechanically from `tables/acf_width_contrasts.csv`; check "
-               "them against the plotted curves before submission._", ""]
+               "_The paragraph above and the caption clause are generated from `tables/acf_width_contrasts.csv` and "
+               "`tables/acf_plot.csv` (agreement across replicates per lag, monotonicity, plateau share); re-inspect "
+               "`figures/figure_2_loss_acf.png` whenever the tables change._", ""]
         for arch in ("deep", "shallow"):
             a = fa["arch"][arch]
             md += [f"### {arch}: pointwise-median ACF at fixed lags", "",

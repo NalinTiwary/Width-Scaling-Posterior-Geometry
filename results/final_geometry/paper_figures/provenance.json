@@ -78,5 +78,20 @@
     "shallow_m4096_r0.npz": "6e969146204a87ee560387e21be1972fb1d2124d34fd6626c05d6d3b00044a84",
     "shallow_m4096_r1.npz": "84153ae032ff6b57c0b8a25b550915e7c3c2abea39f08cd5f7f7eff23ca1f623",
     "shallow_m4096_r2.npz": "bfab344a2b4084b769d292c03553fa996b87722dabeaff66075c2e683f157188"
-  }
+  },
+  "regenerations": [
+    {
+      "steps": [
+        "text"
+      ],
+      "code_revision": "a208ab37d1b9d3e603a3c601e03545f12d61c02e-dirty",
+      "versions": {
+        "python": "3.9.6",
+        "numpy": "1.26.4",
+        "matplotlib": "3.9.4",
+        "pandas": "2.3.3"
+      },
+      "time": "2026-10-01T15:25:27-0500"
+    }
+  ]
 }

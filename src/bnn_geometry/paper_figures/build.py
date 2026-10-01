@@ -95,6 +95,18 @@ def build(cfg: dict[str, Any], root: Path, out: Optional[Path] = None, *, steps:
         _write_input_map(L, root, spectral_rows)
     prov_p = L.out / "provenance.json"
     prov = json.loads(prov_p.read_text()) if prov_p.exists() else {}
+    if prov and not ({"spectral", "acf"} & set(done)):
+        # cosmetic/text regeneration: keep the record of the environment that computed the tables
+        prov.setdefault("regenerations", []).append({
+            "steps": done, "code_revision": C.code_revision(), "versions": versions(),
+            "time": time.strftime("%Y-%m-%dT%H:%M:%S%z")})
+        prov["outputs"] = sorted(str(p.relative_to(L.out)) for p in L.out.rglob("*")
+                                 if p.is_file() and p.suffix != ".npz")
+        prov_p.write_text(json.dumps(prov, indent=2))
+        print(f"paper figures: {', '.join(done)} in {time.time() - t0:.0f}s -> {L.out}")
+        for f in figs:
+            print(f"  {f}")
+        return 0
     prov.update({
         "campaign_id": cfg["campaign_id"], "campaign_root": str(root), "code_revision": C.code_revision(),
         "versions": versions(), "figure_metrics_sha256": sha256(METRICS_PATH), "plot_style_sha256": sha256(STYLE_PATH),
