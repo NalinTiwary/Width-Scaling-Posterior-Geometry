@@ -1,0 +1,17 @@
+{
+  "caption": "Posterior relevance of the final deep spectral domain. Left: empirical fractions of archived draws from the unrestricted two-hidden-layer posterior satisfying ||W2||op/sqrt(m) <= 2.5, at fixed n=128. 196608 states were inspected, with 0 observed exits in total (per target: m=32 r0: 0, m=32 r1: 0, m=32 r2: 0, m=64 r0: 0, m=64 r1: 0, m=64 r2: 0, m=128 r0: 0, m=128 r1: 0, m=128 r2: 0, m=256 r0: 0, m=256 r1: 0, m=256 r2: 0); counts retain chain identity and are not treated as iid rare-event trials. All inspected states were inside the event; no zero-width interval is reported. Right: the median, 95th, and 99th percentiles of the normalized spectral norm, with matching iid Gaussian-prior reference quantiles. The boundary is one. Posterior/prior comparison: m=32: posterior median 0.763 vs prior 0.762, posterior q99 0.848 (max over replicates); m=64: posterior median 0.777 vs prior 0.778, posterior q99 0.831 (max over replicates); m=128: posterior median 0.786 vs prior 0.786, posterior q99 0.819 (max over replicates); m=256: posterior median 0.791 vs prior 0.791, posterior q99 0.812 (max over replicates). This assesses whether the conditional LSI domain contains a substantial part of the sampled posterior. It does not estimate the theorem's exponential exit-rate constants, and high observed mass does not turn conditional deep LSI into a global statement.",
+  "filters": "deep targets, chain_id == all (target rows)",
+  "flagged_rows": [],
+  "plotted_csv": "main_3_spectral.csv",
+  "plotting_code_revision": "4327fe4ece9317f6fd20fad18389a71e9b1f423b",
+  "selected_probe_ids": [],
+  "sources": {
+    "controls/prior_spectral.csv": "a9538f62f21d6a665bfd0e4933d9ffb212f8a6fe91e560b6a7a6ffdd7b137ce2",
+    "tables/spectral_summary.csv": "e0384c2d1c861b11594337634508b6db681f3b14bcbdf5d50a4b9eeb5ef98347"
+  },
+  "target_law": {
+    "deep": "full_posterior archive; event G_2.5"
+  },
+  "uncertainty": "exit counts shown; quantile intervals in table (chain-aware block bootstrap)",
+  "y_normalization": "none (fraction; S)"
+}

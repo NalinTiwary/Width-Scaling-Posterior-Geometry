@@ -1,0 +1,24 @@
+{
+  "h_0p01": {
+    "T_per_chain": 1024.0,
+    "acceptance_fail": false,
+    "budget_exhausted": false,
+    "final_stage": 2,
+    "grad_evals_run": 417604,
+    "h": 0.01,
+    "h_id": "h_0p01",
+    "mode": "production",
+    "stage_pass": true
+  },
+  "h_0p02": {
+    "T_per_chain": 512.0,
+    "acceptance_fail": false,
+    "budget_exhausted": false,
+    "final_stage": 1,
+    "grad_evals_run": 106404,
+    "h": 0.02,
+    "h_id": "h_0p02",
+    "mode": "production",
+    "stage_pass": true
+  }
+}

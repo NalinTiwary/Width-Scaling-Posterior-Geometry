@@ -1,0 +1,139 @@
+{
+  "dynamics": {
+    "h": 0.02,
+    "half_step": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 417604,
+      "h": 0.01,
+      "h_id": "h_0p01",
+      "mode": "fixed",
+      "stage_pass": true
+    },
+    "production": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 208804,
+      "h": 0.02,
+      "h_id": "h_0p02",
+      "mode": "production",
+      "stage_pass": true
+    },
+    "round": 1
+  },
+  "reference": {
+    "budget_exhausted": false,
+    "device": "cuda",
+    "execution_hash": "d260d94c699220080c79ef88b60fc8c3cddc0b0c0682a72fa91f05c5c29ad521",
+    "likelihood_evals_per_chain": [
+      402526,
+      401894,
+      402198,
+      402340
+    ],
+    "production_per_chain": 65536,
+    "segments": {
+      "burnin": {
+        "archive_stride": 0,
+        "n": 4096,
+        "partial": false,
+        "planned": 4096,
+        "stop_reason": null,
+        "wall_s": 25.718956232070923
+      },
+      "calibration": {
+        "archive_stride": 8,
+        "n": 2048,
+        "partial": false,
+        "planned": 2048,
+        "stop_reason": null,
+        "wall_s": 12.82835340499878
+      },
+      "production_s1": {
+        "archive_stride": 16,
+        "n": 8192,
+        "partial": false,
+        "planned": 8192,
+        "stop_reason": null,
+        "wall_s": 51.112478494644165
+      },
+      "production_s2": {
+        "archive_stride": 16,
+        "n": 8192,
+        "partial": false,
+        "planned": 8192,
+        "stop_reason": null,
+        "wall_s": 50.97772192955017
+      },
+      "production_s3": {
+        "archive_stride": 16,
+        "n": 16384,
+        "partial": false,
+        "planned": 16384,
+        "stop_reason": null,
+        "wall_s": 101.81009149551392
+      },
+      "production_s4": {
+        "archive_stride": 16,
+        "n": 32768,
+        "partial": false,
+        "planned": 32768,
+        "stop_reason": null,
+        "wall_s": 205.3054597377777
+      },
+      "separation": {
+        "archive_stride": 0,
+        "n": 1024,
+        "partial": false,
+        "planned": 1024,
+        "stop_reason": null,
+        "wall_s": 6.3225109577178955
+      }
+    },
+    "static_pass": false,
+    "status": "reference_pass",
+    "stopping_stage": 4,
+    "transitions_per_chain": [
+      72704,
+      72704,
+      72704,
+      72704
+    ],
+    "wall_s": 453.9585952758789
+  },
+  "refinement": {
+    "h": 0.01,
+    "half_step": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 835204,
+      "h": 0.005,
+      "h_id": "h_0p005",
+      "mode": "fixed",
+      "stage_pass": true
+    },
+    "production": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 417604,
+      "h": 0.01,
+      "h_id": "h_0p01",
+      "mode": "production",
+      "stage_pass": true
+    },
+    "refined": true
+  },
+  "step_calibration": {
+    "selected_h": 0.02,
+    "status": "calibrated"
+  },
+  "target_id": "shallow_m0064_r0"
+}

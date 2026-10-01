@@ -1,0 +1,451 @@
+{
+  "caption": "Appendix checks at no additional sampling cost. (a) Bayesian predictive negative log score of the prior mixture minus that of the posterior on all held-out points (positive: the posterior predicts better); observed range 0.055 to 0.144 nats per point. (b) Held-out family static Poincare ratios Var/E||grad g||^2 on the unrestricted posterior for both architectures, divided by sigma^2; hollow points did not meet the 15% relative MCSE or reference-validity gate. Small ratios are not upper bounds on the Poincare constant.",
+  "filters": "static_pi kind == family",
+  "flagged_rows": [],
+  "plotted_csv": "appendix_s2_static_checks.csv",
+  "plotting_code_revision": "4327fe4ece9317f6fd20fad18389a71e9b1f423b",
+  "selected_probe_ids": [
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_32",
+      "selected_fold_B_to_A": "train_logit_32",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_64",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_32",
+      "selected_fold_B_to_A": "train_logit_32",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_64",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_0",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_32",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_64",
+      "selected_fold_B_to_A": "train_logit_64",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_32",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_64",
+      "selected_fold_B_to_A": "train_logit_64",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_96",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_64",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1",
+      "selected_fold_B_to_A": "interaction_0",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_32",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_96",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_32",
+      "selected_fold_B_to_A": "train_logit_96",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_96",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0256_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0256_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0256_r2"
+    }
+  ],
+  "sources": {
+    "tables/predictive_scores.csv": "74375458cd752b81da478168e69dcd66db783d38b8f63fbf9fed4417cc10d0bd",
+    "tables/static_pi.csv": "fd20f6e06b37ff986dbfc51a070926e023508bb4562d131f96263089740c861d"
+  },
+  "target_law": {
+    "predictive": "posterior vs prior",
+    "static_pi": "full_posterior"
+  },
+  "uncertainty": "block bootstrap (posterior), iid bootstrap (prior)",
+  "y_normalization": "(a) nats per point; (b) / sigma^2"
+}

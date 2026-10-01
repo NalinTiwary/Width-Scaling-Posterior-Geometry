@@ -1,0 +1,40 @@
+{
+  "deep": {
+    "calibration_failed": [],
+    "h": 0.02,
+    "per_target": {
+      "deep_m0032_r0": 0.02,
+      "deep_m0032_r1": 0.02,
+      "deep_m0032_r2": 0.02,
+      "deep_m0064_r0": 0.02,
+      "deep_m0064_r1": 0.02,
+      "deep_m0064_r2": 0.02,
+      "deep_m0128_r0": 0.02,
+      "deep_m0128_r1": 0.02,
+      "deep_m0128_r2": 0.02,
+      "deep_m0256_r0": 0.02,
+      "deep_m0256_r1": 0.02,
+      "deep_m0256_r2": 0.02
+    },
+    "rule": "minimum admissible candidate across the architecture's targets"
+  },
+  "shallow": {
+    "calibration_failed": [],
+    "h": 0.02,
+    "per_target": {
+      "shallow_m0064_r0": 0.02,
+      "shallow_m0064_r1": 0.02,
+      "shallow_m0064_r2": 0.02,
+      "shallow_m0256_r0": 0.02,
+      "shallow_m0256_r1": 0.02,
+      "shallow_m0256_r2": 0.02,
+      "shallow_m1024_r0": 0.02,
+      "shallow_m1024_r1": 0.02,
+      "shallow_m1024_r2": 0.02,
+      "shallow_m4096_r0": 0.02,
+      "shallow_m4096_r1": 0.02,
+      "shallow_m4096_r2": 0.02
+    },
+    "rule": "minimum admissible candidate across the architecture's targets"
+  }
+}

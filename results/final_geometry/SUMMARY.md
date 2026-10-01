@@ -1,0 +1,139 @@
+# Final geometry campaign summary (final_geometry_v15_20260930)
+
+## 1. Completion
+
+- Intended targets: 24; reference_pass: 24; dynamics (all four families valid at the final step): 0; entropy (all three families valid): 0; spectral (deep, S R-hat and SVD backend checks pass): 12 of 12.
+- Dynamics step status: shallow dynamics_unresolved (h=0.01), deep dynamics_unresolved (h=0.01); refinement used: shallow=True, deep=True.
+
+## 2. Configuration
+
+- Shallow widths [64, 256, 1024, 4096], deep widths [32, 64, 128, 256], n=128, d=32, sigma=1.0, head-center norm [1.0], final conditional domain ||W2||op/sqrt(m) <= 2.5 (deep entropy only).
+
+## 3. Main figures
+
+- **main_1_relaxation**: Width dependence of observable relaxation under unrestricted posterior dynamics. The horizontal axes give network width for the one-hidden-layer and two-hidden-layer models, at fixed n=128. Vertical values are cross-evaluated family autocorrelation integrals in the physical-time convention of the adjusted Gaussian-preserving Langevin proposal, normalized by the prior variance. Families contain the likelihood potential, eight training logits, eight held-out probabilities, and four fixed head--hidden interactions. Thin points and lines show three independent data/center replicates; the thick line is their median, and error bars show within-target Monte Carlo uncertainty. Hollow points did not meet the validity criteria. The horizontal line at one is the continuous Gaussian linear-observable timescale. The production steps were shallow h=0.01, deep h=0.01; endpoint step-halving checks: shallow: dynamics_unresolved after one refinement, deep: dynamics_unresolved after one refinement. Over the tested width range, shallow: interactions: unresolved (3 of 3 replicate ratios invalid); V (loss): unresolved (3 of 3 replicate ratios invalid); held-out probabilities: unresolved (3 of 3 replicate ratios invalid); training logits: unresolved (3 of 3 replicate ratios invalid); deep: interactions: unresolved (3 of 3 replicate ratios invalid); V (loss): unresolved (3 of 3 replicate ratios invalid); held-out probabilities: unresolved (3 of 3 replicate ratios invalid); training logits: unresolved (3 of 3 replicate ratios invalid). These finite-observable diagnostics do not estimate the optimal PI coefficient, and no global head or hidden-layer restriction was imposed on the chains.
+- **main_2_entropy**: Finite-probe entropy--Fisher diagnostics for the final LSI domains. For each standardized smooth probe f and fixed tilt t in {-1,-0.5,0.5,1}, we form the normalized density r proportional to exp(tf) relative to the shallow posterior or the deep posterior conditioned on the later-hidden-layer spectral event. The vertical axis reports held-out family estimates of 2 Ent(r)/E[r||grad log r||^2], divided by the prior variance; the horizontal axis is width. The head and first hidden layer remain unrestricted in both panels. Probe selection and evaluation use separate chain folds. The value-one line is attained by Gaussian linear tilts and is a reference, not a required lower limit for these probes. Measured trend: shallow: interactions: unresolved (3 of 3 replicate ratios invalid); V (loss): unresolved (1 of 3 replicate ratios invalid); training logits: widest/narrowest ratio 0.94-1.13, no consistent direction across replicates; deep: interactions: unresolved (3 of 3 replicate ratios invalid); V (loss): unresolved (2 of 3 replicate ratios invalid); training logits: unresolved (1 of 3 replicate ratios invalid). Incomplete or unresolved family points (hollow): 29 of 72. LSI bounds these population ratios above by its coefficient, so the plotted tests are finite-probe lower diagnostics of that coefficient; they neither determine its optimum nor establish global deep LSI.
+- **main_3_spectral**: Posterior relevance of the final deep spectral domain. Left: empirical fractions of archived draws from the unrestricted two-hidden-layer posterior satisfying ||W2||op/sqrt(m) <= 2.5, at fixed n=128. 196608 states were inspected, with 0 observed exits in total (per target: m=32 r0: 0, m=32 r1: 0, m=32 r2: 0, m=64 r0: 0, m=64 r1: 0, m=64 r2: 0, m=128 r0: 0, m=128 r1: 0, m=128 r2: 0, m=256 r0: 0, m=256 r1: 0, m=256 r2: 0); counts retain chain identity and are not treated as iid rare-event trials. All inspected states were inside the event; no zero-width interval is reported. Right: the median, 95th, and 99th percentiles of the normalized spectral norm, with matching iid Gaussian-prior reference quantiles. The boundary is one. Posterior/prior comparison: m=32: posterior median 0.763 vs prior 0.762, posterior q99 0.848 (max over replicates); m=64: posterior median 0.777 vs prior 0.778, posterior q99 0.831 (max over replicates); m=128: posterior median 0.786 vs prior 0.786, posterior q99 0.819 (max over replicates); m=256: posterior median 0.791 vs prior 0.791, posterior q99 0.812 (max over replicates). This assesses whether the conditional LSI domain contains a substantial part of the sampled posterior. It does not estimate the theorem's exponential exit-rate constants, and high observed mass does not turn conditional deep LSI into a global statement.
+
+## 4. Widest/narrowest ratios (per replicate; MC interval; validity)
+
+| experiment | arch | family | replicate | ratio | MC interval | valid | law |
+|---|---|---|---|---|---|---|---|
+| relaxation | shallow | loss | 0 | 0.746 | [0.685, 0.929] | False | full_posterior |
+| relaxation | shallow | train_logit | 0 | 0.946 | [0.699, 1.1] | False | full_posterior |
+| relaxation | shallow | test_probability | 0 | 0.962 | [0.768, 1.17] | False | full_posterior |
+| relaxation | shallow | interaction | 0 | 0.851 | [0.701, 1.11] | False | full_posterior |
+| entropy | shallow | loss | 0 | 0.934 | [0.789, 1.08] | True | full_posterior |
+| static_pi | shallow | loss | 0 | 0.941 | [0.898, 1] | True | full_posterior |
+| entropy | shallow | train_logit | 0 | 1.13 | [0.922, 1.24] | True | full_posterior |
+| static_pi | shallow | train_logit | 0 | 0.977 | [0.918, 1.05] | True | full_posterior |
+| entropy | shallow | interaction | 0 | 0.931 | [0.698, 1.4] | False | full_posterior |
+| static_pi | shallow | interaction | 0 | 0.939 | [0.885, 1.09] | True | full_posterior |
+| relaxation | shallow | loss | 1 | 0.69 | [0.594, 0.815] | False | full_posterior |
+| relaxation | shallow | train_logit | 1 | 0.778 | [0.656, 1.05] | False | full_posterior |
+| relaxation | shallow | test_probability | 1 | 0.864 | [0.703, 1.04] | False | full_posterior |
+| relaxation | shallow | interaction | 1 | 0.704 | [0.567, 0.877] | False | full_posterior |
+| entropy | shallow | loss | 1 | 0.895 | [0.825, 0.995] | True | full_posterior |
+| static_pi | shallow | loss | 1 | 0.911 | [0.848, 0.962] | True | full_posterior |
+| entropy | shallow | train_logit | 1 | 0.994 | [0.884, 1.15] | True | full_posterior |
+| static_pi | shallow | train_logit | 1 | 1.05 | [0.951, 1.11] | True | full_posterior |
+| entropy | shallow | interaction | 1 | 0.873 | [0.623, 1.06] | False | full_posterior |
+| static_pi | shallow | interaction | 1 | 0.854 | [0.803, 0.966] | True | full_posterior |
+| relaxation | shallow | loss | 2 | 0.802 | [0.733, 0.951] | False | full_posterior |
+| relaxation | shallow | train_logit | 2 | 0.82 | [0.679, 1.03] | False | full_posterior |
+| relaxation | shallow | test_probability | 2 | 0.835 | [0.71, 1.14] | False | full_posterior |
+| relaxation | shallow | interaction | 2 | 0.715 | [0.626, 0.945] | False | full_posterior |
+| entropy | shallow | loss | 2 | 0.989 | [0.87, 1.13] | False | full_posterior |
+| static_pi | shallow | loss | 2 | 0.925 | [0.868, 0.985] | True | full_posterior |
+| entropy | shallow | train_logit | 2 | 0.939 | [0.856, 1.09] | True | full_posterior |
+| static_pi | shallow | train_logit | 2 | 0.974 | [0.899, 1.03] | True | full_posterior |
+| entropy | shallow | interaction | 2 | 0.909 | [0.688, 1.24] | False | full_posterior |
+| static_pi | shallow | interaction | 2 | 0.983 | [0.899, 1.08] | True | full_posterior |
+| relaxation | deep | loss | 0 | 0.469 | [0.41, 0.579] | False | full_posterior |
+| relaxation | deep | train_logit | 0 | 0.789 | [0.651, 0.94] | False | full_posterior |
+| relaxation | deep | test_probability | 0 | 0.71 | [0.614, 0.857] | False | full_posterior |
+| relaxation | deep | interaction | 0 | 1 | [0.765, 1.15] | False | full_posterior |
+| entropy | deep | loss | 0 | 0.799 | [0.725, 0.956] | False | conditional_G_2.5 |
+| static_pi | deep | loss | 0 | 0.825 | [0.772, 0.874] | True | full_posterior |
+| entropy | deep | train_logit | 0 | 0.973 | [0.846, 1.09] | True | conditional_G_2.5 |
+| static_pi | deep | train_logit | 0 | 0.99 | [0.914, 1.04] | True | full_posterior |
+| entropy | deep | interaction | 0 | 1.04 | [0.776, 1.39] | False | conditional_G_2.5 |
+| static_pi | deep | interaction | 0 | 0.968 | [0.862, 1.04] | True | full_posterior |
+| relaxation | deep | loss | 1 | 0.564 | [0.497, 0.645] | False | full_posterior |
+| relaxation | deep | train_logit | 1 | 0.618 | [0.526, 0.724] | False | full_posterior |
+| relaxation | deep | test_probability | 1 | 0.694 | [0.578, 0.801] | False | full_posterior |
+| relaxation | deep | interaction | 1 | 0.743 | [0.605, 0.949] | False | full_posterior |
+| entropy | deep | loss | 1 | 0.755 | [0.696, 0.836] | True | conditional_G_2.5 |
+| static_pi | deep | loss | 1 | 0.746 | [0.702, 0.797] | True | full_posterior |
+| entropy | deep | train_logit | 1 | 0.938 | [0.836, 1.08] | False | conditional_G_2.5 |
+| static_pi | deep | train_logit | 1 | 0.988 | [0.911, 1.05] | True | full_posterior |
+| entropy | deep | interaction | 1 | 0.756 | [0.68, 1.08] | False | conditional_G_2.5 |
+| static_pi | deep | interaction | 1 | 0.945 | [0.782, 1.02] | True | full_posterior |
+| relaxation | deep | loss | 2 | 0.542 | [0.472, 0.621] | False | full_posterior |
+| relaxation | deep | train_logit | 2 | 0.634 | [0.594, 0.986] | False | full_posterior |
+| relaxation | deep | test_probability | 2 | 0.725 | [0.542, 0.869] | False | full_posterior |
+| relaxation | deep | interaction | 2 | 0.918 | [0.743, 1.19] | False | full_posterior |
+| entropy | deep | loss | 2 | 0.69 | [0.619, 0.816] | False | conditional_G_2.5 |
+| static_pi | deep | loss | 2 | 0.746 | [0.693, 0.802] | True | full_posterior |
+| entropy | deep | train_logit | 2 | 1.03 | [0.856, 1.11] | True | conditional_G_2.5 |
+| static_pi | deep | train_logit | 2 | 0.93 | [0.853, 0.985] | True | full_posterior |
+| entropy | deep | interaction | 2 | 0.946 | [0.717, 1.24] | False | conditional_G_2.5 |
+| static_pi | deep | interaction | 2 | 0.916 | [0.815, 1.02] | True | full_posterior |
+
+## 5. Spectral domain
+
+- deep_m0032_r0: 0 exits / 16384 inspected archived states; S median 0.763, q95 0.818, q99 0.845.
+- deep_m0032_r1: 0 exits / 16384 inspected archived states; S median 0.765, q95 0.821, q99 0.848.
+- deep_m0032_r2: 0 exits / 16384 inspected archived states; S median 0.763, q95 0.819, q99 0.844.
+- deep_m0064_r0: 0 exits / 16384 inspected archived states; S median 0.777, q95 0.812, q99 0.829.
+- deep_m0064_r1: 0 exits / 16384 inspected archived states; S median 0.778, q95 0.813, q99 0.831.
+- deep_m0064_r2: 0 exits / 16384 inspected archived states; S median 0.777, q95 0.812, q99 0.829.
+- deep_m0128_r0: 0 exits / 16384 inspected archived states; S median 0.786, q95 0.808, q99 0.819.
+- deep_m0128_r1: 0 exits / 16384 inspected archived states; S median 0.786, q95 0.808, q99 0.819.
+- deep_m0128_r2: 0 exits / 16384 inspected archived states; S median 0.786, q95 0.808, q99 0.819.
+- deep_m0256_r0: 0 exits / 16384 inspected archived states; S median 0.791, q95 0.805, q99 0.812.
+- deep_m0256_r1: 0 exits / 16384 inspected archived states; S median 0.791, q95 0.805, q99 0.811.
+- deep_m0256_r2: 0 exits / 16384 inspected archived states; S median 0.791, q95 0.805, q99 0.812.
+- prior m=32: S median 0.762, q95 0.816, q99 0.844 (4096 iid matrices, one reference shared by all replicates).
+- prior m=64: S median 0.778, q95 0.812, q99 0.830 (4096 iid matrices, one reference shared by all replicates).
+- prior m=128: S median 0.786, q95 0.808, q99 0.820 (4096 iid matrices, one reference shared by all replicates).
+- prior m=256: S median 0.791, q95 0.805, q99 0.811 (4096 iid matrices, one reference shared by all replicates).
+
+## 6. Numerical checks
+
+- Known-distribution calibration rows: 32; rows with a failed statistical check: 1 (audits: ['ordinary MC fluctuation (|err| <= 3 independent SE across coordinates)']).
+- Endpoint step comparisons: 307 of 312 rows pass (tables/endpoint_comparisons.csv).
+- Reference budget exhausted: none. Code fixes during the campaign: see manifest.json (code_fixes).
+
+## 7. Predictive check
+
+- shallow_m0064_r0: NLS(prior) - NLS(posterior) = 0.0706 nats/point [0.0683, 0.0730]
+- shallow_m0064_r1: NLS(prior) - NLS(posterior) = 0.1435 nats/point [0.1415, 0.1461]
+- shallow_m0064_r2: NLS(prior) - NLS(posterior) = 0.1117 nats/point [0.1095, 0.1140]
+- shallow_m0256_r0: NLS(prior) - NLS(posterior) = 0.0807 nats/point [0.0786, 0.0831]
+- shallow_m0256_r1: NLS(prior) - NLS(posterior) = 0.1360 nats/point [0.1335, 0.1385]
+- shallow_m0256_r2: NLS(prior) - NLS(posterior) = 0.1181 nats/point [0.1157, 0.1203]
+- shallow_m1024_r0: NLS(prior) - NLS(posterior) = 0.0774 nats/point [0.0753, 0.0801]
+- shallow_m1024_r1: NLS(prior) - NLS(posterior) = 0.1376 nats/point [0.1351, 0.1401]
+- shallow_m1024_r2: NLS(prior) - NLS(posterior) = 0.1144 nats/point [0.1119, 0.1166]
+- shallow_m4096_r0: NLS(prior) - NLS(posterior) = 0.0834 nats/point [0.0810, 0.0855]
+- shallow_m4096_r1: NLS(prior) - NLS(posterior) = 0.1390 nats/point [0.1366, 0.1411]
+- shallow_m4096_r2: NLS(prior) - NLS(posterior) = 0.1143 nats/point [0.1123, 0.1167]
+- deep_m0032_r0: NLS(prior) - NLS(posterior) = 0.0595 nats/point [0.0575, 0.0612]
+- deep_m0032_r1: NLS(prior) - NLS(posterior) = 0.1241 nats/point [0.1221, 0.1262]
+- deep_m0032_r2: NLS(prior) - NLS(posterior) = 0.0908 nats/point [0.0892, 0.0928]
+- deep_m0064_r0: NLS(prior) - NLS(posterior) = 0.0591 nats/point [0.0574, 0.0610]
+- deep_m0064_r1: NLS(prior) - NLS(posterior) = 0.1232 nats/point [0.1213, 0.1253]
+- deep_m0064_r2: NLS(prior) - NLS(posterior) = 0.0883 nats/point [0.0864, 0.0901]
+- deep_m0128_r0: NLS(prior) - NLS(posterior) = 0.0554 nats/point [0.0535, 0.0573]
+- deep_m0128_r1: NLS(prior) - NLS(posterior) = 0.1134 nats/point [0.1115, 0.1153]
+- deep_m0128_r2: NLS(prior) - NLS(posterior) = 0.0914 nats/point [0.0897, 0.0931]
+- deep_m0256_r0: NLS(prior) - NLS(posterior) = 0.0612 nats/point [0.0595, 0.0629]
+- deep_m0256_r1: NLS(prior) - NLS(posterior) = 0.1082 nats/point [0.1063, 0.1103]
+- deep_m0256_r2: NLS(prior) - NLS(posterior) = 0.0947 nats/point [0.0930, 0.0964]
+
+## 8. Compute and storage
+
+- Dynamics gradient evaluations (all targets): 27,242,664; reference wall time 6.52 h; dynamics wall time 1.80 h.
+- Storage under final_geometry: 127.92 GB.
+- Tables: tables/*.csv; figures: figures/*; audit: audit.json; captions: captions.tex.

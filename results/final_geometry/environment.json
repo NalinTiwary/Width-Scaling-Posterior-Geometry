@@ -1,0 +1,26 @@
+{
+  "arviz": "0.17.1",
+  "blas": {
+    "detection method": "pkgconfig",
+    "found": true,
+    "include directory": "/usr/local/include",
+    "lib directory": "/usr/local/lib",
+    "name": "openblas64",
+    "openblas configuration": "USE_64BITINT=1 DYNAMIC_ARCH=1 DYNAMIC_OLDER= NO_CBLAS= NO_LAPACK= NO_LAPACKE= NO_AFFINITY=1 USE_OPENMP= HASWELL MAX_THREADS=2",
+    "pc file directory": "/usr/local/lib/pkgconfig",
+    "version": "0.3.23.dev"
+  },
+  "cpu_threads": 4,
+  "cuda_available": true,
+  "cuda_version": "12.8",
+  "gpu": "NVIDIA A10",
+  "h5py": "3.14.0",
+  "hostname": "ccc0313.campuscluster.illinois.edu",
+  "numpy": "1.26.4",
+  "nvidia_smi": "NVIDIA A10, 580.173.02",
+  "platform": "Linux-5.14.0-687.25.1.el9_8.x86_64-x86_64-with-glibc2.34",
+  "python": "3.9.25 (main, Apr 17 2026, 00:00:00) \n[GCC 11.5.0 20240719 (Red Hat 11.5.0-14)]",
+  "scipy": "1.12.0",
+  "slurm_job_id": "11055714",
+  "torch": "2.8.0+cu128"
+}

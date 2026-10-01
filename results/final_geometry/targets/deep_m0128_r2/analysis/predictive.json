@@ -1,0 +1,19 @@
+{
+  "block_length": 16,
+  "block_stable": true,
+  "improvement": 0.09135278124759372,
+  "improvement_mc_high": 0.09308228075649569,
+  "improvement_mc_low": 0.08968545671222194,
+  "improvement_mcse": 0.0009149325596721559,
+  "n_posterior_states": 2048,
+  "n_prior_states": 2048,
+  "n_test": 1024,
+  "nls_posterior": 0.6027040670873445,
+  "nls_prior": 0.6940568483349382,
+  "posterior_accuracy": 0.5107421875,
+  "posterior_draws_per_chain": 512,
+  "prior_accuracy": 0.5048828125,
+  "status": "ok",
+  "target_id": "deep_m0128_r2",
+  "teacher_log_score": 0.472034109732548
+}

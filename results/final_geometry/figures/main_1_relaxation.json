@@ -1,0 +1,1077 @@
+{
+  "caption": "Width dependence of observable relaxation under unrestricted posterior dynamics. The horizontal axes give network width for the one-hidden-layer and two-hidden-layer models, at fixed n=128. Vertical values are cross-evaluated family autocorrelation integrals in the physical-time convention of the adjusted Gaussian-preserving Langevin proposal, normalized by the prior variance. Families contain the likelihood potential, eight training logits, eight held-out probabilities, and four fixed head--hidden interactions. Thin points and lines show three independent data/center replicates; the thick line is their median, and error bars show within-target Monte Carlo uncertainty. Hollow points did not meet the validity criteria. The horizontal line at one is the continuous Gaussian linear-observable timescale. The production steps were shallow h=0.01, deep h=0.01; endpoint step-halving checks: shallow: dynamics_unresolved after one refinement, deep: dynamics_unresolved after one refinement. Over the tested width range, shallow: interactions: unresolved (3 of 3 replicate ratios invalid); V (loss): unresolved (3 of 3 replicate ratios invalid); held-out probabilities: unresolved (3 of 3 replicate ratios invalid); training logits: unresolved (3 of 3 replicate ratios invalid); deep: interactions: unresolved (3 of 3 replicate ratios invalid); V (loss): unresolved (3 of 3 replicate ratios invalid); held-out probabilities: unresolved (3 of 3 replicate ratios invalid); training logits: unresolved (3 of 3 replicate ratios invalid). These finite-observable diagnostics do not estimate the optimal PI coefficient, and no global head or hidden-layer restriction was imposed on the chains.",
+  "filters": "role == production_final (architecture's final common step)",
+  "flagged_rows": [
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "loss",
+      "target_id": "deep_m0256_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "train_logit",
+      "target_id": "deep_m0256_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "test_probability",
+      "target_id": "deep_m0256_r2"
+    },
+    {
+      "failure_reason": ";architecture_dynamics_dynamics_unresolved",
+      "family": "interaction",
+      "target_id": "deep_m0256_r2"
+    }
+  ],
+  "plotted_csv": "main_1_relaxation.csv",
+  "plotting_code_revision": "4327fe4ece9317f6fd20fad18389a71e9b1f423b",
+  "selected_probe_ids": [
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_16",
+      "selected_fold_B_to_A": "train_logit_64",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_512",
+      "selected_fold_B_to_A": "test_prob_256",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_48",
+      "selected_fold_B_to_A": "train_logit_48",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_640",
+      "selected_fold_B_to_A": "test_prob_0",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_640",
+      "selected_fold_B_to_A": "test_prob_640",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_112",
+      "selected_fold_B_to_A": "train_logit_32",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_896",
+      "selected_fold_B_to_A": "test_prob_128",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_0",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_32",
+      "selected_fold_B_to_A": "train_logit_48",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_512",
+      "selected_fold_B_to_A": "test_prob_640",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_384",
+      "selected_fold_B_to_A": "test_prob_512",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_32",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_768",
+      "selected_fold_B_to_A": "test_prob_128",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2",
+      "selected_fold_B_to_A": "interaction_0",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_48",
+      "selected_fold_B_to_A": "train_logit_80",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_512",
+      "selected_fold_B_to_A": "test_prob_256",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2",
+      "selected_fold_B_to_A": "interaction_3",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_896",
+      "selected_fold_B_to_A": "test_prob_640",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_80",
+      "selected_fold_B_to_A": "train_logit_32",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_128",
+      "selected_fold_B_to_A": "test_prob_256",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_112",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_640",
+      "selected_fold_B_to_A": "test_prob_512",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_64",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_896",
+      "selected_fold_B_to_A": "test_prob_0",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_32",
+      "selected_fold_B_to_A": "train_logit_16",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_768",
+      "selected_fold_B_to_A": "test_prob_512",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_768",
+      "selected_fold_B_to_A": "test_prob_512",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_256",
+      "selected_fold_B_to_A": "test_prob_512",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_0",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_48",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_384",
+      "selected_fold_B_to_A": "test_prob_896",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_48",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_896",
+      "selected_fold_B_to_A": "test_prob_0",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_16",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_896",
+      "selected_fold_B_to_A": "test_prob_256",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1",
+      "selected_fold_B_to_A": "interaction_0",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_96",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_256",
+      "selected_fold_B_to_A": "test_prob_0",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_112",
+      "selected_fold_B_to_A": "train_logit_80",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_896",
+      "selected_fold_B_to_A": "test_prob_384",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_32",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_768",
+      "selected_fold_B_to_A": "test_prob_896",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_80",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_128",
+      "selected_fold_B_to_A": "test_prob_640",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0",
+      "selected_fold_B_to_A": "interaction_0",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0",
+      "selected_fold_B_to_A": "train_logit_64",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_640",
+      "selected_fold_B_to_A": "test_prob_256",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1",
+      "selected_fold_B_to_A": "interaction_2",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V",
+      "selected_fold_B_to_A": "V",
+      "target_id": "deep_m0256_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96",
+      "selected_fold_B_to_A": "train_logit_0",
+      "target_id": "deep_m0256_r2"
+    },
+    {
+      "family": "test_probability",
+      "selected_fold_A_to_B": "test_prob_640",
+      "selected_fold_B_to_A": "test_prob_256",
+      "target_id": "deep_m0256_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2",
+      "selected_fold_B_to_A": "interaction_1",
+      "target_id": "deep_m0256_r2"
+    }
+  ],
+  "sources": {
+    "tables/relaxation_families.csv": "fbd2b2b0e9694a243b2e3954dc3d929f92a571ea43baffeb187c4d7d34026833",
+    "tables/width_ratios.csv": "b621c618f0b33da835504b0b14705b3c5af1f2bd4aad0af7ecb0f1e0f57fdf29"
+  },
+  "target_law": {
+    "deep": "full_posterior",
+    "shallow": "full_posterior"
+  },
+  "uncertainty": "percentile 2.5-97.5% within-chain moving-block bootstrap (400 resamples)",
+  "y_normalization": "estimate / sigma^2",
+  "y_scale": "linear"
+}

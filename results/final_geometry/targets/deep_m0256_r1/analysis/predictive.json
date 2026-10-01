@@ -1,0 +1,19 @@
+{
+  "block_length": 16,
+  "block_stable": true,
+  "improvement": 0.10815751374357263,
+  "improvement_mc_high": 0.11027259894919472,
+  "improvement_mc_low": 0.10633873583411504,
+  "improvement_mcse": 0.0009764656270919518,
+  "n_posterior_states": 2048,
+  "n_prior_states": 2048,
+  "n_test": 1024,
+  "nls_posterior": 0.5845001877461766,
+  "nls_prior": 0.6926577014897493,
+  "posterior_accuracy": 0.5078125,
+  "posterior_draws_per_chain": 512,
+  "prior_accuracy": 0.5185546875,
+  "status": "ok",
+  "target_id": "deep_m0256_r1",
+  "teacher_log_score": 0.38726119858619984
+}

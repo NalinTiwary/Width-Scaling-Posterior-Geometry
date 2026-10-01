@@ -1,0 +1,110 @@
+{
+  "L": 3,
+  "a": 2.5,
+  "arch": "deep",
+  "d": 32,
+  "data_hashes": {
+    "hash_X": "d0c54fb83e4fd5e7ad07a48c3b34b971e2c874940c461ee5e6d113982c0c6b5b",
+    "hash_X_test": "8b66c56b2a57957a59211cc4387802b08317b016c1543989fc66ea6cb146e3cf",
+    "hash_center_bank": "68f562734e4801225b35ca09aa12c2898efe15e6c477035a79b37a952b526f58",
+    "hash_p_teacher": "ab697e31241f629a19a87d813c5de3ac7d13dda603989229142a8e31e4af0770",
+    "hash_p_teacher_test": "b3765eed547e0d17d62151d3bb77dc7d161c7472d197751c435cebeb0fc2a8e8",
+    "hash_teacher": "a8872d5fdcbe9889135f893c69a6efa353fced172062c7b9e1165601c5278964",
+    "hash_y": "a192871d6794532f82e023baf69de8c756569d33f61694b9d1b26759e8165816",
+    "hash_y_test": "021384c41f1fcb4b45a0ff58d2429d33abe967e867b499e6fcf7fdf59ed91d01"
+  },
+  "head_center_norm": 1.0,
+  "layout": {
+    "arch": "deep",
+    "blocks": [
+      {
+        "name": "A",
+        "offset": [
+          0,
+          256
+        ],
+        "shape": [
+          1,
+          256
+        ]
+      },
+      {
+        "name": "W1",
+        "offset": [
+          256,
+          8448
+        ],
+        "shape": [
+          256,
+          32
+        ]
+      },
+      {
+        "name": "W2",
+        "offset": [
+          8448,
+          73984
+        ],
+        "shape": [
+          256,
+          256
+        ]
+      }
+    ],
+    "d": 32,
+    "m": 256,
+    "order": "A,W1,W2 row-major",
+    "p": 73984,
+    "schema_version": 1
+  },
+  "m": 256,
+  "n": 128,
+  "probe_names": [
+    "V",
+    "train_logit_0",
+    "train_logit_32",
+    "train_logit_64",
+    "train_logit_96",
+    "interaction_0",
+    "interaction_1",
+    "interaction_2",
+    "interaction_3",
+    "q_A",
+    "q_W"
+  ],
+  "reference_execution_hash": "6d0c7a40235843727b7f20c09086921a471df32f597d55b0344ad0045c32577d",
+  "rep": 2,
+  "sampler_code_hash": "da9fce1736759e23ddf4db09160fd725ef9b1df3977f729f3ab5bbfe2825845a",
+  "scalar_names": [
+    "V",
+    "U",
+    "train_logit_0",
+    "train_logit_16",
+    "train_logit_32",
+    "train_logit_48",
+    "train_logit_64",
+    "train_logit_80",
+    "train_logit_96",
+    "train_logit_112",
+    "test_prob_0",
+    "test_prob_128",
+    "test_prob_256",
+    "test_prob_384",
+    "test_prob_512",
+    "test_prob_640",
+    "test_prob_768",
+    "test_prob_896",
+    "interaction_0",
+    "interaction_1",
+    "interaction_2",
+    "interaction_3",
+    "q_A",
+    "q_W",
+    "disp_A",
+    "disp_W1",
+    "disp_W2"
+  ],
+  "sigma": 1.0,
+  "target_hash": "7d2b17335b5ae481f00e8793369fbe114f3ea563c80b91b01102266c3ab73d1e",
+  "target_id": "deep_m0256_r2"
+}

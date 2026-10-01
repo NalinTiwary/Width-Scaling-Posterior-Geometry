@@ -1,0 +1,35 @@
+{
+  "code_revision": "4327fe4ece9317f6fd20fad18389a71e9b1f423b",
+  "final_steps": {
+    "deep": {
+      "h": 0.01,
+      "initial_h": 0.02,
+      "refined": true,
+      "status": "dynamics_unresolved"
+    },
+    "shallow": {
+      "h": 0.01,
+      "initial_h": 0.02,
+      "refined": true,
+      "status": "dynamics_unresolved"
+    }
+  },
+  "quantile_method": "linear",
+  "tables": [
+    "target_audit",
+    "reference_diagnostics",
+    "dynamics_diagnostics",
+    "relaxation_probes",
+    "relaxation_families",
+    "entropy_probes",
+    "entropy_families",
+    "static_pi",
+    "spectral_states",
+    "spectral_summary",
+    "predictive_scores",
+    "cost_and_counts",
+    "exclusions",
+    "endpoint_comparisons",
+    "width_ratios"
+  ]
+}

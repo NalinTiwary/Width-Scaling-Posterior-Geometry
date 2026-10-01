@@ -1,0 +1,208 @@
+# Implementation input for the accompanying runbook; not a shipped runner.
+schema_version: 1
+campaign_id: final_geometry_v15_20260930
+master_seed: 20260930
+theory_source: _AISTATS_27_Wide_BNN_Posterior_Geometry (15).pdf
+output_root: results/final_geometry
+replicates: [0, 1, 2]
+chain_ids: [0, 1, 2, 3]
+
+model:
+  activation: tanh
+  biases: false
+  dtype: float64
+  amp: false
+  tf32: false
+  sigma: 1.0
+  loss: summed_binary_centered_cross_entropy
+  centered_logits: [-f/sqrt(2), f/sqrt(2)]
+  class_one_probability: sigmoid(sqrt(2)*f)
+  first_layer_input_scaling: none
+  hidden_scaling: inverse_sqrt_width
+  output_scaling: inverse_sqrt_width
+  sampled_blocks: all
+  shallow:
+    weight_layers: 2
+    widths: [64, 256, 1024, 4096]
+  deep:
+    weight_layers: 3
+    widths: [32, 64, 128, 256]
+
+prior_centers:
+  head: alternating_sign_inverse_sqrt_width
+  head_operator_norm: 1.0
+  first_layer: nested_standard_gaussian_row_bank
+  row_bank_size: 4096
+  later_hidden: zero
+  paired_hidden_rows: false
+  prior_coordinate_variance: 1.0
+
+data:
+  train_size: 128
+  test_size: 1024
+  input_dimension: 32
+  input_distribution: standard_gaussian_normalized_to_unit_norm
+  teacher: unnormalized_standard_gaussian_vector
+  teacher_log_odds_multiplier: 2.0
+  labels: bernoulli_teacher_probability
+  share_across_width_and_architecture: true
+  whiten: false
+  redraw_for_unfavorable_results: false
+
+domain:
+  reference_sampling: full_posterior
+  dynamics_sampling: full_posterior
+  shallow_entropy: full_posterior
+  deep_entropy: conditional_later_hidden_spectral
+  static_pi_both_architectures: full_posterior
+  spectral_cutoff_a: 2.5
+  constrain_head: false
+  constrain_first_layer: false
+  sampling_projection_or_clipping: false
+
+probes:
+  train_indices: [0, 16, 32, 48, 64, 80, 96, 112]
+  test_indices: [0, 128, 256, 384, 512, 640, 768, 896]
+  entropy_train_indices: [0, 32, 64, 96]
+  interaction_neurons: [0, 1, 2, 3]
+  shallow_interaction_input_indices: [0, 16, 32, 48]
+  deep_interaction_direction: alternating_sign_unit_vector
+  linear_controls: [unit_head_projection, unit_first_layer_projection]
+  tilts: [-1.0, -0.5, 0.5, 1.0]
+  standardization_source: full_posterior_calibration_only
+  degenerate_sd_relative_threshold: 1.0e-8
+  selection_chain_folds: [[0, 1], [2, 3]]
+  selection_procedure: symmetric_held_out_family_maximum
+
+reference:
+  sampler: centered_full_state_elliptical_slice
+  initialization: independent_prior_draws
+  burn_in_transitions: 4096
+  calibration_transitions: 2048
+  separation_transitions: 1024
+  cumulative_production_stages: [8192, 16384, 32768, 65536]
+  max_likelihood_evaluations_per_chain: 1500000
+  bracket_guard_evaluations: 10000
+  scalar_save_stride: 1
+  parameter_archive_stride: 16
+  calibration_archive_stride: 8
+  checkpoint_stride: 1024
+  continuation_gate: reference_and_static_diagnostics
+
+reference_gates:
+  rhat_max_exclusive: 1.01
+  bulk_ess_min: 1000
+  tail_ess_min: 400
+  split_mean_mcse_multiplier: 3.0
+  split_mean_reference_sd_allowance: 0.05
+  require_spectral_diagnostics_for_deep: true
+  zero_exit_indicator_ess: undefined_not_failure_by_itself
+
+dynamics:
+  sampler: metropolis_adjusted_gaussian_preserving_langevin
+  reverse_proposal_required: true
+  drift_gradient: likelihood_only
+  h_over_sigma_squared_candidates: [0.02, 0.01, 0.005, 0.0025]
+  calibration_discard_time_over_sigma_squared: 10.0
+  calibration_measure_time_over_sigma_squared: 20.0
+  calibration_acceptance_min: 0.85
+  calibration_max_rejection_streak: 500
+  step_selection: minimum_admissible_across_targets_within_architecture
+  production_discard_time_over_sigma_squared: 20.0
+  cumulative_retained_time_over_sigma_squared: [512.0, 1024.0, 2048.0]
+  scalar_save_stride: 1
+  parameter_history: checkpoint_only
+  checkpoint_stride: 2048
+  endpoint_checks: narrowest_and_widest_all_replicates
+  endpoint_equal_physical_time: true
+  step_validation_relative_difference_max: 0.20
+  architecture_wide_refinements_max: 1
+  final_endpoint_step: initial_common_step_divided_by_four_if_refined
+  max_candidate_grad_evaluations_per_target_all_dynamics: 8000000
+  retain_rejected_transitions: true
+
+dynamics_gates:
+  require_reference_pass: true
+  production_acceptance_per_chain_min: 0.80
+  production_max_rejection_streak: 1000
+  rhat_max_exclusive: 1.01
+  bulk_ess_min: 1000
+  tail_ess_min: 400
+  family_relative_mcse_max: 0.15
+  duration_over_max_integrated_time_min: 100.0
+  reference_mean_mcse_multiplier: 3.0
+  reference_mean_sd_allowance: 0.05
+
+static:
+  selected_states_per_chain_stages: [512, 1024, 2048]
+  selected_states_per_target_max: 8192
+  selection: regular_stride_from_first_archived_state
+  gradient_coordinates: original_parameters
+  probes_including_controls: 11
+  cumulative_unique_state_evaluations_per_target_max: 16384
+  cumulative_probe_gradient_evaluations_per_target_max: 180224
+  cache_by_target_hash_chain_draw_probe: true
+  conditional_estimator: event_weighted_original_time_sequence
+  weight_clipping: false
+  denominator_floor: false
+
+static_gates:
+  inside_states_per_chain_min: 256
+  max_normalized_tilt_weight: 0.02
+  iid_weight_concentration_per_fold_min: 200
+  normalizer_and_fisher_raw_mean_ess_per_fold_min: 200
+  entropy_relative_mcse_max: 0.15
+  fisher_relative_mcse_max: 0.15
+  ratio_relative_mcse_max: 0.15
+  selected_integrand_rhat_max_exclusive: 1.01
+  require_all_nondegenerate_family_candidates_valid: true
+
+uncertainty:
+  method: within_chain_moving_block_bootstrap
+  bootstrap_replicates: 400
+  interval_percentiles: [2.5, 97.5]
+  block_integrated_time_multiplier: 10.0
+  round_block_length_to_next_power_of_two: true
+  nonoverlapping_blocks_per_chain_min: 20
+  doubled_block_min_blocks: 10
+  doubled_block_mcse_relative_difference_max: 0.30
+  cross_replicate_summary: median_and_all_individual_points
+  pool_data_replicates_as_iid_draws: false
+
+spectral:
+  method: full_float64_svd
+  inspected_states: every_reference_archived_state
+  normalized_boundary_guard: 1.0e-10
+  independent_backend_check_states_per_target: 20
+  independent_backend_relative_tolerance: 1.0e-9
+  posterior_quantiles: [0.5, 0.95, 0.99]
+  prior_iid_matrices_per_width: 4096
+  prior_reference_shared_across_replicates: true
+  occupancy_interval_min_exits: 20
+  occupancy_interval_min_chains_with_exits: 2
+  zero_exit_ci: none_rare_event_uncertainty_unresolved
+
+predictive_check:
+  posterior_states_per_target: 2048
+  prior_iid_states_per_target: 2048
+  test_points: all
+  score: negative_log_mean_predictive_probability
+  average_probabilities_before_log: true
+
+limits:
+  scientific_settings: 8
+  posterior_targets: 24
+  additional_scientific_experiments: 0
+  hardware_restarts_per_stage: 3
+  recommended_free_disk_gb: 160
+  extra_real_data_runs: false
+  fitted_scaling_exponents_in_paper: false
+
+outputs:
+  main_figures: [relaxation, entropy_fisher, spectral_mass]
+  appendix_figures: [numerical_validation, predictive_and_static_pi]
+  formats: [pdf, png, csv, json]
+  png_dpi: 300
+  captions: captions.tex
+  required_summary: SUMMARY.md
+  required_audit: audit.json

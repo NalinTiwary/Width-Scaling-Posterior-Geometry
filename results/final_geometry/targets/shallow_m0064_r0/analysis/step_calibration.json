@@ -1,0 +1,20 @@
+{
+  "candidates": [
+    {
+      "acceptance": 0.987,
+      "admissible": true,
+      "grad_evals": 1501,
+      "h": 0.02,
+      "h_hex": "0x1.47ae147ae147bp-6",
+      "h_over_sigma2": 0.02,
+      "max_rejection_streak": 1,
+      "measured_transitions": 1000,
+      "numerical_failures": 0,
+      "partial": false
+    }
+  ],
+  "complete": true,
+  "execution_hash_reference": "d260d94c699220080c79ef88b60fc8c3cddc0b0c0682a72fa91f05c5c29ad521",
+  "selected_h": 0.02,
+  "status": "calibrated"
+}

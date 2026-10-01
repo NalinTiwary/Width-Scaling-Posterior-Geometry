@@ -1,0 +1,98 @@
+{
+  "L": 2,
+  "a": null,
+  "arch": "shallow",
+  "d": 32,
+  "data_hashes": {
+    "hash_X": "c8706cc84318ccb31b84133bf2b1bdea53526065ea51c5babbeb109b13f8f6ac",
+    "hash_X_test": "7cfc325a6651116fae3ecafdeabe2a05977fd8cc6aadb7fc0b566de059590bec",
+    "hash_center_bank": "bc94d1c26443ef9f0839f4ba19598d3e8a4fab0f1effe8cbe8cf90893e6291ae",
+    "hash_p_teacher": "53d3245a1310cd7ddb1f28aec2b669a0e742227aed049e3a96b41379b17a1fb2",
+    "hash_p_teacher_test": "c82eae25cc186631a2a5832e1f23c494ad9a39b4466579536093ab89c2bee6b2",
+    "hash_teacher": "d5ef9e40050b4ca420dd49d0d1300f85cdc0bfa0cc38ff7f241fc20b2037121c",
+    "hash_y": "07085e1c37c16a6c435464ac7a64192a576fe34d608fb9fd4eb1e8bed485b422",
+    "hash_y_test": "2002b7625aa434b04b8eef5f109bd28d5601646081e0d9f0bcd2979d4300ff7e"
+  },
+  "head_center_norm": 1.0,
+  "layout": {
+    "arch": "shallow",
+    "blocks": [
+      {
+        "name": "A",
+        "offset": [
+          0,
+          64
+        ],
+        "shape": [
+          1,
+          64
+        ]
+      },
+      {
+        "name": "W1",
+        "offset": [
+          64,
+          2112
+        ],
+        "shape": [
+          64,
+          32
+        ]
+      }
+    ],
+    "d": 32,
+    "m": 64,
+    "order": "A,W1,W2 row-major",
+    "p": 2112,
+    "schema_version": 1
+  },
+  "m": 64,
+  "n": 128,
+  "probe_names": [
+    "V",
+    "train_logit_0",
+    "train_logit_32",
+    "train_logit_64",
+    "train_logit_96",
+    "interaction_0",
+    "interaction_1",
+    "interaction_2",
+    "interaction_3",
+    "q_A",
+    "q_W"
+  ],
+  "reference_execution_hash": "ef4fac83e88b9ebc7025640c004ee055aad12f835c9939b678bc038c15b660a0",
+  "rep": 1,
+  "sampler_code_hash": "da9fce1736759e23ddf4db09160fd725ef9b1df3977f729f3ab5bbfe2825845a",
+  "scalar_names": [
+    "V",
+    "U",
+    "train_logit_0",
+    "train_logit_16",
+    "train_logit_32",
+    "train_logit_48",
+    "train_logit_64",
+    "train_logit_80",
+    "train_logit_96",
+    "train_logit_112",
+    "test_prob_0",
+    "test_prob_128",
+    "test_prob_256",
+    "test_prob_384",
+    "test_prob_512",
+    "test_prob_640",
+    "test_prob_768",
+    "test_prob_896",
+    "interaction_0",
+    "interaction_1",
+    "interaction_2",
+    "interaction_3",
+    "q_A",
+    "q_W",
+    "disp_A",
+    "disp_W1"
+  ],
+  "sigma": 1.0,
+  "target_hash": "2ebbaf17c0b875a151400adfe0c20fdcca7ef1fee9db82b7da14f8303c6ed54d",
+  "target_id": "shallow_m0064_r1"
+}

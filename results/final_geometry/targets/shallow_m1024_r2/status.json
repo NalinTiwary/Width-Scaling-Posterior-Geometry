@@ -1,0 +1,117 @@
+{
+  "dynamics": {
+    "h": 0.02,
+    "production": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 208804,
+      "h": 0.02,
+      "h_id": "h_0p02",
+      "mode": "production",
+      "stage_pass": true
+    },
+    "round": 1
+  },
+  "reference": {
+    "budget_exhausted": false,
+    "device": "cuda",
+    "execution_hash": "021040a3ca16fc031962af4405d32b26085034b920caf09089cd44dab4261f0f",
+    "likelihood_evals_per_chain": [
+      405507,
+      405602,
+      406057,
+      406238
+    ],
+    "production_per_chain": 65536,
+    "segments": {
+      "burnin": {
+        "archive_stride": 0,
+        "n": 4096,
+        "partial": false,
+        "planned": 4096,
+        "stop_reason": null,
+        "wall_s": 27.001293659210205
+      },
+      "calibration": {
+        "archive_stride": 8,
+        "n": 2048,
+        "partial": false,
+        "planned": 2048,
+        "stop_reason": null,
+        "wall_s": 13.902645349502563
+      },
+      "production_s1": {
+        "archive_stride": 16,
+        "n": 8192,
+        "partial": false,
+        "planned": 8192,
+        "stop_reason": null,
+        "wall_s": 54.98064422607422
+      },
+      "production_s2": {
+        "archive_stride": 16,
+        "n": 8192,
+        "partial": false,
+        "planned": 8192,
+        "stop_reason": null,
+        "wall_s": 54.857507944107056
+      },
+      "production_s3": {
+        "archive_stride": 16,
+        "n": 16384,
+        "partial": false,
+        "planned": 16384,
+        "stop_reason": null,
+        "wall_s": 108.8519024848938
+      },
+      "production_s4": {
+        "archive_stride": 16,
+        "n": 32768,
+        "partial": false,
+        "planned": 32768,
+        "stop_reason": null,
+        "wall_s": 223.2149453163147
+      },
+      "separation": {
+        "archive_stride": 0,
+        "n": 1024,
+        "partial": false,
+        "planned": 1024,
+        "stop_reason": null,
+        "wall_s": 6.67116904258728
+      }
+    },
+    "static_pass": false,
+    "status": "reference_pass",
+    "stopping_stage": 4,
+    "transitions_per_chain": [
+      72704,
+      72704,
+      72704,
+      72704
+    ],
+    "wall_s": 489.37255811691284
+  },
+  "refinement": {
+    "h": 0.01,
+    "production": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 417604,
+      "h": 0.01,
+      "h_id": "h_0p01",
+      "mode": "production",
+      "stage_pass": true
+    },
+    "refined": true
+  },
+  "step_calibration": {
+    "selected_h": 0.02,
+    "status": "calibrated"
+  },
+  "target_id": "shallow_m1024_r2"
+}

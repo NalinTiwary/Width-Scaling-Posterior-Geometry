@@ -1,0 +1,19 @@
+{
+  "block_length": 16,
+  "block_stable": true,
+  "improvement": 0.13757144008166544,
+  "improvement_mc_high": 0.14014407433471274,
+  "improvement_mc_low": 0.13506221641253766,
+  "improvement_mcse": 0.001283992020889776,
+  "n_posterior_states": 2048,
+  "n_prior_states": 2048,
+  "n_test": 1024,
+  "nls_posterior": 0.5534257773115929,
+  "nls_prior": 0.6909972173932584,
+  "posterior_accuracy": 0.5107421875,
+  "posterior_draws_per_chain": 512,
+  "prior_accuracy": 0.4638671875,
+  "status": "ok",
+  "target_id": "shallow_m1024_r1",
+  "teacher_log_score": 0.38726119858619984
+}

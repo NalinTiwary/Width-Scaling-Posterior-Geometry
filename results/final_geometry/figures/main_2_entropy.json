@@ -1,0 +1,598 @@
+{
+  "caption": "Finite-probe entropy--Fisher diagnostics for the final LSI domains. For each standardized smooth probe f and fixed tilt t in {-1,-0.5,0.5,1}, we form the normalized density r proportional to exp(tf) relative to the shallow posterior or the deep posterior conditioned on the later-hidden-layer spectral event. The vertical axis reports held-out family estimates of 2 Ent(r)/E[r||grad log r||^2], divided by the prior variance; the horizontal axis is width. The head and first hidden layer remain unrestricted in both panels. Probe selection and evaluation use separate chain folds. The value-one line is attained by Gaussian linear tilts and is a reference, not a required lower limit for these probes. Measured trend: shallow: interactions: unresolved (3 of 3 replicate ratios invalid); V (loss): unresolved (1 of 3 replicate ratios invalid); training logits: widest/narrowest ratio 0.94-1.13, no consistent direction across replicates; deep: interactions: unresolved (3 of 3 replicate ratios invalid); V (loss): unresolved (2 of 3 replicate ratios invalid); training logits: unresolved (1 of 3 replicate ratios invalid). Incomplete or unresolved family points (hollow): 29 of 72. LSI bounds these population ratios above by its coefficient, so the plotted tests are finite-probe lower diagnostics of that coefficient; they neither determine its optimum nor establish global deep LSI.",
+  "filters": "reference stopping-stage static estimates",
+  "flagged_rows": [
+    {
+      "failure_reason": "incomplete:interaction_0@t=+1,interaction_2@t=-1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=-1,interaction_1@t=-1,interaction_1@t=+1,interaction_2@t=-1,interaction_3@t=-1",
+      "family": "interaction",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=-1,interaction_0@t=+1,interaction_2@t=-1,interaction_2@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "failure_reason": "incomplete:interaction_1@t=-1,interaction_1@t=+1,interaction_2@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=+1,interaction_1@t=-1,interaction_1@t=+1,interaction_2@t=-1",
+      "family": "interaction",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=-1,interaction_0@t=+1,interaction_2@t=-1,interaction_2@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=+1,interaction_1@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=+1,interaction_2@t=-1,interaction_2@t=+1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=-1,interaction_0@t=+1,interaction_1@t=-1,interaction_2@t=-1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=+1,interaction_1@t=-1,interaction_2@t=-1,interaction_2@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=-1,interaction_1@t=-1",
+      "family": "interaction",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "failure_reason": "incomplete:V@t=+1",
+      "family": "loss",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=-1,interaction_1@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=-1,interaction_1@t=-1,interaction_1@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "failure_reason": "incomplete:train_logit_0@t=+1",
+      "family": "train_logit",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "failure_reason": "incomplete:interaction_1@t=-1,interaction_1@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "failure_reason": "incomplete:V@t=-1",
+      "family": "loss",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=-1,interaction_2@t=-1,interaction_2@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=+1,interaction_1@t=+1,interaction_2@t=-1,interaction_2@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=+1,interaction_1@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=-1,interaction_1@t=-1,interaction_2@t=+1,interaction_3@t=-1",
+      "family": "interaction",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "failure_reason": "incomplete:V@t=+1",
+      "family": "loss",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=+1,interaction_1@t=-1",
+      "family": "interaction",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "failure_reason": "incomplete:interaction_1@t=-1,interaction_2@t=-1,interaction_2@t=+1",
+      "family": "interaction",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "failure_reason": "incomplete:interaction_1@t=-1,interaction_1@t=+1,interaction_2@t=-1,interaction_3@t=-1",
+      "family": "interaction",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "failure_reason": "incomplete:V@t=+1",
+      "family": "loss",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=+1,interaction_3@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=-1,interaction_1@t=+1,interaction_2@t=-1,interaction_2@t=+1,interaction_3@t=-1,interaction_3@t=-0.5,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "failure_reason": "incomplete:interaction_0@t=+1,interaction_1@t=-1,interaction_3@t=+1",
+      "family": "interaction",
+      "target_id": "deep_m0256_r2"
+    }
+  ],
+  "plotted_csv": "main_2_entropy.csv",
+  "plotting_code_revision": "4327fe4ece9317f6fd20fad18389a71e9b1f423b",
+  "selected_probe_ids": [
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_64@t=+1",
+      "selected_fold_B_to_A": "train_logit_0@t=+1",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3@t=+1",
+      "selected_fold_B_to_A": "interaction_0@t=+1",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-0.5",
+      "selected_fold_B_to_A": "V@t=+0.5",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=+1",
+      "selected_fold_B_to_A": "train_logit_32@t=-1",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=-1",
+      "selected_fold_B_to_A": "interaction_1@t=+1",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-0.5",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=-0.5",
+      "selected_fold_B_to_A": "train_logit_0@t=-1",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=-1",
+      "selected_fold_B_to_A": "interaction_3@t=-1",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=+1",
+      "selected_fold_B_to_A": "train_logit_32@t=+1",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3@t=+1",
+      "selected_fold_B_to_A": "interaction_1@t=+1",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=+1",
+      "selected_fold_B_to_A": "train_logit_96@t=+1",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=-1",
+      "selected_fold_B_to_A": "interaction_0@t=+1",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=+1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=-1",
+      "selected_fold_B_to_A": "train_logit_0@t=+1",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=-1",
+      "selected_fold_B_to_A": "interaction_3@t=-1",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=+1",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96@t=-1",
+      "selected_fold_B_to_A": "train_logit_32@t=+1",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1@t=+1",
+      "selected_fold_B_to_A": "interaction_2@t=+1",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=+0.5",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_64@t=+1",
+      "selected_fold_B_to_A": "train_logit_64@t=+1",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=+1",
+      "selected_fold_B_to_A": "interaction_1@t=+1",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=+1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=-1",
+      "selected_fold_B_to_A": "train_logit_0@t=+1",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=-1",
+      "selected_fold_B_to_A": "interaction_3@t=+1",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_32@t=-1",
+      "selected_fold_B_to_A": "train_logit_32@t=-1",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_0@t=+1",
+      "selected_fold_B_to_A": "interaction_3@t=+1",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=+0.5",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96@t=+1",
+      "selected_fold_B_to_A": "train_logit_64@t=+1",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=+1",
+      "selected_fold_B_to_A": "interaction_0@t=-1",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=+1",
+      "selected_fold_B_to_A": "V@t=+1",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=+1",
+      "selected_fold_B_to_A": "train_logit_0@t=-1",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3@t=-1",
+      "selected_fold_B_to_A": "interaction_0@t=-1",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=-0.5",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96@t=+1",
+      "selected_fold_B_to_A": "train_logit_0@t=+0.5",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1@t=-1",
+      "selected_fold_B_to_A": "interaction_3@t=-1",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=+0.5",
+      "selected_fold_B_to_A": "V@t=+0.5",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=+1",
+      "selected_fold_B_to_A": "train_logit_96@t=-1",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3@t=+1",
+      "selected_fold_B_to_A": "interaction_1@t=+1",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=-1",
+      "selected_fold_B_to_A": "train_logit_64@t=+1",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3@t=-1",
+      "selected_fold_B_to_A": "interaction_2@t=-1",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-0.5",
+      "selected_fold_B_to_A": "V@t=-0.5",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=+1",
+      "selected_fold_B_to_A": "train_logit_64@t=+1",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3@t=+1",
+      "selected_fold_B_to_A": "interaction_2@t=+1",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_64@t=+1",
+      "selected_fold_B_to_A": "train_logit_64@t=+1",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3@t=+1",
+      "selected_fold_B_to_A": "interaction_3@t=+1",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=-1",
+      "selected_fold_B_to_A": "train_logit_0@t=+1",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1@t=+1",
+      "selected_fold_B_to_A": "interaction_0@t=-1",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=+1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_96@t=+1",
+      "selected_fold_B_to_A": "train_logit_32@t=-0.5",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_1@t=-1",
+      "selected_fold_B_to_A": "interaction_0@t=+1",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=+1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_64@t=+1",
+      "selected_fold_B_to_A": "train_logit_0@t=-1",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=-1",
+      "selected_fold_B_to_A": "interaction_2@t=+1",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_64@t=-1",
+      "selected_fold_B_to_A": "train_logit_0@t=-1",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=+1",
+      "selected_fold_B_to_A": "interaction_3@t=-1",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=+1",
+      "selected_fold_B_to_A": "V@t=-1",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_32@t=-1",
+      "selected_fold_B_to_A": "train_logit_64@t=+1",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_3@t=+1",
+      "selected_fold_B_to_A": "interaction_0@t=+1",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=-0.5",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_0@t=-1",
+      "selected_fold_B_to_A": "train_logit_96@t=-1",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=+1",
+      "selected_fold_B_to_A": "interaction_3@t=-1",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "family": "loss",
+      "selected_fold_A_to_B": "V@t=-1",
+      "selected_fold_B_to_A": "V@t=+0.5",
+      "target_id": "deep_m0256_r2"
+    },
+    {
+      "family": "train_logit",
+      "selected_fold_A_to_B": "train_logit_64@t=+1",
+      "selected_fold_B_to_A": "train_logit_64@t=+1",
+      "target_id": "deep_m0256_r2"
+    },
+    {
+      "family": "interaction",
+      "selected_fold_A_to_B": "interaction_2@t=+1",
+      "selected_fold_B_to_A": "interaction_3@t=+1",
+      "target_id": "deep_m0256_r2"
+    }
+  ],
+  "sources": {
+    "tables/entropy_families.csv": "fea142a58e39f34c8fb5f8a48d0d26b76b0a757d14c8dce4a9c39ba2544939ec",
+    "tables/width_ratios.csv": "b621c618f0b33da835504b0b14705b3c5af1f2bd4aad0af7ecb0f1e0f57fdf29"
+  },
+  "target_law": {
+    "deep": "conditional_G_2.5",
+    "shallow": "full_posterior"
+  },
+  "uncertainty": "percentile 2.5-97.5% within-chain moving-block bootstrap",
+  "y_normalization": "estimate / sigma^2",
+  "y_scale": "linear"
+}

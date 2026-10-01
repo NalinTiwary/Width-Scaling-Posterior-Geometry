@@ -1,0 +1,61 @@
+{
+  "n_per_chain": 2048,
+  "probes": {
+    "V": {
+      "degenerate": false,
+      "mean": 65.68923157550836,
+      "sd": 3.9881475671165423
+    },
+    "interaction_0": {
+      "degenerate": false,
+      "mean": -0.030167690164417837,
+      "sd": 0.5332852491171396
+    },
+    "interaction_1": {
+      "degenerate": false,
+      "mean": -0.024088052514707317,
+      "sd": 0.6066112635658516
+    },
+    "interaction_2": {
+      "degenerate": false,
+      "mean": -0.028790091939645157,
+      "sd": 0.6082489458889707
+    },
+    "interaction_3": {
+      "degenerate": false,
+      "mean": 0.046359984870741514,
+      "sd": 0.6135355945463322
+    },
+    "q_A": {
+      "degenerate": false,
+      "mean": -0.07227567636005221,
+      "sd": 1.0134814144288558
+    },
+    "q_W": {
+      "degenerate": false,
+      "mean": -0.03194700242304943,
+      "sd": 1.0672450275666705
+    },
+    "train_logit_0": {
+      "degenerate": false,
+      "mean": -0.38584627932425214,
+      "sd": 0.6027616810506244
+    },
+    "train_logit_32": {
+      "degenerate": false,
+      "mean": -0.5877104510567934,
+      "sd": 0.5729592282938909
+    },
+    "train_logit_64": {
+      "degenerate": false,
+      "mean": 0.5603323283974306,
+      "sd": 0.5276000485173584
+    },
+    "train_logit_96": {
+      "degenerate": false,
+      "mean": -0.8796454924147844,
+      "sd": 0.5611179173911583
+    }
+  },
+  "source": "reference calibration segment (all chains, pooled)"
+}

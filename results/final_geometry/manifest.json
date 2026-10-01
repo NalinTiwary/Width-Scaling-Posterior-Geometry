@@ -1,0 +1,405 @@
+{
+  "campaign_id": "final_geometry_v15_20260930",
+  "code_fixes": [],
+  "code_revision": "4327fe4ece9317f6fd20fad18389a71e9b1f423b",
+  "config": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/configs/campaign.yaml",
+  "config_sha256": "6f12a8a931a9b7f70a8efa32b22b58b9ac0d3e098f3ae89f9b7be39c7f860474",
+  "frozen_at": "2026-09-30T19:25:06",
+  "python_note": "Python 3.9 cluster environment (runbook suggests 3.11); version recorded in environment.json",
+  "replicates": {
+    "0": {
+      "hashes": {
+        "hash_X": "e029bf2f952b1fb2207aad1bbb98c7ab5bc479ac08d13760b994b4033de77049",
+        "hash_X_test": "b81d9a12c6165f7cda88405df81b03ee4756a509e931fe27a72ae325b02b4b5b",
+        "hash_center_bank": "08ac5a69c3fac25af70f6df7ac17da6411ba50a02b3fc73bf4205bf67d81973e",
+        "hash_p_teacher": "9aa42a5a8a71180814f401b744f058ffec0620fc7947decc1742afcb8d45aeeb",
+        "hash_p_teacher_test": "40aeddd8a9469dc227464766dc0d09118ab4eaa70acf8c4ecc2fedde8d1eb04d",
+        "hash_teacher": "1b195cf7dd12f88b4190ff91ecde83e4aa8fa923342f6ced1fda235603e0ce14",
+        "hash_y": "d17247acc888e88d32db084f9d39d45b76d1ec1f8a7d92975369c0ecd56b06f5",
+        "hash_y_test": "010f7e242e85e7ce27b8e853bd0e49a9239fbd0ec532e2fbb71d1b9e6b77c050"
+      },
+      "rep": 0,
+      "summary": {
+        "XXT_nonzero_eigenvalues": [
+          8.539715699758935,
+          7.832834224047499,
+          7.440101626778635,
+          6.810477390796342,
+          6.56619376560129,
+          6.289211451541033,
+          5.557299200483048,
+          5.437136969156857,
+          5.1884352771848885,
+          4.9994636169075735,
+          4.931761192169422,
+          4.807918016497567,
+          4.257653842099167,
+          4.003547770726667,
+          3.909147439602161,
+          3.8564681525760647,
+          3.6012004045894463,
+          3.44484620443072,
+          3.2648962869360543,
+          3.078850362705725,
+          2.878363869357719,
+          2.774927653733669,
+          2.6646751608324566,
+          2.490040381461851,
+          2.33747821386503,
+          2.212059027876425,
+          1.973780119655011,
+          1.7137335813396561,
+          1.545251532216096,
+          1.3274846426049347,
+          1.220653343470828,
+          1.0443935789972396
+        ],
+        "X_op_norm": 2.9222791960657917,
+        "class_counts": {
+          "y0": 60,
+          "y1": 68
+        },
+        "d": 32,
+        "input_norm_max": 1.0000000000000002,
+        "input_norm_min": 0.9999999999999998,
+        "n": 128,
+        "n_test": 1024,
+        "rank": 32,
+        "teacher_norm": 5.399981585545715,
+        "test_class_counts": {
+          "y0": 497,
+          "y1": 527
+        }
+      }
+    },
+    "1": {
+      "hashes": {
+        "hash_X": "c8706cc84318ccb31b84133bf2b1bdea53526065ea51c5babbeb109b13f8f6ac",
+        "hash_X_test": "7cfc325a6651116fae3ecafdeabe2a05977fd8cc6aadb7fc0b566de059590bec",
+        "hash_center_bank": "bc94d1c26443ef9f0839f4ba19598d3e8a4fab0f1effe8cbe8cf90893e6291ae",
+        "hash_p_teacher": "53d3245a1310cd7ddb1f28aec2b669a0e742227aed049e3a96b41379b17a1fb2",
+        "hash_p_teacher_test": "c82eae25cc186631a2a5832e1f23c494ad9a39b4466579536093ab89c2bee6b2",
+        "hash_teacher": "d5ef9e40050b4ca420dd49d0d1300f85cdc0bfa0cc38ff7f241fc20b2037121c",
+        "hash_y": "07085e1c37c16a6c435464ac7a64192a576fe34d608fb9fd4eb1e8bed485b422",
+        "hash_y_test": "2002b7625aa434b04b8eef5f109bd28d5601646081e0d9f0bcd2979d4300ff7e"
+      },
+      "rep": 1,
+      "summary": {
+        "XXT_nonzero_eigenvalues": [
+          8.365186026535099,
+          7.77357138361573,
+          7.40352799522501,
+          6.897928776380494,
+          6.379704139102362,
+          6.067905130758113,
+          5.883811024546874,
+          5.601637986314948,
+          5.393862286684216,
+          5.14261215623446,
+          4.624230006963289,
+          4.560190555060296,
+          4.40923964159831,
+          3.962686768744453,
+          3.9241181984933293,
+          3.6475220031597284,
+          3.590310436915836,
+          3.3610665665917896,
+          3.1386340722939785,
+          3.0618004919568182,
+          2.8428932991550466,
+          2.6394009788243036,
+          2.5707232528846125,
+          2.3222362905367038,
+          2.211093008601627,
+          2.1709432858337836,
+          1.9890738393127272,
+          1.8415209827647265,
+          1.7123294349029867,
+          1.613586773561012,
+          1.5239888255117087,
+          1.3726643809356325
+        ],
+        "X_op_norm": 2.8922631323126735,
+        "class_counts": {
+          "y0": 64,
+          "y1": 64
+        },
+        "d": 32,
+        "input_norm_max": 1.0000000000000002,
+        "input_norm_min": 0.9999999999999998,
+        "n": 128,
+        "n_test": 1024,
+        "rank": 32,
+        "teacher_norm": 7.908374120585542,
+        "test_class_counts": {
+          "y0": 522,
+          "y1": 502
+        }
+      }
+    },
+    "2": {
+      "hashes": {
+        "hash_X": "d0c54fb83e4fd5e7ad07a48c3b34b971e2c874940c461ee5e6d113982c0c6b5b",
+        "hash_X_test": "8b66c56b2a57957a59211cc4387802b08317b016c1543989fc66ea6cb146e3cf",
+        "hash_center_bank": "68f562734e4801225b35ca09aa12c2898efe15e6c477035a79b37a952b526f58",
+        "hash_p_teacher": "ab697e31241f629a19a87d813c5de3ac7d13dda603989229142a8e31e4af0770",
+        "hash_p_teacher_test": "b3765eed547e0d17d62151d3bb77dc7d161c7472d197751c435cebeb0fc2a8e8",
+        "hash_teacher": "a8872d5fdcbe9889135f893c69a6efa353fced172062c7b9e1165601c5278964",
+        "hash_y": "a192871d6794532f82e023baf69de8c756569d33f61694b9d1b26759e8165816",
+        "hash_y_test": "021384c41f1fcb4b45a0ff58d2429d33abe967e867b499e6fcf7fdf59ed91d01"
+      },
+      "rep": 2,
+      "summary": {
+        "XXT_nonzero_eigenvalues": [
+          8.271676480000698,
+          8.171852619918095,
+          7.310957504580329,
+          7.077163007236882,
+          6.659340567006937,
+          6.300122770180518,
+          5.766114864672317,
+          5.480343025459895,
+          5.0935692530862084,
+          4.818517931945397,
+          4.66736596214182,
+          4.549394149205609,
+          4.476068132621068,
+          4.078366703511485,
+          4.042918755990999,
+          3.6641123837763088,
+          3.5824543330894367,
+          3.460867094151406,
+          3.3827921382519115,
+          3.120766719431729,
+          2.8946751517544995,
+          2.6817158521520863,
+          2.535845173854066,
+          2.3769930028111057,
+          2.2480845452412628,
+          2.1002964177525363,
+          1.9790888849289714,
+          1.8675113765306395,
+          1.5396435352640565,
+          1.4767614399283584,
+          1.205199010775562,
+          1.1194212127478593
+        ],
+        "X_op_norm": 2.8760522387468352,
+        "class_counts": {
+          "y0": 62,
+          "y1": 66
+        },
+        "d": 32,
+        "input_norm_max": 1.0000000000000002,
+        "input_norm_min": 0.9999999999999998,
+        "n": 128,
+        "n_test": 1024,
+        "rank": 32,
+        "teacher_norm": 5.212749473876463,
+        "test_class_counts": {
+          "y0": 515,
+          "y1": 509
+        }
+      }
+    }
+  },
+  "sampler_code_hash": "da9fce1736759e23ddf4db09160fd725ef9b1df3977f729f3ab5bbfe2825845a",
+  "targets": [
+    {
+      "arch": "shallow",
+      "m": 64,
+      "p": 2112,
+      "rep": 0,
+      "target_hash": "71538f5fc37b1391ecadd17c52b8587909347d90439f7dcd7fdebf72a743c41f",
+      "target_id": "shallow_m0064_r0"
+    },
+    {
+      "arch": "shallow",
+      "m": 64,
+      "p": 2112,
+      "rep": 1,
+      "target_hash": "2ebbaf17c0b875a151400adfe0c20fdcca7ef1fee9db82b7da14f8303c6ed54d",
+      "target_id": "shallow_m0064_r1"
+    },
+    {
+      "arch": "shallow",
+      "m": 64,
+      "p": 2112,
+      "rep": 2,
+      "target_hash": "fc9da6235fb1548d828cf68d55d93c2f858e835b161969d4cc33b00e5e83b603",
+      "target_id": "shallow_m0064_r2"
+    },
+    {
+      "arch": "shallow",
+      "m": 256,
+      "p": 8448,
+      "rep": 0,
+      "target_hash": "5ffcf34dcb33edbff8ac327910bb107a5523c19a0d0683299bb0c37d97e4b101",
+      "target_id": "shallow_m0256_r0"
+    },
+    {
+      "arch": "shallow",
+      "m": 256,
+      "p": 8448,
+      "rep": 1,
+      "target_hash": "8f5887633c4c57f2ac0982e01a15dae641286ed569accf33e93d0425c2b98209",
+      "target_id": "shallow_m0256_r1"
+    },
+    {
+      "arch": "shallow",
+      "m": 256,
+      "p": 8448,
+      "rep": 2,
+      "target_hash": "2b0a25edaba13f9bb4eae0a84a065effa6848903405ea8fc1871d85b581b5ff9",
+      "target_id": "shallow_m0256_r2"
+    },
+    {
+      "arch": "shallow",
+      "m": 1024,
+      "p": 33792,
+      "rep": 0,
+      "target_hash": "02cdf7a9fb4a8ebea158d555e3da7f259fe2d98afd52f242938d3e8f57697d6a",
+      "target_id": "shallow_m1024_r0"
+    },
+    {
+      "arch": "shallow",
+      "m": 1024,
+      "p": 33792,
+      "rep": 1,
+      "target_hash": "75855771a1231e62e6e66f10e2f0fc9a96b653fa2c1e6c16aa05920b18f8825c",
+      "target_id": "shallow_m1024_r1"
+    },
+    {
+      "arch": "shallow",
+      "m": 1024,
+      "p": 33792,
+      "rep": 2,
+      "target_hash": "61fa5b97160a40ea4623d9b0909f5c6bd1efc198e054db5ea14dff80a68ca165",
+      "target_id": "shallow_m1024_r2"
+    },
+    {
+      "arch": "shallow",
+      "m": 4096,
+      "p": 135168,
+      "rep": 0,
+      "target_hash": "8a6220ba8b63029337f3aba7bf23ad58f356eb9ebe1053d6e3e3fcf5e1c55e2a",
+      "target_id": "shallow_m4096_r0"
+    },
+    {
+      "arch": "shallow",
+      "m": 4096,
+      "p": 135168,
+      "rep": 1,
+      "target_hash": "2d18a154c082aebdf0c7dff9779adbab12358b1b72ad29a412f3643b39e3fb64",
+      "target_id": "shallow_m4096_r1"
+    },
+    {
+      "arch": "shallow",
+      "m": 4096,
+      "p": 135168,
+      "rep": 2,
+      "target_hash": "8c615bef38ec1c9a9068713982d858e21e32dae4d6bf4d65ddce5685b8944212",
+      "target_id": "shallow_m4096_r2"
+    },
+    {
+      "arch": "deep",
+      "m": 32,
+      "p": 2080,
+      "rep": 0,
+      "target_hash": "af056e127c02b019412d5384149e30d1e6c85b146336ef076ef6b326c05fe260",
+      "target_id": "deep_m0032_r0"
+    },
+    {
+      "arch": "deep",
+      "m": 32,
+      "p": 2080,
+      "rep": 1,
+      "target_hash": "662315e3af404632a903759afc0db53d7616be0be60d5bbeff2faff490855fed",
+      "target_id": "deep_m0032_r1"
+    },
+    {
+      "arch": "deep",
+      "m": 32,
+      "p": 2080,
+      "rep": 2,
+      "target_hash": "e1bd5b82d8da839a2fc5ffa8fd46793eab0e499a09e69bcda3048c51750c1a05",
+      "target_id": "deep_m0032_r2"
+    },
+    {
+      "arch": "deep",
+      "m": 64,
+      "p": 6208,
+      "rep": 0,
+      "target_hash": "981c8c16f8288893162866a44dc7f238a562d94baba61c4736c9e2c0a9aaafac",
+      "target_id": "deep_m0064_r0"
+    },
+    {
+      "arch": "deep",
+      "m": 64,
+      "p": 6208,
+      "rep": 1,
+      "target_hash": "cffc441cee2bd015a78c885c0750263a0ede3b1b8b3eb5af88b7ed906fea8e96",
+      "target_id": "deep_m0064_r1"
+    },
+    {
+      "arch": "deep",
+      "m": 64,
+      "p": 6208,
+      "rep": 2,
+      "target_hash": "5e7e9d9b0e46c28d13a71799ccda6b52c4855a61024370dac3c38fe8cb82e7c3",
+      "target_id": "deep_m0064_r2"
+    },
+    {
+      "arch": "deep",
+      "m": 128,
+      "p": 20608,
+      "rep": 0,
+      "target_hash": "a3fbfe3694a6d3a7a8f724b8f6e362367e3afc7860a1c5f1481a53f3e86fcfbf",
+      "target_id": "deep_m0128_r0"
+    },
+    {
+      "arch": "deep",
+      "m": 128,
+      "p": 20608,
+      "rep": 1,
+      "target_hash": "12140e25162df7ed81599a111742b07052ef21dac4d3086bb8a4c937317db44a",
+      "target_id": "deep_m0128_r1"
+    },
+    {
+      "arch": "deep",
+      "m": 128,
+      "p": 20608,
+      "rep": 2,
+      "target_hash": "ab9e24560eea0ddc4fd775ee6d516b1daa269452cd648f2739f422995dd944b3",
+      "target_id": "deep_m0128_r2"
+    },
+    {
+      "arch": "deep",
+      "m": 256,
+      "p": 73984,
+      "rep": 0,
+      "target_hash": "2814b4d76a9cc9419ec01ed447161e8acf050a7bbe1b8e92bdfa0e832e724270",
+      "target_id": "deep_m0256_r0"
+    },
+    {
+      "arch": "deep",
+      "m": 256,
+      "p": 73984,
+      "rep": 1,
+      "target_hash": "09d81740c09e1434a4c78134a13a48b854f29cf5822e72d75983713cdb747963",
+      "target_id": "deep_m0256_r1"
+    },
+    {
+      "arch": "deep",
+      "m": 256,
+      "p": 73984,
+      "rep": 2,
+      "target_hash": "7d2b17335b5ae481f00e8793369fbe114f3ea563c80b91b01102266c3ab73d1e",
+      "target_id": "deep_m0256_r2"
+    }
+  ],
+  "test_return_codes": {
+    "integration": 0,
+    "unit": 0
+  }
+}

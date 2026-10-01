@@ -1,0 +1,175 @@
+{
+  "archival_pass": false,
+  "checks": [
+    {
+      "check": "settings_and_targets",
+      "detail": "24 rows for 24 targets",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "target_identity_and_pairing",
+      "detail": [],
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "reference_chain_boundaries_and_counts",
+      "detail": [],
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "inspection_counts_equal_svd_rows",
+      "detail": [],
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "zero_exit_rows_without_interval",
+      "detail": [],
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "entropy_law_labels",
+      "detail": 0,
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "relaxation_unrestricted_law",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "relaxation_factor_half_convention",
+      "detail": "tau = (h/2) N_total / ESS_mean (relaxation.tau_hat)",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "validity_column:relaxation_families",
+      "detail": "relaxation_families",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "validity_column:entropy_families",
+      "detail": "entropy_families",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "validity_column:static_pi",
+      "detail": "static_pi",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "validity_column:predictive_scores",
+      "detail": "predictive_scores",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "step_comparisons_equal_physical_duration",
+      "detail": "",
+      "pass": false,
+      "publication_only": false
+    },
+    {
+      "check": "figures_present",
+      "detail": [],
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "captions_without_placeholders",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "table_present:target_audit",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "table_present:reference_diagnostics",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "table_present:relaxation_families",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "table_present:entropy_families",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "table_present:static_pi",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "table_present:spectral_summary",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "table_present:predictive_scores",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "table_present:cost_and_counts",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "table_present:exclusions",
+      "detail": "",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "regeneration_command",
+      "detail": "python -m bnn_geometry figures --config <config> (reads tables only)",
+      "pass": true,
+      "publication_only": false
+    },
+    {
+      "check": "relaxation_all_valid",
+      "detail": "",
+      "pass": false,
+      "publication_only": true
+    },
+    {
+      "check": "entropy_all_valid",
+      "detail": "",
+      "pass": false,
+      "publication_only": true
+    },
+    {
+      "check": "all_references_pass",
+      "detail": "",
+      "pass": true,
+      "publication_only": true
+    }
+  ],
+  "fixture": false,
+  "publication_ready": false
+}

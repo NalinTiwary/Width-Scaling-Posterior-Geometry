@@ -1,0 +1,139 @@
+{
+  "dynamics": {
+    "h": 0.02,
+    "half_step": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 417604,
+      "h": 0.01,
+      "h_id": "h_0p01",
+      "mode": "fixed",
+      "stage_pass": true
+    },
+    "production": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 208804,
+      "h": 0.02,
+      "h_id": "h_0p02",
+      "mode": "production",
+      "stage_pass": true
+    },
+    "round": 1
+  },
+  "reference": {
+    "budget_exhausted": false,
+    "device": "cuda",
+    "execution_hash": "a4c8520eb44c75ea3099cdbac825d88d37c40066ff07f2408368c63f9fadfabc",
+    "likelihood_evals_per_chain": [
+      413878,
+      415092,
+      413889,
+      417420
+    ],
+    "production_per_chain": 65536,
+    "segments": {
+      "burnin": {
+        "archive_stride": 0,
+        "n": 4096,
+        "partial": false,
+        "planned": 4096,
+        "stop_reason": null,
+        "wall_s": 39.85051441192627
+      },
+      "calibration": {
+        "archive_stride": 8,
+        "n": 2048,
+        "partial": false,
+        "planned": 2048,
+        "stop_reason": null,
+        "wall_s": 21.582504987716675
+      },
+      "production_s1": {
+        "archive_stride": 16,
+        "n": 8192,
+        "partial": false,
+        "planned": 8192,
+        "stop_reason": null,
+        "wall_s": 83.76566648483276
+      },
+      "production_s2": {
+        "archive_stride": 16,
+        "n": 8192,
+        "partial": false,
+        "planned": 8192,
+        "stop_reason": null,
+        "wall_s": 83.26477909088135
+      },
+      "production_s3": {
+        "archive_stride": 16,
+        "n": 16384,
+        "partial": false,
+        "planned": 16384,
+        "stop_reason": null,
+        "wall_s": 165.71404767036438
+      },
+      "production_s4": {
+        "archive_stride": 16,
+        "n": 32768,
+        "partial": false,
+        "planned": 32768,
+        "stop_reason": null,
+        "wall_s": 329.6030058860779
+      },
+      "separation": {
+        "archive_stride": 0,
+        "n": 1024,
+        "partial": false,
+        "planned": 1024,
+        "stop_reason": null,
+        "wall_s": 9.98022747039795
+      }
+    },
+    "static_pass": false,
+    "status": "reference_pass",
+    "stopping_stage": 4,
+    "transitions_per_chain": [
+      72704,
+      72704,
+      72704,
+      72704
+    ],
+    "wall_s": 733.5842604637146
+  },
+  "refinement": {
+    "h": 0.01,
+    "half_step": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 835204,
+      "h": 0.005,
+      "h_id": "h_0p005",
+      "mode": "fixed",
+      "stage_pass": true
+    },
+    "production": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 417604,
+      "h": 0.01,
+      "h_id": "h_0p01",
+      "mode": "production",
+      "stage_pass": true
+    },
+    "refined": true
+  },
+  "step_calibration": {
+    "selected_h": 0.02,
+    "status": "calibrated"
+  },
+  "target_id": "shallow_m4096_r1"
+}

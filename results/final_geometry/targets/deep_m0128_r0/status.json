@@ -1,0 +1,117 @@
+{
+  "dynamics": {
+    "h": 0.02,
+    "production": {
+      "T_per_chain": 1024.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 2,
+      "grad_evals_run": 208804,
+      "h": 0.02,
+      "h_id": "h_0p02",
+      "mode": "production",
+      "stage_pass": true
+    },
+    "round": 1
+  },
+  "reference": {
+    "budget_exhausted": false,
+    "device": "cuda",
+    "execution_hash": "9fc7ed57572797b78206060d4de3474940dc38fe7e09b756af148a0fd1e1b894",
+    "likelihood_evals_per_chain": [
+      407337,
+      406970,
+      407140,
+      409986
+    ],
+    "production_per_chain": 65536,
+    "segments": {
+      "burnin": {
+        "archive_stride": 0,
+        "n": 4096,
+        "partial": false,
+        "planned": 4096,
+        "stop_reason": null,
+        "wall_s": 32.28350472450256
+      },
+      "calibration": {
+        "archive_stride": 8,
+        "n": 2048,
+        "partial": false,
+        "planned": 2048,
+        "stop_reason": null,
+        "wall_s": 61.968069553375244
+      },
+      "production_s1": {
+        "archive_stride": 16,
+        "n": 8192,
+        "partial": false,
+        "planned": 8192,
+        "stop_reason": null,
+        "wall_s": 155.87450075149536
+      },
+      "production_s2": {
+        "archive_stride": 16,
+        "n": 8192,
+        "partial": false,
+        "planned": 8192,
+        "stop_reason": null,
+        "wall_s": 155.82867455482483
+      },
+      "production_s3": {
+        "archive_stride": 16,
+        "n": 16384,
+        "partial": false,
+        "planned": 16384,
+        "stop_reason": null,
+        "wall_s": 311.7910461425781
+      },
+      "production_s4": {
+        "archive_stride": 16,
+        "n": 32768,
+        "partial": false,
+        "planned": 32768,
+        "stop_reason": null,
+        "wall_s": 624.1140737533569
+      },
+      "separation": {
+        "archive_stride": 0,
+        "n": 1024,
+        "partial": false,
+        "planned": 1024,
+        "stop_reason": null,
+        "wall_s": 8.044872522354126
+      }
+    },
+    "static_pass": false,
+    "status": "reference_pass",
+    "stopping_stage": 4,
+    "transitions_per_chain": [
+      72704,
+      72704,
+      72704,
+      72704
+    ],
+    "wall_s": 1349.7878761291504
+  },
+  "refinement": {
+    "h": 0.01,
+    "production": {
+      "T_per_chain": 2048.0,
+      "acceptance_fail": false,
+      "budget_exhausted": false,
+      "final_stage": 3,
+      "grad_evals_run": 827204,
+      "h": 0.01,
+      "h_id": "h_0p01",
+      "mode": "production",
+      "stage_pass": true
+    },
+    "refined": true
+  },
+  "step_calibration": {
+    "selected_h": 0.02,
+    "status": "calibrated"
+  },
+  "target_id": "deep_m0128_r0"
+}
