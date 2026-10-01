@@ -10,6 +10,7 @@
 #SBATCH --mem=48G
 #SBATCH --account=arindamb-cs-eng
 #SBATCH --partition=eng-research-gpu
+#SBATCH --requeue
 #SBATCH --output=logs/final_geometry/%x_%j.out
 #SBATCH --error=logs/final_geometry/%x_%j.err
 #

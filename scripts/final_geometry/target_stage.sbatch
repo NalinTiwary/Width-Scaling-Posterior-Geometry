@@ -11,6 +11,7 @@
 #SBATCH --account=arindamb-cs-eng
 #SBATCH --partition=eng-research-gpu
 #SBATCH --array=0-23
+#SBATCH --requeue
 #SBATCH --output=logs/final_geometry/%x_%A_%a.out
 #SBATCH --error=logs/final_geometry/%x_%A_%a.err
 #
@@ -34,6 +35,10 @@ if [ -f "$OUTPUT_ROOT/targets/$TID/stages/$STAGE.done" ]; then
 fi
 banner "stage $STAGE target $TID"
 command -v nvidia-smi >/dev/null && nvidia-smi --query-gpu=name,memory.total --format=csv
+if [ "${ALLOW_CPU:-0}" != "1" ] && ! python3 -c "import torch, sys; sys.exit(0 if torch.cuda.is_available() else 1)"; then
+    echo "FAIL: CUDA not visible to torch on $(hostname); refusing to run on CPU (ALLOW_CPU=1 overrides)"
+    exit 1
+fi
 
 bnn run --resume "${BNN_ARGS[@]}" ${DEV_ARGS[@]+"${DEV_ARGS[@]}"} --stage "$STAGE" --target "$TID"
 rc=$?

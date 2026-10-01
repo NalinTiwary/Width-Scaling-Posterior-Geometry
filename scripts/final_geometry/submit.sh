@@ -10,16 +10,17 @@
 #   E  array    architecture-wide refinement where D requires it (no-op otherwise) (24 tasks)
 #   F  global   refinement decision round 2, analyze, figures, SUMMARY, audit, export
 #
-# All 24 targets of an array run at once. Each array is followed by RETRIES continuation arrays
-# (afterany) that resume from checkpoints if a task hit the 24 h limit; finished tasks exit in
-# seconds. Downstream global jobs use afterany so one failed target cannot stall the campaign
-# (its failure is recorded in targets/<id>/errors.json and reported by the audit).
+# All 24 targets of an array run at once. Tasks are requeued by SLURM after a node failure and
+# resume from their checkpoints. RETRIES>0 adds continuation arrays (afterany) for tasks that hit
+# the 24 h limit; otherwise resume a stopped stage with FROM=<step>. Downstream global jobs use
+# afterany so one failed target cannot stall the campaign (its failure is recorded in
+# targets/<id>/errors.json and reported by the audit).
 #
 # Usage (from the repository root):
 #   bash scripts/final_geometry/submit.sh
 # Env:
 #   FROM=0|A|B|C|D|E|F   start the chain at this step (earlier outputs must exist)  [0]
-#   RETRIES=n            continuation arrays after each array                         [2]
+#   RETRIES=n            continuation arrays after each array (each adds a queue wait) [0]
 #   CONFIG, OUT, DEVICE  forwarded to python -m bnn_geometry                          [configs/campaign.yaml]
 #   DRY_RUN=1            print the sbatch commands only
 #   SKIP_PREFLIGHT=1     skip the login-node checks in preflight.sh
@@ -32,7 +33,7 @@
 set -euo pipefail
 cd "$(dirname "$0")/../.."
 FROM="${FROM:-0}"
-RETRIES="${RETRIES:-2}"
+RETRIES="${RETRIES:-0}"
 ARRAY_TIME="${TIME_LIMIT:-24:00:00}"
 CONFIG="${CONFIG:-configs/campaign.yaml}"
 DRY_RUN="${DRY_RUN:-0}"
@@ -85,7 +86,7 @@ for step in $order; do
     [ "$step" = "$FROM" ] && started=1
     [ "$started" = "1" ] || continue
     case "$step" in
-        0) global_job "0 freeze" afterok 08:00:00 "freeze" ;;
+        0) global_job "0 freeze" afterok 02:00:00 "freeze" ;;
         A) # the reference arrays must not start if freezing/tests failed
            submit "A reference" afterok --job-name=bnn_A_reference --array="$ARRAY" \
                --time="$ARRAY_TIME" --export="$EXPORTS,STAGE=reference" "$D/target_stage.sbatch"
@@ -93,11 +94,11 @@ for step in $order; do
                submit "A reference (continuation $i)" afterany --job-name="bnn_A_reference_c$i" --array="$ARRAY" \
                    --time="$ARRAY_TIME" --export="$EXPORTS,STAGE=reference" "$D/target_stage.sbatch"
            done ;;
-        B) global_job "B select-step+controls" afterany 06:00:00 "select-step+controls" ;;
+        B) global_job "B select-step+controls" afterany 02:00:00 "select-step+controls" ;;
         C) target_array C production ;;
-        D) global_job "D endpoint-decision" afterany 04:00:00 "endpoint-decision" ;;
+        D) global_job "D endpoint-decision" afterany 01:00:00 "endpoint-decision" ;;
         E) target_array E refine ;;
-        F) global_job "F final+post" afterany 12:00:00 "refine-decision+post" ;;
+        F) global_job "F final+post" afterany 04:00:00 "refine-decision+post" ;;
     esac
 done
 [ "$started" = "1" ] || { echo "unknown FROM=$FROM (use one of: $order)"; exit 1; }
