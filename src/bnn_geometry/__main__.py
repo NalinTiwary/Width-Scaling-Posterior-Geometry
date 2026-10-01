@@ -253,6 +253,18 @@ def cmd_fixture(args) -> int:
     return 0 if res["archival_pass"] else 1
 
 
+def cmd_export_loss(args) -> int:
+    from .paper_export import export_all
+    cfg, _, root = _cfg(args)
+    tids = [args.target] if args.target else None
+    if args.dry_run:
+        print(f"would export h={args.h} window={args.window} V traces for "
+              f"{len(tids or C.targets(cfg))} targets from {root} -> {args.dest or root / 'paper_figures'}")
+        return 0
+    return export_all(cfg, root, h=args.h, window=args.window, out=Path(args.dest) if args.dest else None,
+                      targets=tids, device=args.device or "cpu", recompute_end_state=not args.skip_end_state)
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="python -m bnn_geometry")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -284,6 +296,12 @@ def main(argv=None) -> int:
     e = add("export", cmd_export)
     e.add_argument("--no-heavy", action="store_true", help="skip checksumming trace HDF5 files")
     add("benchmark", cmd_benchmark)
+    el = add("export-loss-traces", cmd_export_loss)
+    el.add_argument("--h", type=float, default=0.01)
+    el.add_argument("--window", type=int, default=102400)
+    el.add_argument("--target", default=None)
+    el.add_argument("--dest", default=None, help="default <output_root>/paper_figures")
+    el.add_argument("--skip-end-state", action="store_true", help="skip recomputing the final-state V")
     fx = add("fixture", cmd_fixture, config=False)
     fx.add_argument("--out", default="results/fixture")
     args = ap.parse_args(argv)

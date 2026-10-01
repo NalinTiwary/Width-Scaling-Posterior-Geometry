@@ -31,6 +31,7 @@ results/fixture/
 !results/final_geometry/data/*.npz
 !results/final_geometry/centers/*.npz
 !results/final_geometry/controls/prior_spectral_values.npz
+!results/final_geometry/paper_figures/loss_traces/*.npz
 *.egg-info/
 dist/
 build/
