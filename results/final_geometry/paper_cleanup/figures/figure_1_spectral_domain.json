@@ -1,0 +1,588 @@
+{
+  "display_units": "opnorm_W2_over_sqrt_m",
+  "admissibility_threshold": 2.0,
+  "strict_cutoff_condition": "a > r0 + 2*sigma",
+  "theory_context": {
+    "weight_layers": 3,
+    "n": 128,
+    "sigma": 1.0,
+    "r0": 0.0,
+    "hidden_center_max_normalized_opnorm": 0.0,
+    "statistic": "opnorm_W2_over_sqrt_m",
+    "target_manifest_sha256": "2e84d80ed5dd28051670d56cc4476b1d080dd3bd8677a61d14e84db204a82020",
+    "target_manifest": "final_geometry/manifest.json",
+    "config_sha256": "6f12a8a931a9b7f70a8efa32b22b58b9ac0d3e098f3ae89f9b7be39c7f860474",
+    "center_files_sha256": {
+      "rep_0.npz": "3b6c22295a874109ed2fa2b0eb5f0bf95f46fd448809a394fd2bd06f5c29707f",
+      "rep_1.npz": "ab47e8495a97754f4e02aef53e330740246b2f23b15068001c253ea473966dd3",
+      "rep_2.npz": "9e265f77c7b5bd84cf7fe048668125a8024036629af4540cf518d1a22d43e6aa"
+    },
+    "prior_center_later_hidden": "zero",
+    "admissibility_threshold": 2.0,
+    "historical_normalizer_a": 2.5,
+    "verification": "W2 block of each deep target's model prior center (theta0) computed from the saved center/data files; sigma from the frozen configuration",
+    "per_target_center_check": [
+      {
+        "target_id": "deep_m0032_r0",
+        "m": 32,
+        "replicate": 0,
+        "target_hash": "af056e127c02b019412d5384149e30d1e6c85b146336ef076ef6b326c05fe260",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0032_r1",
+        "m": 32,
+        "replicate": 1,
+        "target_hash": "662315e3af404632a903759afc0db53d7616be0be60d5bbeff2faff490855fed",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0032_r2",
+        "m": 32,
+        "replicate": 2,
+        "target_hash": "e1bd5b82d8da839a2fc5ffa8fd46793eab0e499a09e69bcda3048c51750c1a05",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0064_r0",
+        "m": 64,
+        "replicate": 0,
+        "target_hash": "981c8c16f8288893162866a44dc7f238a562d94baba61c4736c9e2c0a9aaafac",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0064_r1",
+        "m": 64,
+        "replicate": 1,
+        "target_hash": "cffc441cee2bd015a78c885c0750263a0ede3b1b8b3eb5af88b7ed906fea8e96",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0064_r2",
+        "m": 64,
+        "replicate": 2,
+        "target_hash": "5e7e9d9b0e46c28d13a71799ccda6b52c4855a61024370dac3c38fe8cb82e7c3",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0128_r0",
+        "m": 128,
+        "replicate": 0,
+        "target_hash": "a3fbfe3694a6d3a7a8f724b8f6e362367e3afc7860a1c5f1481a53f3e86fcfbf",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0128_r1",
+        "m": 128,
+        "replicate": 1,
+        "target_hash": "12140e25162df7ed81599a111742b07052ef21dac4d3086bb8a4c937317db44a",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0128_r2",
+        "m": 128,
+        "replicate": 2,
+        "target_hash": "ab9e24560eea0ddc4fd775ee6d516b1daa269452cd648f2739f422995dd944b3",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0256_r0",
+        "m": 256,
+        "replicate": 0,
+        "target_hash": "2814b4d76a9cc9419ec01ed447161e8acf050a7bbe1b8e92bdfa0e832e724270",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0256_r1",
+        "m": 256,
+        "replicate": 1,
+        "target_hash": "09d81740c09e1434a4c78134a13a48b854f29cf5822e72d75983713cdb747963",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      },
+      {
+        "target_id": "deep_m0256_r2",
+        "m": 256,
+        "replicate": 2,
+        "target_hash": "7d2b17335b5ae481f00e8793369fbe114f3ea563c80b91b01102266c3ab73d1e",
+        "W2_center_opnorm_over_sqrt_m": 0.0,
+        "W2_center_max_abs": 0.0
+      }
+    ]
+  },
+  "theory_context_sha256": "11c6b26b73d3922b3a43f92b07524d36813797b395f554d0872dd8a383561f91",
+  "spectral_rows": 196608,
+  "quantile_ylim": [
+    1.85,
+    2.16
+  ],
+  "coverage_xlim": [
+    1.58,
+    2.3
+  ],
+  "numerical_guard": 1e-10,
+  "threshold_counts": [
+    {
+      "width": 32,
+      "replicate": 0,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2217,
+      "n_at_or_below": 14167,
+      "fraction_above": 0.13531494140625,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2217,
+      "n_possibly_above": 2217,
+      "maximum": 2.249702521974046
+    },
+    {
+      "width": 32,
+      "replicate": 1,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2436,
+      "n_at_or_below": 13948,
+      "fraction_above": 0.148681640625,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2436,
+      "n_possibly_above": 2436,
+      "maximum": 2.2598871577951116
+    },
+    {
+      "width": 32,
+      "replicate": 2,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2131,
+      "n_at_or_below": 14253,
+      "fraction_above": 0.13006591796875,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2131,
+      "n_possibly_above": 2131,
+      "maximum": 2.2241640856510645
+    },
+    {
+      "width": 64,
+      "replicate": 0,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2238,
+      "n_at_or_below": 14146,
+      "fraction_above": 0.1365966796875,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2238,
+      "n_possibly_above": 2238,
+      "maximum": 2.17906542963068
+    },
+    {
+      "width": 64,
+      "replicate": 1,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2398,
+      "n_at_or_below": 13986,
+      "fraction_above": 0.1463623046875,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2398,
+      "n_possibly_above": 2398,
+      "maximum": 2.18237585013913
+    },
+    {
+      "width": 64,
+      "replicate": 2,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2206,
+      "n_at_or_below": 14178,
+      "fraction_above": 0.1346435546875,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2206,
+      "n_possibly_above": 2206,
+      "maximum": 2.176570693708025
+    },
+    {
+      "width": 128,
+      "replicate": 0,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2302,
+      "n_at_or_below": 14082,
+      "fraction_above": 0.1405029296875,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2302,
+      "n_possibly_above": 2302,
+      "maximum": 2.1143015029385843
+    },
+    {
+      "width": 128,
+      "replicate": 1,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2327,
+      "n_at_or_below": 14057,
+      "fraction_above": 0.14202880859375,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2327,
+      "n_possibly_above": 2327,
+      "maximum": 2.1190844341290442
+    },
+    {
+      "width": 128,
+      "replicate": 2,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2330,
+      "n_at_or_below": 14054,
+      "fraction_above": 0.1422119140625,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2330,
+      "n_possibly_above": 2330,
+      "maximum": 2.111897765377921
+    },
+    {
+      "width": 256,
+      "replicate": 0,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2391,
+      "n_at_or_below": 13993,
+      "fraction_above": 0.14593505859375,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2391,
+      "n_possibly_above": 2391,
+      "maximum": 2.077395045479144
+    },
+    {
+      "width": 256,
+      "replicate": 1,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2318,
+      "n_at_or_below": 14066,
+      "fraction_above": 0.1414794921875,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2318,
+      "n_possibly_above": 2318,
+      "maximum": 2.0770871580825974
+    },
+    {
+      "width": 256,
+      "replicate": 2,
+      "threshold": 2.0,
+      "n": 16384,
+      "n_above": 2329,
+      "n_at_or_below": 14055,
+      "fraction_above": 0.14215087890625,
+      "n_near_threshold": 0,
+      "n_definitely_above": 2329,
+      "n_possibly_above": 2329,
+      "maximum": 2.082289697612485
+    }
+  ],
+  "replicate_quantiles": [
+    {
+      "width": 32,
+      "replicate": 0,
+      "quantile": 0.5,
+      "T": 1.9081214752262545
+    },
+    {
+      "width": 32,
+      "replicate": 0,
+      "quantile": 0.95,
+      "T": 2.0456272796156023
+    },
+    {
+      "width": 32,
+      "replicate": 0,
+      "quantile": 0.99,
+      "T": 2.1116803360873457
+    },
+    {
+      "width": 32,
+      "replicate": 1,
+      "quantile": 0.5,
+      "T": 1.9134551940187738
+    },
+    {
+      "width": 32,
+      "replicate": 1,
+      "quantile": 0.95,
+      "T": 2.0534791453906838
+    },
+    {
+      "width": 32,
+      "replicate": 1,
+      "quantile": 0.99,
+      "T": 2.1196243555069327
+    },
+    {
+      "width": 32,
+      "replicate": 2,
+      "quantile": 0.5,
+      "T": 1.9079673499569192
+    },
+    {
+      "width": 32,
+      "replicate": 2,
+      "quantile": 0.95,
+      "T": 2.0467714759355786
+    },
+    {
+      "width": 32,
+      "replicate": 2,
+      "quantile": 0.99,
+      "T": 2.1089455147854697
+    },
+    {
+      "width": 64,
+      "replicate": 0,
+      "quantile": 0.5,
+      "T": 1.9430796369483303
+    },
+    {
+      "width": 64,
+      "replicate": 0,
+      "quantile": 0.95,
+      "T": 2.0309321209103794
+    },
+    {
+      "width": 64,
+      "replicate": 0,
+      "quantile": 0.99,
+      "T": 2.0721145936366305
+    },
+    {
+      "width": 64,
+      "replicate": 1,
+      "quantile": 0.5,
+      "T": 1.9443303144905189
+    },
+    {
+      "width": 64,
+      "replicate": 1,
+      "quantile": 0.95,
+      "T": 2.03152462221634
+    },
+    {
+      "width": 64,
+      "replicate": 1,
+      "quantile": 0.99,
+      "T": 2.077548008463902
+    },
+    {
+      "width": 64,
+      "replicate": 2,
+      "quantile": 0.5,
+      "T": 1.9419728923165642
+    },
+    {
+      "width": 64,
+      "replicate": 2,
+      "quantile": 0.95,
+      "T": 2.0302360921633857
+    },
+    {
+      "width": 64,
+      "replicate": 2,
+      "quantile": 0.99,
+      "T": 2.0727552566080405
+    },
+    {
+      "width": 128,
+      "replicate": 0,
+      "quantile": 0.5,
+      "T": 1.9647619204694236
+    },
+    {
+      "width": 128,
+      "replicate": 0,
+      "quantile": 0.95,
+      "T": 2.0202773066843527
+    },
+    {
+      "width": 128,
+      "replicate": 0,
+      "quantile": 0.99,
+      "T": 2.0464509393935764
+    },
+    {
+      "width": 128,
+      "replicate": 1,
+      "quantile": 0.5,
+      "T": 1.9651272161523605
+    },
+    {
+      "width": 128,
+      "replicate": 1,
+      "quantile": 0.95,
+      "T": 2.020284653742529
+    },
+    {
+      "width": 128,
+      "replicate": 1,
+      "quantile": 0.99,
+      "T": 2.0470826521830174
+    },
+    {
+      "width": 128,
+      "replicate": 2,
+      "quantile": 0.5,
+      "T": 1.9646462408487693
+    },
+    {
+      "width": 128,
+      "replicate": 2,
+      "quantile": 0.95,
+      "T": 2.0201946871779555
+    },
+    {
+      "width": 128,
+      "replicate": 2,
+      "quantile": 0.99,
+      "T": 2.0464512889534503
+    },
+    {
+      "width": 256,
+      "replicate": 0,
+      "quantile": 0.5,
+      "T": 1.977897985802664
+    },
+    {
+      "width": 256,
+      "replicate": 0,
+      "quantile": 0.95,
+      "T": 2.0129100245102545
+    },
+    {
+      "width": 256,
+      "replicate": 0,
+      "quantile": 0.99,
+      "T": 2.029472024304522
+    },
+    {
+      "width": 256,
+      "replicate": 1,
+      "quantile": 0.5,
+      "T": 1.9781770549926088
+    },
+    {
+      "width": 256,
+      "replicate": 1,
+      "quantile": 0.95,
+      "T": 2.0125970101222364
+    },
+    {
+      "width": 256,
+      "replicate": 1,
+      "quantile": 0.99,
+      "T": 2.028383920383856
+    },
+    {
+      "width": 256,
+      "replicate": 2,
+      "quantile": 0.5,
+      "T": 1.9782799869972727
+    },
+    {
+      "width": 256,
+      "replicate": 2,
+      "quantile": 0.95,
+      "T": 2.0127253854696145
+    },
+    {
+      "width": 256,
+      "replicate": 2,
+      "quantile": 0.99,
+      "T": 2.0289742444580137
+    }
+  ],
+  "source_file": "/Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry/paper_cleanup/exports/spectral_states.csv",
+  "source_sha256": "f07ed4b2cf046a160fcedc7856d9709c375bf2406fbfbdced4f9f738baa8359a",
+  "figure_inches": [
+    6.75,
+    2.65
+  ],
+  "python": "3.9.6",
+  "numpy": "1.26.4",
+  "matplotlib": "3.9.4",
+  "rc": {
+    "font.family": "DejaVu Sans",
+    "mathtext.fontset": "dejavusans",
+    "font.size": 8,
+    "axes.labelsize": 9,
+    "axes.titlesize": 9,
+    "xtick.labelsize": 8,
+    "ytick.labelsize": 8,
+    "legend.fontsize": 8,
+    "axes.linewidth": 0.65,
+    "axes.edgecolor": "#444444",
+    "axes.spines.top": false,
+    "axes.spines.right": false,
+    "xtick.direction": "out",
+    "ytick.direction": "out",
+    "xtick.major.size": 3,
+    "ytick.major.size": 3,
+    "xtick.major.width": 0.6,
+    "ytick.major.width": 0.6,
+    "figure.facecolor": "white",
+    "axes.facecolor": "white",
+    "savefig.facecolor": "white",
+    "savefig.transparent": false,
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42
+  },
+  "width_style": {
+    "32": [
+      "#0072B2",
+      "o"
+    ],
+    "64": [
+      "#56B4E9",
+      "s"
+    ],
+    "128": [
+      "#009E73",
+      "^"
+    ],
+    "256": [
+      "#E69F00",
+      "D"
+    ],
+    "1024": [
+      "#D55E00",
+      "v"
+    ],
+    "4096": [
+      "#CC79A7",
+      "P"
+    ]
+  },
+  "quantile_style": {
+    "0.5": [
+      "#56B4E9",
+      "o",
+      "Median"
+    ],
+    "0.95": [
+      "#0072B2",
+      "s",
+      "95th percentile"
+    ],
+    "0.99": [
+      "#253494",
+      "^",
+      "99th percentile"
+    ]
+  }
+}

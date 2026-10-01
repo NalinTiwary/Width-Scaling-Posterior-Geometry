@@ -1,0 +1,94 @@
+{
+  "display_lags": [
+    0,
+    200
+  ],
+  "source_lags": [
+    0,
+    400
+  ],
+  "ylim": [
+    -0.08,
+    1.02
+  ],
+  "acf_rows": 9624,
+  "aggregation": "pointwise median and min/max of 3 four-chain replicate curves",
+  "source_file": "/Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry/paper_cleanup/exports/loss_acf_replicates.csv",
+  "source_sha256": "34b02928b9ad012e7f60581342044d13f4bbe1ea29add2d047d77417de2356ab",
+  "figure_inches": [
+    6.75,
+    2.65
+  ],
+  "python": "3.9.6",
+  "numpy": "1.26.4",
+  "matplotlib": "3.9.4",
+  "rc": {
+    "font.family": "DejaVu Sans",
+    "mathtext.fontset": "dejavusans",
+    "font.size": 8,
+    "axes.labelsize": 9,
+    "axes.titlesize": 9,
+    "xtick.labelsize": 8,
+    "ytick.labelsize": 8,
+    "legend.fontsize": 8,
+    "axes.linewidth": 0.65,
+    "axes.edgecolor": "#444444",
+    "axes.spines.top": false,
+    "axes.spines.right": false,
+    "xtick.direction": "out",
+    "ytick.direction": "out",
+    "xtick.major.size": 3,
+    "ytick.major.size": 3,
+    "xtick.major.width": 0.6,
+    "ytick.major.width": 0.6,
+    "figure.facecolor": "white",
+    "axes.facecolor": "white",
+    "savefig.facecolor": "white",
+    "savefig.transparent": false,
+    "pdf.fonttype": 42,
+    "ps.fonttype": 42
+  },
+  "width_style": {
+    "32": [
+      "#0072B2",
+      "o"
+    ],
+    "64": [
+      "#56B4E9",
+      "s"
+    ],
+    "128": [
+      "#009E73",
+      "^"
+    ],
+    "256": [
+      "#E69F00",
+      "D"
+    ],
+    "1024": [
+      "#D55E00",
+      "v"
+    ],
+    "4096": [
+      "#CC79A7",
+      "P"
+    ]
+  },
+  "quantile_style": {
+    "0.5": [
+      "#56B4E9",
+      "o",
+      "Median"
+    ],
+    "0.95": [
+      "#0072B2",
+      "s",
+      "95th percentile"
+    ],
+    "0.99": [
+      "#253494",
+      "^",
+      "99th percentile"
+    ]
+  }
+}

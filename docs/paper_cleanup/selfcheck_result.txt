@@ -1,0 +1,13 @@
+test_bad_probability_inputs_and_degeneracy (__main__.Checks.test_bad_probability_inputs_and_degeneracy) ... ok
+test_cdf_replicate_aggregation_and_context (__main__.Checks.test_cdf_replicate_aggregation_and_context) ... ok
+test_ecdf_threshold_equality_and_conversion (__main__.Checks.test_ecdf_threshold_equality_and_conversion) ... ok
+test_fft_against_direct_and_affine (__main__.Checks.test_fft_against_direct_and_affine) ... ok
+test_prediction_normalizes_each_point (__main__.Checks.test_prediction_normalizes_each_point) ... ok
+test_render_integrity_and_input_rejection (__main__.Checks.test_render_integrity_and_input_rejection) ... ok
+test_replicate_and_chain_separation (__main__.Checks.test_replicate_and_chain_separation) ... ok
+test_step_index_and_duration (__main__.Checks.test_step_index_and_duration) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.825s
+
+OK

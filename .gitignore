@@ -32,6 +32,9 @@ results/fixture/
 !results/final_geometry/centers/*.npz
 !results/final_geometry/controls/prior_spectral_values.npz
 !results/final_geometry/paper_figures/loss_traces/*.npz
+results/final_geometry/paper_cleanup/supplement_traces/
+results/final_geometry/paper_cleanup/exports/spectral_states.csv
+!results/final_geometry/paper_cleanup/figures/figure_1_spectral_domain_coverage.npz
 *.egg-info/
 dist/
 build/

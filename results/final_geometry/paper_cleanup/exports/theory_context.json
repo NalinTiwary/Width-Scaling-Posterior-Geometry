@@ -1,0 +1,118 @@
+{
+  "weight_layers": 3,
+  "n": 128,
+  "sigma": 1.0,
+  "r0": 0.0,
+  "hidden_center_max_normalized_opnorm": 0.0,
+  "statistic": "opnorm_W2_over_sqrt_m",
+  "target_manifest_sha256": "2e84d80ed5dd28051670d56cc4476b1d080dd3bd8677a61d14e84db204a82020",
+  "target_manifest": "final_geometry/manifest.json",
+  "config_sha256": "6f12a8a931a9b7f70a8efa32b22b58b9ac0d3e098f3ae89f9b7be39c7f860474",
+  "center_files_sha256": {
+    "rep_0.npz": "3b6c22295a874109ed2fa2b0eb5f0bf95f46fd448809a394fd2bd06f5c29707f",
+    "rep_1.npz": "ab47e8495a97754f4e02aef53e330740246b2f23b15068001c253ea473966dd3",
+    "rep_2.npz": "9e265f77c7b5bd84cf7fe048668125a8024036629af4540cf518d1a22d43e6aa"
+  },
+  "prior_center_later_hidden": "zero",
+  "admissibility_threshold": 2.0,
+  "historical_normalizer_a": 2.5,
+  "verification": "W2 block of each deep target's model prior center (theta0) computed from the saved center/data files; sigma from the frozen configuration",
+  "per_target_center_check": [
+    {
+      "target_id": "deep_m0032_r0",
+      "m": 32,
+      "replicate": 0,
+      "target_hash": "af056e127c02b019412d5384149e30d1e6c85b146336ef076ef6b326c05fe260",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0032_r1",
+      "m": 32,
+      "replicate": 1,
+      "target_hash": "662315e3af404632a903759afc0db53d7616be0be60d5bbeff2faff490855fed",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0032_r2",
+      "m": 32,
+      "replicate": 2,
+      "target_hash": "e1bd5b82d8da839a2fc5ffa8fd46793eab0e499a09e69bcda3048c51750c1a05",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0064_r0",
+      "m": 64,
+      "replicate": 0,
+      "target_hash": "981c8c16f8288893162866a44dc7f238a562d94baba61c4736c9e2c0a9aaafac",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0064_r1",
+      "m": 64,
+      "replicate": 1,
+      "target_hash": "cffc441cee2bd015a78c885c0750263a0ede3b1b8b3eb5af88b7ed906fea8e96",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0064_r2",
+      "m": 64,
+      "replicate": 2,
+      "target_hash": "5e7e9d9b0e46c28d13a71799ccda6b52c4855a61024370dac3c38fe8cb82e7c3",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0128_r0",
+      "m": 128,
+      "replicate": 0,
+      "target_hash": "a3fbfe3694a6d3a7a8f724b8f6e362367e3afc7860a1c5f1481a53f3e86fcfbf",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0128_r1",
+      "m": 128,
+      "replicate": 1,
+      "target_hash": "12140e25162df7ed81599a111742b07052ef21dac4d3086bb8a4c937317db44a",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0128_r2",
+      "m": 128,
+      "replicate": 2,
+      "target_hash": "ab9e24560eea0ddc4fd775ee6d516b1daa269452cd648f2739f422995dd944b3",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0256_r0",
+      "m": 256,
+      "replicate": 0,
+      "target_hash": "2814b4d76a9cc9419ec01ed447161e8acf050a7bbe1b8e92bdfa0e832e724270",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0256_r1",
+      "m": 256,
+      "replicate": 1,
+      "target_hash": "09d81740c09e1434a4c78134a13a48b854f29cf5822e72d75983713cdb747963",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    },
+    {
+      "target_id": "deep_m0256_r2",
+      "m": 256,
+      "replicate": 2,
+      "target_hash": "7d2b17335b5ae481f00e8793369fbe114f3ea563c80b91b01102266c3ab73d1e",
+      "W2_center_opnorm_over_sqrt_m": 0.0,
+      "W2_center_max_abs": 0.0
+    }
+  ]
+}

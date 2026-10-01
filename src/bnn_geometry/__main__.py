@@ -277,6 +277,20 @@ def cmd_paper_figures(args) -> int:
     return build(cfg, root, Path(args.dest) if args.dest else None, steps=steps, window=args.window)
 
 
+def cmd_paper_cleanup(args) -> int:
+    from .paper_cleanup.build import LOCAL_STEPS, STEPS, build
+    cfg, _, root = _cfg(args)
+    steps = tuple(s for s in args.steps.split(",") if s) if args.steps else LOCAL_STEPS
+    if set(steps) - set(STEPS):
+        raise SystemExit(f"unknown steps {set(steps) - set(STEPS)}; choose from {STEPS}")
+    if args.dry_run:
+        print(f"would run paper cleanup ({','.join(steps)}) from {root} -> {args.dest or root / 'paper_cleanup'}")
+        return 0
+    return build(cfg, root, Path(args.dest) if args.dest else None, steps=steps, device=args.device or "cpu",
+                 window=args.window, duration=args.duration, width_in=args.width_in,
+                 targets=[args.target] if args.target else None)
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(prog="python -m bnn_geometry")
     sub = ap.add_subparsers(dest="cmd", required=True)
@@ -318,6 +332,14 @@ def main(argv=None) -> int:
     pf.add_argument("--steps", default=None, help="comma list of selfcheck,spectral,acf,render,text (default all)")
     pf.add_argument("--window", type=int, default=102400)
     pf.add_argument("--dest", default=None, help="default <output_root>/paper_figures")
+    pc = add("paper-cleanup", cmd_paper_cleanup)
+    pc.add_argument("--steps", default=None, help="comma list of selfcheck,main,export-supplements,supplements,text "
+                                                  "(default selfcheck,main,supplements,text)")
+    pc.add_argument("--window", type=int, default=102400, help="S1 window (retained transitions per chain)")
+    pc.add_argument("--duration", type=float, default=512.0, help="S2 matched algorithmic duration")
+    pc.add_argument("--width-in", type=float, default=6.75)
+    pc.add_argument("--target", default=None, help="restrict export-supplements to one target")
+    pc.add_argument("--dest", default=None, help="default <output_root>/paper_cleanup")
     fx = add("fixture", cmd_fixture, config=False)
     fx.add_argument("--out", default="results/fixture")
     fx.add_argument("--fixture-config", default=None, help="alternative fixture config (default configs/fixture.yaml)")
