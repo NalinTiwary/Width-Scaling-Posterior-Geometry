@@ -10,17 +10,16 @@
     "pc file directory": "/usr/local/lib/pkgconfig",
     "version": "0.3.23.dev"
   },
-  "cpu_threads": 4,
-  "cuda_available": true,
+  "cpu_threads": 32,
+  "cuda_available": false,
   "cuda_version": "12.8",
-  "gpu": "NVIDIA A10",
   "h5py": "3.14.0",
-  "hostname": "ccc0313.campuscluster.illinois.edu",
+  "hostname": "cc-login3.campuscluster.illinois.edu",
   "numpy": "1.26.4",
-  "nvidia_smi": "NVIDIA A10, 580.173.02",
+  "nvidia_smi": "NVIDIA-SMI has failed because it couldn't communicate with the NVIDIA driver. Make sure that the latest NVIDIA driver is installed and running.",
   "platform": "Linux-5.14.0-687.25.1.el9_8.x86_64-x86_64-with-glibc2.34",
   "python": "3.9.25 (main, Apr 17 2026, 00:00:00) \n[GCC 11.5.0 20240719 (Red Hat 11.5.0-14)]",
   "scipy": "1.12.0",
-  "slurm_job_id": "11055714",
+  "slurm_job_id": null,
   "torch": "2.8.0+cu128"
 }

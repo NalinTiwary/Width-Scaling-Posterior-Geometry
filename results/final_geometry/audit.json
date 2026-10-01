@@ -1,5 +1,5 @@
 {
-  "archival_pass": false,
+  "archival_pass": true,
   "checks": [
     {
       "check": "settings_and_targets",
@@ -75,8 +75,8 @@
     },
     {
       "check": "step_comparisons_equal_physical_duration",
-      "detail": "",
-      "pass": false,
+      "detail": [],
+      "pass": true,
       "publication_only": false
     },
     {
