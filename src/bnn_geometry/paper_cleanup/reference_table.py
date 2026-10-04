@@ -30,6 +30,9 @@ def reference_table(cfg: dict[str, Any], root: Path, L: Layout) -> pd.DataFrame:
         row = {"target_id": t.target_id, "architecture": t.arch, "m": t.m, "replicate": t.rep,
                "sampler": ref["sampler"], "chains": n_chains, "stage": v.stage,
                "burn_in_per_chain": int(seg["burnin"]["n"]), "calibration_per_chain": int(seg["calibration"]["n"]),
+               "separation_per_chain": int(seg["separation"]["n"]),
+               "discarded_before_production_per_chain": sum(int(seg[k]["n"]) for k in
+                                                            ("burnin", "calibration", "separation")),
                "retained_per_chain": retained, "retained_total": retained * n_chains,
                "saved_stride": int(v.saved_stride), "archived_states_per_chain": archived,
                "likelihood_evals_per_chain_max": int(max(st["likelihood_evals_per_chain"])),
