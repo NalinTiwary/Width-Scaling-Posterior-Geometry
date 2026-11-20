@@ -1,0 +1,52 @@
+{
+  "batch_chains": 4,
+  "blocks": [
+    {
+      "seconds": 1.6097086519002914,
+      "transitions": 512
+    },
+    {
+      "seconds": 1.6085127908736467,
+      "transitions": 512
+    },
+    {
+      "seconds": 1.6100675670895725,
+      "transitions": 512
+    },
+    {
+      "seconds": 1.6166023851837963,
+      "transitions": 512
+    },
+    {
+      "seconds": 1.6090592700056732,
+      "transitions": 512
+    }
+  ],
+  "chain_transitions_per_wall_second": 1271.4257171244592,
+  "convention": "wall seconds cover one joint step of batch_chains chains; chain_transitions_per_wall_second counts every chain; scalar logging is inside the timed step",
+  "doublings": 0,
+  "eta": 0.9231163463866358,
+  "h": 0.08,
+  "hardware": {
+    "cuda_available": true,
+    "device": "cuda:0",
+    "dtype": "float64",
+    "gpu": "NVIDIA A10",
+    "platform": "Linux-5.14.0-687.65.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "processor": "x86_64",
+    "python": "3.9.25",
+    "threads": 4,
+    "torch": "2.8.0+cu128"
+  },
+  "label": "replay-timed estimate",
+  "met_duration_rule": true,
+  "min_seconds": 1.6085127908736467,
+  "scalar_checksum": 0.0,
+  "scalar_logging": true,
+  "seconds_per_chain_transition": 0.0007865186196340801,
+  "seconds_per_joint_step": 0.0031460744785363204,
+  "seconds_per_transition": 0.0031460744785363204,
+  "total_seconds": 8.05395066505298,
+  "total_transitions": 2560,
+  "transitions_per_block": 512
+}

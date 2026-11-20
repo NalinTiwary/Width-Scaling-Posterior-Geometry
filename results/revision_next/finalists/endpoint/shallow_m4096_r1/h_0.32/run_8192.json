@@ -1,0 +1,75 @@
+{
+  "counters": {
+    "accepted": [
+      2987,
+      3125,
+      2991,
+      2859
+    ],
+    "evals": [
+      8256,
+      8256,
+      8256,
+      8256
+    ],
+    "grad_evals": [
+      8256,
+      8256,
+      8256,
+      8256
+    ],
+    "max_streak": [
+      37,
+      40,
+      124,
+      39
+    ],
+    "numerical_failures": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "streak": [
+      3,
+      0,
+      1,
+      0
+    ],
+    "transitions": [
+      8255,
+      8255,
+      8255,
+      8255
+    ]
+  },
+  "cumulative_active_sampler_seconds": 33.0381805896759,
+  "hardware": {
+    "cuda_available": true,
+    "device": "cuda:0",
+    "dtype": "float64",
+    "gpu": "NVIDIA A10",
+    "platform": "Linux-5.14.0-687.65.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "processor": "x86_64",
+    "python": "3.9.25",
+    "threads": 4,
+    "torch": "2.8.0+cu128"
+  },
+  "job": "finalists",
+  "kind": "pcnl",
+  "prior_initialization": true,
+  "scope": "endpoint",
+  "seed": 20260930,
+  "segments": [
+    [
+      "production_1",
+      8192
+    ]
+  ],
+  "warmup": [
+    [
+      "burnin",
+      63
+    ]
+  ]
+}
