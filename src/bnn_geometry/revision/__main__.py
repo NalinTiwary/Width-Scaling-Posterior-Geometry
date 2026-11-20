@@ -16,15 +16,17 @@ import json
 from . import config as RC
 from .archive import run_archive
 from .prediction import rebuild_test_prob_0
-from .runner import cost_pilot, run_task, smoke_suite, tasks_for
+from .runner import cost_pilot, login_preflight, run_task, smoke_suite, tasks_for
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="AISTATS revision experiments")
     sub = parser.add_subparsers(dest="cmd", required=True)
-    for name in ("archive", "smoke", "tasks", "run", "cost-pilot", "prediction-acf"):
+    for name in ("archive", "smoke", "tasks", "run", "cost-pilot", "prediction-acf", "preflight"):
         p = sub.add_parser(name)
         p.add_argument("--config", required=True)
+        if name == "preflight":
+            p.add_argument("--require-cuda-build", action="store_true")
         if name in ("tasks", "run"):
             p.add_argument("--stage", required=True)
         if name == "run":
@@ -34,6 +36,15 @@ def main(argv: list[str] | None = None) -> int:
             p.add_argument("--device", default=None)
     args = parser.parse_args(argv)
     cfg = RC.load(args.config)
+    if args.cmd == "preflight":
+        report = login_preflight(cfg, require_cuda_build=args.require_cuda_build)
+        print(f"PREFLIGHT status={report['status']} cuda_build={report.get('torch_cuda_build')} "
+              f"cuda_visible_here={report.get('cuda_visible_here')} versions={report.get('versions')}")
+        if report["status"] != "ok":
+            print(json.dumps(report, indent=2))
+            return 1
+        print("PREFLIGHT_OK")
+        return 0
     if args.cmd == "cost-pilot":
         report = cost_pilot(cfg, device=args.device)
         compared = report["comparison"]

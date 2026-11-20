@@ -10,11 +10,11 @@ else
 fi
 cd "$PROJ_DIR" || { echo "ERROR: cannot cd to $PROJ_DIR"; exit 1; }
 
-if [ -n "${BNN_VENV:-}" ]; then
+if [ -n "${BNN_VENV:-}" ] && [ -f "${BNN_VENV}/bin/activate" ]; then
     source "$BNN_VENV/bin/activate"
-elif [ -d ".venv" ]; then
+elif [ -f ".venv/bin/activate" ]; then
     source .venv/bin/activate
-elif [ -d "venv" ]; then
+elif [ -f "venv/bin/activate" ]; then
     source venv/bin/activate
 fi
 

@@ -375,6 +375,15 @@ def test_interleaved_cost_keeps_four_chains_and_alternates(tmp_path):
     assert math.isfinite(report["cells"][narrow["id"]]["scalar_checksum"])
 
 
+def test_login_preflight_runs_four_cpu_steps_without_a_gpu(tmp_path):
+    from bnn_geometry.revision.runner import login_preflight
+
+    report = login_preflight(_smoke_cfg(tmp_path), require_cuda_build=False)
+    assert report["status"] == "ok"
+    assert report["cpu_steps"] == 4
+    assert report["versions"]["h5py"]
+
+
 def test_auto_device_follows_gpu_visibility():
     from bnn_geometry.context import pick_device
 

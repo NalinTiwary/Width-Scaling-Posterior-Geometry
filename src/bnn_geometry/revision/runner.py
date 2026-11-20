@@ -541,6 +541,41 @@ def _prior_starts(cfg: dict[str, Any], built: dict[str, Any], root: Path, sigma:
             "reference": "independent elliptical-slice reference means are not in this short run"}
 
 
+def login_preflight(cfg: dict[str, Any], *, require_cuda_build: bool = False) -> dict[str, Any]:
+    """Import every library the GPU jobs load, then take four CPU steps. No GPU is requested."""
+    import importlib
+    import tempfile
+
+    versions: dict[str, str] = {}
+    missing: list[str] = []
+    for name in ("numpy", "scipy", "yaml", "h5py", "pandas", "torch"):
+        try:
+            mod = importlib.import_module(name)
+        except Exception as exc:
+            missing.append(f"{name}: {exc}")
+            continue
+        versions[name] = str(getattr(mod, "__version__", "present"))
+    if missing:
+        return {"status": "missing_imports", "missing": missing, "versions": versions}
+    cuda_build = torch.version.cuda
+    if require_cuda_build and not cuda_build:
+        return {"status": "cpu_torch", "versions": versions,
+                "reason": "torch.version.cuda is empty, so a GPU job would run the CPU wheel"}
+    task = {"id": "preflight", "arch": "shallow", "m": 4, "rep": 0, "kind": "smoke"}
+    trial = dict(cfg)
+    trial.setdefault("smoke_n", 8)
+    trial.setdefault("smoke_d", 4)
+    built = build_target(trial, task, torch.device("cpu"))
+    with tempfile.TemporaryDirectory() as tmp:
+        rec = run_pcnl(built, trial, h=0.01, n=4, chains=[0, 1], out=Path(tmp),
+                       segment="production", stage="preflight", checkpoint_stride=2)
+    record = rec["record"]
+    if record.get("n") != 4 or record.get("partial"):
+        return {"status": "sampler_failed", "record": record, "versions": versions}
+    return {"status": "ok", "versions": versions, "torch_cuda_build": cuda_build,
+            "cuda_visible_here": bool(torch.cuda.is_available()), "cpu_steps": 4, "chains": 2}
+
+
 def smoke_suite(cfg: dict[str, Any]) -> dict[str, Any]:
     """Analytic prior-only check plus one tiny timed chain. A second open must not add transitions."""
     root = RC.output_root(cfg)
