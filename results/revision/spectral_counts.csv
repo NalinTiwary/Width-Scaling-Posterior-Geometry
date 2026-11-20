@@ -1,0 +1,13 @@
+width,replicate,n,n_above_2,published_n_above_2,match_published,n_above_2_05,n_above_2_10,max_T,stride_note
+32,0,16384,2217,2217,True,748,216,2.249702521974046,archived draws; autocorrelation is not removed
+32,1,16384,2436,2436,True,876,268,2.2598871577951116,archived draws; autocorrelation is not removed
+32,2,16384,2131,2131,True,758,219,2.2241640856510645,archived draws; autocorrelation is not removed
+64,0,16384,2238,2238,True,390,38,2.17906542963068,archived draws; autocorrelation is not removed
+64,1,16384,2398,2398,True,449,53,2.18237585013913,archived draws; autocorrelation is not removed
+64,2,16384,2206,2206,True,385,42,2.176570693708025,archived draws; autocorrelation is not removed
+128,0,16384,2302,2302,True,132,6,2.1143015029385843,archived draws; autocorrelation is not removed
+128,1,16384,2327,2327,True,132,3,2.119084434129044,archived draws; autocorrelation is not removed
+128,2,16384,2330,2330,True,128,2,2.111897765377921,archived draws; autocorrelation is not removed
+256,0,16384,2391,2391,True,18,0,2.077395045479144,archived draws; autocorrelation is not removed
+256,1,16384,2318,2318,True,11,0,2.077087158082598,archived draws; autocorrelation is not removed
+256,2,16384,2329,2329,True,13,0,2.082289697612485,archived draws; autocorrelation is not removed

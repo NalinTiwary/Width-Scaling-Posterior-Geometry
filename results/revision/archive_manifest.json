@@ -1,0 +1,14 @@
+{
+  "archive_zip": "/Users/apple/Downloads/final_geometry_package.zip",
+  "baseline_root": "/Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry",
+  "baseline_config_sha256": "6f12a8a931a9b7f70a8efa32b22b58b9ac0d3e098f3ae89f9b7be39c7f860474",
+  "code_revision": "fc6423caa77596114eeff39faf81fce61a14adac-dirty",
+  "s1_loss_rows": 24,
+  "spectral_matches": true,
+  "deep_m256_exceedances_at_2_10": [
+    0,
+    0,
+    0
+  ],
+  "traces": "HDF5 stage files and per-window device times are not in the zip; no ESS was interpolated"
+}

@@ -1,0 +1,52 @@
+# AISTATS revision. The frozen campaign config is not edited.
+# Archive recovery and the bounds table run locally. Sampling stages are the SLURM scripts.
+schema_version: 1
+campaign_id: aistats_revision_v1
+master_seed: 20260930
+output_root: results/revision
+baseline_root: results/final_geometry
+baseline_config: configs/campaign.yaml
+archive_zip: /Users/apple/Downloads/final_geometry_package.zip
+device: auto
+
+fixed_step:
+  h_over_sigma2: 0.01
+  transitions: 8192
+  chains: 4
+  checkpoint_stride: 256
+
+timing:
+  transitions: 512
+  blocks: 5
+  min_seconds: 1.0
+
+tuning:
+  h_over_sigma2: [0.005, 0.01, 0.02, 0.04, 0.08, 0.16]
+  pilot_transitions: 2048
+  finalist_transitions: 8192
+  warmup_time_over_sigma2: 20
+
+prior_starts:
+  n_starts: 32
+  horizon: 8192
+  batch: 4
+
+prior_only:
+  transitions: 8192
+
+geometry:
+  n: 16
+  d: 32
+  n_test: 1024
+  widths: [64, 256, 1024, 4096]
+  r: [0.0, 0.2, 0.8]
+  replicates: [0, 1, 2]
+
+local_pilot:
+  target: deep_m0032_r0
+  m: 32
+  rep: 0
+  transitions: 32
+  checkpoint_stride: 8
+
+uci_csv: null

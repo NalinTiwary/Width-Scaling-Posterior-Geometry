@@ -1,0 +1,129 @@
+{
+  "device": "cpu",
+  "h": 0.01,
+  "hardware": {
+    "cuda_available": false,
+    "device": "cpu",
+    "dtype": "float64",
+    "gpu": null,
+    "platform": "macOS-15.7.4-arm64-arm-64bit",
+    "processor": "arm",
+    "python": "3.12.3",
+    "threads": 4,
+    "torch": "2.14.0"
+  },
+  "loss_rate": {
+    "ess_bulk": 7.6057059327236125,
+    "ess_mean": 13.425333863114682,
+    "ess_per_second": 875.5842405073897,
+    "ess_per_transition": 0.13984722774077793,
+    "ess_tail": 46.631935926113,
+    "estimator": "geyer_initial_positive_monotone",
+    "mcse": 0.07175968525604451,
+    "mean": 6.284185649861634,
+    "n_total": 96,
+    "rhat": 1.6534881376091601,
+    "sd": 0.3635317930290159,
+    "seconds_per_effective_draw": 0.001142094562392435,
+    "status": "ok",
+    "tau": 7.150660160769213,
+    "truncation_lag": 8
+  },
+  "run": {
+    "counters": {
+      "accepted": [
+        24,
+        24,
+        24,
+        24
+      ],
+      "evals": [
+        25,
+        25,
+        25,
+        25
+      ],
+      "grad_evals": [
+        25,
+        25,
+        25,
+        25
+      ],
+      "max_streak": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "numerical_failures": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "streak": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transitions": [
+        24,
+        24,
+        24,
+        24
+      ]
+    },
+    "elapsed_s": 0.04346013069152832,
+    "path": "/Users/apple/Documents/Width Scaling Posterior Geometry/results/revision_smoke/runs/smoke_shallow/smoke/fixed",
+    "record": {
+      "archive_stride": 0,
+      "n": 24,
+      "partial": false,
+      "planned": 24,
+      "stop_reason": null,
+      "wall_s": 0.04520606994628906
+    }
+  },
+  "sigma": 1.0,
+  "task": {
+    "arch": "shallow",
+    "id": "smoke_shallow",
+    "kind": "smoke",
+    "m": 6,
+    "rep": 0
+  },
+  "timing": {
+    "blocks": [
+      {
+        "seconds": 0.0013134580804035068,
+        "transitions": 8
+      },
+      {
+        "seconds": 0.0012420420534908772,
+        "transitions": 8
+      }
+    ],
+    "doublings": 0,
+    "eta": 0.9900498337491681,
+    "h": 0.01,
+    "hardware": {
+      "cuda_available": false,
+      "device": "cpu",
+      "dtype": "float64",
+      "gpu": null,
+      "platform": "macOS-15.7.4-arm64-arm-64bit",
+      "processor": "arm",
+      "python": "3.12.3",
+      "threads": 4,
+      "torch": "2.14.0"
+    },
+    "label": "smoke timing",
+    "met_duration_rule": true,
+    "min_seconds": 0.0012420420534908772,
+    "seconds_per_transition": 0.000159718758368399,
+    "total_seconds": 0.002555500133894384,
+    "total_transitions": 16,
+    "transitions_per_block": 8
+  }
+}

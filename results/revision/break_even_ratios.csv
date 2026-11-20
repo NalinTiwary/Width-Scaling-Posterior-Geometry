@@ -1,0 +1,7 @@
+architecture,replicate,narrow,wide,ess_ratio,published_ratio,note
+shallow,0,64,4096,1.3595203827381124,1.36,wider endpoint wins on ESS/second on this replicate iff measured cost ratio < ess_ratio
+shallow,1,64,4096,1.2414956566898823,1.241,wider endpoint wins on ESS/second on this replicate iff measured cost ratio < ess_ratio
+shallow,2,64,4096,1.2385600843151192,1.239,wider endpoint wins on ESS/second on this replicate iff measured cost ratio < ess_ratio
+deep,0,32,256,2.068404344014955,2.068,wider endpoint wins on ESS/second on this replicate iff measured cost ratio < ess_ratio
+deep,1,32,256,1.8150932482437494,1.815,wider endpoint wins on ESS/second on this replicate iff measured cost ratio < ess_ratio
+deep,2,32,256,1.8489829124387482,1.849,wider endpoint wins on ESS/second on this replicate iff measured cost ratio < ess_ratio

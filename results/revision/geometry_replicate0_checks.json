@@ -1,0 +1,61 @@
+{
+  "checks": [
+    {
+      "chi": 1.0000000000000009,
+      "chi_exact": 1.0,
+      "row_norm_max": 1.0000000000000002,
+      "class_balance": 0.5,
+      "n": 16,
+      "d": 32,
+      "r": 0.0
+    },
+    {
+      "chi": 3.9999999999999982,
+      "chi_exact": 4.0,
+      "row_norm_max": 1.0000000000000002,
+      "class_balance": 0.5,
+      "n": 16,
+      "d": 32,
+      "r": 0.2
+    },
+    {
+      "chi": 12.999999999999996,
+      "chi_exact": 13.0,
+      "row_norm_max": 1.0,
+      "class_balance": 0.5,
+      "n": 16,
+      "d": 32,
+      "r": 0.8
+    }
+  ],
+  "probe_indices_n16": [
+    0,
+    2,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14
+  ],
+  "n16_widths": [
+    {
+      "chi": 1.0,
+      "n": 16,
+      "sufficient_width_72": 260.0,
+      "passes_at_1024": true
+    },
+    {
+      "chi": 4.0,
+      "n": 16,
+      "sufficient_width_72": 1040.0,
+      "passes_at_1024": false
+    },
+    {
+      "chi": 13.0,
+      "n": 16,
+      "sufficient_width_72": 10816.0,
+      "passes_at_1024": false
+    }
+  ]
+}

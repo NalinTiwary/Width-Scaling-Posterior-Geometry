@@ -1,0 +1,42 @@
+# Tiny end-to-end check. Not a scientific sample.
+schema_version: 1
+campaign_id: aistats_revision_smoke
+master_seed: 20260930
+output_root: results/revision_smoke
+baseline_root: results/final_geometry
+baseline_config: configs/campaign.yaml
+archive_zip: /Users/apple/Downloads/final_geometry_package.zip
+device: cpu
+smoke_width: 6
+smoke_n: 8
+smoke_d: 4
+ou_length: 800
+
+fixed_step:
+  h_over_sigma2: 0.01
+  transitions: 24
+  chains: 4
+  checkpoint_stride: 8
+
+timing:
+  transitions: 8
+  blocks: 2
+  min_seconds: 0
+
+tuning:
+  h_over_sigma2: [0.01, 0.02]
+  pilot_transitions: 16
+  finalist_transitions: 16
+  warmup_time_over_sigma2: 0.2
+
+prior_starts:
+  n_starts: 4
+  horizon: 16
+  batch: 4
+
+local_pilot:
+  target: deep_m0032_r0
+  m: 32
+  rep: 0
+  transitions: 16
+  checkpoint_stride: 8

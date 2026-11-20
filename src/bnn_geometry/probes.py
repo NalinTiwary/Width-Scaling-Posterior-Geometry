@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import math
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Optional
 
 import torch
 
@@ -26,12 +26,14 @@ class ProbeSpec:
                    tuple(p["interaction_neurons"]), tuple(p["shallow_interaction_input_indices"]))
 
     # ---- names -------------------------------------------------------------------------------------
-    def scalar_names(self, arch: str) -> list[str]:
+    def scalar_names(self, arch: str, blocks: Optional[list[str]] = None) -> list[str]:
         names = ["V", "U"]
         names += [f"train_logit_{i}" for i in self.train_idx]
         names += [f"test_prob_{i}" for i in self.test_idx]
         names += [f"interaction_{j}" for j in range(len(self.neurons))]
-        names += ["q_A", "q_W", "disp_A", "disp_W1"] + (["disp_W2"] if arch == "deep" else [])
+        if blocks is None:
+            blocks = ["A", "W1"] + (["W2"] if arch == "deep" else [])
+        names += ["q_A", "q_W"] + [f"disp_{b}" for b in blocks]
         return names
 
     def probe_names(self) -> list[str]:
@@ -70,7 +72,7 @@ class Observables:
         self.model, self.spec = model, spec
         lay = model.lay
         dev = model.device
-        self.names = spec.scalar_names(lay.arch)
+        self.names = spec.scalar_names(lay.arch, [n for n, _ in lay.blocks])
         self.u = alternating_unit(lay.m, dev)
         self.qW = qW_direction(lay.m, lay.d, dev)
         self.blk0 = {k: v[0] for k, v in unpack(model.theta0.unsqueeze(0), lay).items()}
@@ -82,11 +84,15 @@ class Observables:
         blk = unpack(theta, self.model.lay)
         j = self.neurons
         dA = blk["A"][:, j] - self.blk0["A"][j]                             # (C, 4)
-        if self.model.lay.arch == "shallow":
+        later = [name for name, _ in self.model.lay.blocks if name not in ("A", "W1")]
+        if not later:
             dW = blk["W1"][:, j, :] - self.blk0["W1"][j]                   # (C, 4, d)
             arg = (dW * self.x_int.unsqueeze(0)).sum(-1)
         else:
-            dW = blk["W2"][:, j, :] - self.blk0["W2"][j]                   # (C, 4, m)
+            # L=3 uses W2. Deeper nets use the output-adjacent hidden matrix, the same role.
+            # tanh stays in the probe for every activation so the observable is fixed.
+            name = later[-1]
+            dW = blk[name][:, j, :] - self.blk0[name][j]
             arg = torch.matmul(dW, self.u)
         return dA * torch.tanh(arg)
 

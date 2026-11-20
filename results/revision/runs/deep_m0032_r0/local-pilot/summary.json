@@ -1,0 +1,135 @@
+{
+  "device": "cpu",
+  "h": 0.01,
+  "hardware": {
+    "cuda_available": false,
+    "device": "cpu",
+    "dtype": "float64",
+    "gpu": null,
+    "platform": "macOS-15.7.4-arm64-arm-64bit",
+    "processor": "arm",
+    "python": "3.12.3",
+    "threads": 4,
+    "torch": "2.14.0"
+  },
+  "loss_rate": {
+    "ess_bulk": 9.753740452674142,
+    "ess_mean": 10.36831034592359,
+    "ess_per_second": 95.10291829154345,
+    "ess_per_transition": 0.08100242457752804,
+    "ess_tail": 39.27272727272727,
+    "estimator": "geyer_initial_positive_monotone",
+    "mcse": 0.5017659606981272,
+    "mean": 87.05919585433624,
+    "n_total": 128,
+    "rhat": 1.3614358740787171,
+    "sd": 2.9193541504713805,
+    "seconds_per_effective_draw": 0.010514924441481834,
+    "status": "ok",
+    "tau": 12.345309479506904,
+    "truncation_lag": 30
+  },
+  "run": {
+    "counters": {
+      "accepted": [
+        32,
+        32,
+        32,
+        32
+      ],
+      "evals": [
+        33,
+        33,
+        33,
+        33
+      ],
+      "grad_evals": [
+        33,
+        33,
+        33,
+        33
+      ],
+      "max_streak": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "numerical_failures": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "streak": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transitions": [
+        32,
+        32,
+        32,
+        32
+      ]
+    },
+    "elapsed_s": 0.18655014038085938,
+    "path": "/Users/apple/Documents/Width Scaling Posterior Geometry/results/revision/runs/deep_m0032_r0/local-pilot/fixed",
+    "record": {
+      "archive_stride": 0,
+      "n": 32,
+      "partial": false,
+      "planned": 32,
+      "stop_reason": null,
+      "wall_s": 0.1879408359527588
+    }
+  },
+  "sigma": 1.0,
+  "task": {
+    "arch": "deep",
+    "id": "deep_m0032_r0",
+    "kind": "baseline",
+    "m": 32,
+    "rep": 0
+  },
+  "timing": {
+    "batch_chains": 2,
+    "blocks": [
+      {
+        "seconds": 0.01888137497007847,
+        "transitions": 16
+      },
+      {
+        "seconds": 0.008374124998226762,
+        "transitions": 16
+      }
+    ],
+    "chain_transitions_per_wall_second": 2348.1499174267237,
+    "convention": "wall seconds cover one joint step of batch_chains chains; chain_transitions_per_wall_second counts every chain",
+    "doublings": 0,
+    "eta": 0.9900498337491681,
+    "h": 0.01,
+    "hardware": {
+      "cuda_available": false,
+      "device": "cpu",
+      "dtype": "float64",
+      "gpu": null,
+      "platform": "macOS-15.7.4-arm64-arm-64bit",
+      "processor": "arm",
+      "python": "3.12.3",
+      "threads": 4,
+      "torch": "2.14.0"
+    },
+    "label": "replay-timed estimate",
+    "met_duration_rule": true,
+    "min_seconds": 0.008374124998226762,
+    "seconds_per_chain_transition": 0.0004258671870047692,
+    "seconds_per_joint_step": 0.0008517343740095384,
+    "seconds_per_transition": 0.0008517343740095384,
+    "total_seconds": 0.02725549996830523,
+    "total_transitions": 32,
+    "transitions_per_block": 16
+  },
+  "timing_label": "short-block laptop forecast; not the one-second cluster protocol"
+}
