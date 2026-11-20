@@ -1,0 +1,20 @@
+{
+  "L": 2,
+  "activation": "tanh",
+  "arch": "shallow",
+  "campaign_id": "aistats_revision_v1",
+  "cell": "geometry_r0_m0064_r0",
+  "chi": 1.0000000000000004,
+  "cutoff": null,
+  "d": 32,
+  "hash_X": "960274262eaaf8ad0c13ea33d3bf292697a0031d5d7cb9ad057983ee7d00ad60",
+  "hash_y": "e22c33c17119f964b2c78acd0b3186adb8dab31dbde11999397189f99e128515",
+  "kind": "geometry",
+  "likelihood_scale": 1.0,
+  "m": 64,
+  "n": 16,
+  "p": 2112,
+  "rep": 0,
+  "sigma": 1.0,
+  "target_hash": "72fbd0ac0bab46a46fd5275192bd437afcdcbe2e3a296f9c93aec61ff4a160f3"
+}

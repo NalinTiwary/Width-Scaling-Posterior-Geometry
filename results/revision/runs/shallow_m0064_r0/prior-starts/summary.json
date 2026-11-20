@@ -1,0 +1,478 @@
+{
+  "device": "cuda:0",
+  "h": 0.01,
+  "hardware": {
+    "cuda_available": true,
+    "device": "cuda:0",
+    "dtype": "float64",
+    "gpu": "NVIDIA A10",
+    "platform": "Linux-5.14.0-687.65.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "processor": "x86_64",
+    "python": "3.9.25",
+    "threads": 4,
+    "torch": "2.8.0+cu128"
+  },
+  "prior_starts": {
+    "batches": [
+      {
+        "counters": {
+          "accepted": [
+            8130,
+            8124,
+            8146,
+            8130
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            1,
+            2,
+            2,
+            2
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 18.352985382080078,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/shallow_m0064_r0/prior-starts/batch_0",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 18.358771085739136
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8145,
+            8143,
+            8140,
+            8137
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 18.26789617538452,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/shallow_m0064_r0/prior-starts/batch_4",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 18.273325204849243
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8132,
+            8129,
+            8138,
+            8145
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            1,
+            2,
+            1,
+            2
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 18.49008083343506,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/shallow_m0064_r0/prior-starts/batch_8",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 18.496175050735474
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8125,
+            8136,
+            8137,
+            8144
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 18.286200761795044,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/shallow_m0064_r0/prior-starts/batch_12",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 18.291778326034546
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8120,
+            8142,
+            8145,
+            8138
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 18.319618940353394,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/shallow_m0064_r0/prior-starts/batch_16",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 18.326322317123413
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8122,
+            8140,
+            8137,
+            8123
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 18.4927339553833,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/shallow_m0064_r0/prior-starts/batch_20",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 18.499156713485718
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8116,
+            8129,
+            8151,
+            8140
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            2,
+            1,
+            2,
+            1
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 18.226020097732544,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/shallow_m0064_r0/prior-starts/batch_24",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 18.233240604400635
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8144,
+            8127,
+            8148,
+            8139
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            2,
+            2,
+            1,
+            1
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 18.298147678375244,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/shallow_m0064_r0/prior-starts/batch_28",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 18.303834199905396
+        }
+      }
+    ],
+    "horizon": 8192,
+    "n_starts": 32,
+    "reference": "independent elliptical-slice reference means are not in this short run"
+  },
+  "sigma": 1.0,
+  "task": {
+    "arch": "shallow",
+    "id": "shallow_m0064_r0",
+    "kind": "baseline",
+    "m": 64,
+    "rep": 0
+  }
+}

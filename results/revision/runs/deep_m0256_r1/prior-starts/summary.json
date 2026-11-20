@@ -1,0 +1,478 @@
+{
+  "device": "cuda:0",
+  "h": 0.01,
+  "hardware": {
+    "cuda_available": true,
+    "device": "cuda:0",
+    "dtype": "float64",
+    "gpu": "NVIDIA A10",
+    "platform": "Linux-5.14.0-687.65.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "processor": "x86_64",
+    "python": "3.9.25",
+    "threads": 4,
+    "torch": "2.8.0+cu128"
+  },
+  "prior_starts": {
+    "batches": [
+      {
+        "counters": {
+          "accepted": [
+            8110,
+            8111,
+            8106,
+            8124
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 26.478467226028442,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/deep_m0256_r1/prior-starts/batch_0",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 26.500069856643677
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8107,
+            8117,
+            8110,
+            8115
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            2,
+            1,
+            2,
+            2
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 26.372697353363037,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/deep_m0256_r1/prior-starts/batch_4",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 26.392462015151978
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8106,
+            8096,
+            8127,
+            8116
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            1,
+            2,
+            1,
+            1
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 26.608043909072876,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/deep_m0256_r1/prior-starts/batch_8",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 26.625742435455322
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8116,
+            8101,
+            8103,
+            8111
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            2,
+            2,
+            1,
+            2
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 26.465208768844604,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/deep_m0256_r1/prior-starts/batch_12",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 26.483626127243042
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8098,
+            8090,
+            8113,
+            8120
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 26.516653537750244,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/deep_m0256_r1/prior-starts/batch_16",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 26.53572916984558
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8113,
+            8127,
+            8118,
+            8111
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            2,
+            1,
+            2,
+            1
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 26.618236780166626,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/deep_m0256_r1/prior-starts/batch_20",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 26.637073278427124
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8096,
+            8109,
+            8107,
+            8114
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 26.551297426223755,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/deep_m0256_r1/prior-starts/batch_24",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 26.57048773765564
+        }
+      },
+      {
+        "counters": {
+          "accepted": [
+            8116,
+            8123,
+            8120,
+            8123
+          ],
+          "evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "grad_evals": [
+            8193,
+            8193,
+            8193,
+            8193
+          ],
+          "max_streak": [
+            2,
+            2,
+            2,
+            1
+          ],
+          "numerical_failures": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "streak": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "transitions": [
+            8192,
+            8192,
+            8192,
+            8192
+          ]
+        },
+        "elapsed_s": 26.616936445236206,
+        "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/deep_m0256_r1/prior-starts/batch_28",
+        "record": {
+          "archive_stride": 0,
+          "n": 8192,
+          "partial": false,
+          "planned": 8192,
+          "stop_reason": null,
+          "wall_s": 26.636027336120605
+        }
+      }
+    ],
+    "horizon": 8192,
+    "n_starts": 32,
+    "reference": "independent elliptical-slice reference means are not in this short run"
+  },
+  "sigma": 1.0,
+  "task": {
+    "arch": "deep",
+    "id": "deep_m0256_r1",
+    "kind": "baseline",
+    "m": 256,
+    "rep": 1
+  }
+}

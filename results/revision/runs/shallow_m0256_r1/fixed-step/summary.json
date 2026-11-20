@@ -1,0 +1,148 @@
+{
+  "device": "cuda:0",
+  "h": 0.01,
+  "hardware": {
+    "cuda_available": true,
+    "device": "cuda:0",
+    "dtype": "float64",
+    "gpu": "NVIDIA A10",
+    "platform": "Linux-5.14.0-687.65.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "processor": "x86_64",
+    "python": "3.9.25",
+    "threads": 4,
+    "torch": "2.8.0+cu128"
+  },
+  "loss_rate": {
+    "ess_bulk": 294.0299167400798,
+    "ess_mean": 279.3360666816578,
+    "ess_per_second": 3.915469606907064,
+    "ess_per_transition": 0.008524660238087702,
+    "ess_tail": 625.4500648059894,
+    "estimator": "geyer_initial_positive_monotone",
+    "mcse": 0.18416219522745605,
+    "mean": 56.44484491227362,
+    "n_total": 32768,
+    "rhat": 1.0147847548009306,
+    "sd": 4.7337724629608555,
+    "seconds_per_effective_draw": 0.2553972065664755,
+    "status": "ok",
+    "tau": 117.30672801856153,
+    "truncation_lag": 606
+  },
+  "run": {
+    "counters": {
+      "accepted": [
+        8144,
+        8141,
+        8148,
+        8144
+      ],
+      "evals": [
+        8193,
+        8193,
+        8193,
+        8193
+      ],
+      "grad_evals": [
+        8193,
+        8193,
+        8193,
+        8193
+      ],
+      "max_streak": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "numerical_failures": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "streak": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transitions": [
+        8192,
+        8192,
+        8192,
+        8192
+      ]
+    },
+    "elapsed_s": 18.866056442260742,
+    "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/shallow_m0256_r1/fixed-step/fixed",
+    "record": {
+      "archive_stride": 0,
+      "n": 8192,
+      "partial": false,
+      "planned": 8192,
+      "stop_reason": null,
+      "wall_s": 18.873597860336304
+    }
+  },
+  "sigma": 1.0,
+  "task": {
+    "arch": "shallow",
+    "id": "shallow_m0256_r1",
+    "kind": "baseline",
+    "m": 256,
+    "rep": 1
+  },
+  "timing": {
+    "batch_chains": 4,
+    "blocks": [
+      {
+        "seconds": 1.1107074241153896,
+        "transitions": 512
+      },
+      {
+        "seconds": 1.1222765040583909,
+        "transitions": 512
+      },
+      {
+        "seconds": 1.1104834529105574,
+        "transitions": 512
+      },
+      {
+        "seconds": 1.1090501239523292,
+        "transitions": 512
+      },
+      {
+        "seconds": 1.1210489890072495,
+        "transitions": 512
+      }
+    ],
+    "chain_transitions_per_wall_second": 1837.2437129695638,
+    "convention": "wall seconds cover one joint step of batch_chains chains; chain_transitions_per_wall_second counts every chain; scalar logging is inside the timed step",
+    "doublings": 0,
+    "eta": 0.9900498337491681,
+    "h": 0.01,
+    "hardware": {
+      "cuda_available": true,
+      "device": "cuda:0",
+      "dtype": "float64",
+      "gpu": "NVIDIA A10",
+      "platform": "Linux-5.14.0-687.65.1.el9_8.x86_64-x86_64-with-glibc2.34",
+      "processor": "x86_64",
+      "python": "3.9.25",
+      "threads": 4,
+      "torch": "2.8.0+cu128"
+    },
+    "label": "replay-timed estimate",
+    "met_duration_rule": true,
+    "min_seconds": 1.1090501239523292,
+    "scalar_checksum": 0.0,
+    "scalar_logging": true,
+    "seconds_per_chain_transition": 0.0005442936029339762,
+    "seconds_per_joint_step": 0.002177174411735905,
+    "seconds_per_transition": 0.002177174411735905,
+    "total_seconds": 5.5735664940439165,
+    "total_transitions": 2560,
+    "transitions_per_block": 512
+  }
+}

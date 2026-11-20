@@ -1,0 +1,20 @@
+{
+  "L": 3,
+  "activation": "tanh",
+  "arch": "deep",
+  "campaign_id": "aistats_revision_v1",
+  "cell": "concentrated_deep_m0256_r0",
+  "chi": null,
+  "cutoff": 2.1,
+  "d": 32,
+  "hash_X": "2449868df43081469bfc9d9d31823e8d700f5951e18a2fb0a04abb0f0f1b4d3b",
+  "hash_y": "51ce491f61c98a9818eb84a9ffed2bdeca9fb531ecf11bff639cc087942fb116",
+  "kind": "concentrated",
+  "likelihood_scale": 1.0,
+  "m": 256,
+  "n": 256,
+  "p": 73984,
+  "rep": 0,
+  "sigma": 1.0,
+  "target_hash": "7634e92c80de9e5d5cdc58b9c42af5810a5a8b4e82258f565bcd90a06b7961e5"
+}

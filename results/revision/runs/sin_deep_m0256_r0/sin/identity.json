@@ -1,0 +1,20 @@
+{
+  "L": 3,
+  "activation": "sin",
+  "arch": "deep",
+  "campaign_id": "aistats_revision_v1",
+  "cell": "sin_deep_m0256_r0",
+  "chi": null,
+  "cutoff": 2.1,
+  "d": 32,
+  "hash_X": "e029bf2f952b1fb2207aad1bbb98c7ab5bc479ac08d13760b994b4033de77049",
+  "hash_y": "d17247acc888e88d32db084f9d39d45b76d1ec1f8a7d92975369c0ecd56b06f5",
+  "kind": "sin",
+  "likelihood_scale": 1.0,
+  "m": 256,
+  "n": 128,
+  "p": 73984,
+  "rep": 0,
+  "sigma": 1.0,
+  "target_hash": "6557e50380718fc2aaba3878b07954d407b5d9e692b687170d62f41eee79d4bb"
+}

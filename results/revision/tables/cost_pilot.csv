@@ -1,0 +1,2 @@
+narrow,wide,device,gpu,ess_per_second_ratio,decision,spans_break_even,cost_ratio,break_even,met_duration,seconds_per_transition_narrow,seconds_per_transition_wide
+deep_m0032_r0,deep_m0256_r0,cuda:0,NVIDIA A10,1.8216207242370537,wide,False,1.1354747541540302,2.068404344014955,True,0.002797243257009541,0.003176199099561927

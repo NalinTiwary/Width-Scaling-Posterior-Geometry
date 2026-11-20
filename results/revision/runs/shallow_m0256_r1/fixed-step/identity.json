@@ -1,0 +1,20 @@
+{
+  "L": 2,
+  "activation": "tanh",
+  "arch": "shallow",
+  "campaign_id": "aistats_revision_v1",
+  "cell": "shallow_m0256_r1",
+  "chi": 8.365186026535117,
+  "cutoff": null,
+  "d": 32,
+  "hash_X": "c8706cc84318ccb31b84133bf2b1bdea53526065ea51c5babbeb109b13f8f6ac",
+  "hash_y": "07085e1c37c16a6c435464ac7a64192a576fe34d608fb9fd4eb1e8bed485b422",
+  "kind": "baseline",
+  "likelihood_scale": 1.0,
+  "m": 256,
+  "n": 128,
+  "p": 8448,
+  "rep": 1,
+  "sigma": 1.0,
+  "target_hash": "f7f8de17711b62953142845ccc7abf44e6d0c990fa875d23028b5c7a8de0bf22"
+}

@@ -1,0 +1,80 @@
+{
+  "device": "cuda:0",
+  "h": 0.01,
+  "hardware": {
+    "cuda_available": true,
+    "device": "cuda:0",
+    "dtype": "float64",
+    "gpu": "NVIDIA A10",
+    "platform": "Linux-5.14.0-687.65.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "processor": "x86_64",
+    "python": "3.9.25",
+    "threads": 4,
+    "torch": "2.8.0+cu128"
+  },
+  "run": {
+    "counters": {
+      "accepted": [
+        8158,
+        8173,
+        8160,
+        8163
+      ],
+      "evals": [
+        8193,
+        8193,
+        8193,
+        8193
+      ],
+      "grad_evals": [
+        8193,
+        8193,
+        8193,
+        8193
+      ],
+      "max_streak": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "numerical_failures": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "streak": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "transitions": [
+        8192,
+        8192,
+        8192,
+        8192
+      ]
+    },
+    "elapsed_s": 20.616580963134766,
+    "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/geometry_r0.8_m4096_r0/geometry-pilot/fixed",
+    "record": {
+      "archive_stride": 0,
+      "n": 8192,
+      "partial": false,
+      "planned": 8192,
+      "stop_reason": null,
+      "wall_s": 20.65078043937683
+    }
+  },
+  "sigma": 1.0,
+  "task": {
+    "arch": "shallow",
+    "id": "geometry_r0.8_m4096_r0",
+    "kind": "geometry",
+    "m": 4096,
+    "r": 0.8,
+    "rep": 0
+  }
+}

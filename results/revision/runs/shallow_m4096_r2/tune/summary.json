@@ -1,0 +1,90 @@
+{
+  "device": "cuda:0",
+  "h": 0.01,
+  "hardware": {
+    "cuda_available": true,
+    "device": "cuda:0",
+    "dtype": "float64",
+    "gpu": "NVIDIA A10",
+    "platform": "Linux-5.14.0-687.65.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "processor": "x86_64",
+    "python": "3.9.25",
+    "threads": 4,
+    "torch": "2.8.0+cu128"
+  },
+  "sigma": 1.0,
+  "task": {
+    "arch": "shallow",
+    "id": "shallow_m4096_r2",
+    "kind": "baseline",
+    "m": 4096,
+    "rep": 2
+  },
+  "tuning": {
+    "note": "smoke and short pilots score ESS/transition because a one-second block is a cluster measurement",
+    "scores_ess_per_transition": [
+      [
+        0.005,
+        0.00949680754087307
+      ],
+      [
+        0.01,
+        0.016480597962441536
+      ],
+      [
+        0.02,
+        0.03352403454510286
+      ],
+      [
+        0.04,
+        0.0627465833656326
+      ],
+      [
+        0.08,
+        0.10556696350617246
+      ],
+      [
+        0.16,
+        0.171873139519994
+      ]
+    ],
+    "selection": {
+      "boundary": true,
+      "failures": [],
+      "grid": [
+        [
+          0.005,
+          0.00949680754087307
+        ],
+        [
+          0.01,
+          0.016480597962441536
+        ],
+        [
+          0.02,
+          0.03352403454510286
+        ],
+        [
+          0.04,
+          0.0627465833656326
+        ],
+        [
+          0.08,
+          0.10556696350617246
+        ],
+        [
+          0.16,
+          0.171873139519994
+        ]
+      ],
+      "score": 0.171873139519994,
+      "status": "boundary",
+      "suggest_h": 0.32,
+      "tie_rule": 0.05,
+      "tied": [
+        0.16
+      ],
+      "winner": 0.16
+    }
+  }
+}

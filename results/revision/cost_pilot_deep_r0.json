@@ -1,0 +1,100 @@
+{
+  "blocks_per_cell": 5,
+  "break_even_ess_ratio": 2.068404344014955,
+  "cells": {
+    "deep_m0032_r0": {
+      "batch_chains": 4,
+      "block_seconds": [
+        1.4345292209181935,
+        1.4264539680443704,
+        1.4317854230757803,
+        1.4357316209934652,
+        1.4324425049126148
+      ],
+      "chain_transitions": 10240,
+      "chain_transitions_per_wall_second": 1429.9793162344754,
+      "doublings": 0,
+      "elapsed_seconds": 7.160942737944424,
+      "joint_transitions": 2560,
+      "min_block_seconds": 1.4264539680443704,
+      "scalar_checksum": 0.0,
+      "scalar_logging": true,
+      "seconds_per_chain_transition": 0.0006993108142523852,
+      "seconds_per_joint_step": 0.002797243257009541,
+      "transitions_per_block": 512
+    },
+    "deep_m0256_r0": {
+      "batch_chains": 4,
+      "block_seconds": [
+        1.6277197198942304,
+        1.6226865649223328,
+        1.627527047879994,
+        1.6264260991010815,
+        1.626710263080895
+      ],
+      "chain_transitions": 10240,
+      "chain_transitions_per_wall_second": 1259.3668956557838,
+      "doublings": 0,
+      "elapsed_seconds": 8.131069694878533,
+      "joint_transitions": 2560,
+      "min_block_seconds": 1.6226865649223328,
+      "scalar_checksum": 0.0,
+      "scalar_logging": true,
+      "seconds_per_chain_transition": 0.0007940497748904818,
+      "seconds_per_joint_step": 0.003176199099561927,
+      "transitions_per_block": 512
+    }
+  },
+  "comparison": {
+    "cost_ratio_high": 1.1410951606982382,
+    "cost_ratio_low": 1.13021580161305,
+    "cost_ratio_wide_over_narrow": 1.1354747541540302,
+    "decision": "wide",
+    "duration_rule": "every measured block lasted at least one second",
+    "ess_per_second_ratio": 1.8216207242370537,
+    "ess_per_second_ratio_high": 1.8300968196187997,
+    "ess_per_second_ratio_low": 1.8126484234227183,
+    "ess_ratio": 2.068404344014955,
+    "favors_wide": true,
+    "narrow_elapsed_seconds": 7.160942737944424,
+    "narrow_transitions": 2560,
+    "seconds_per_transition_narrow": 0.002797243257009541,
+    "seconds_per_transition_wide": 0.003176199099561927,
+    "spans_break_even": false,
+    "wide_elapsed_seconds": 8.131069694878533,
+    "wide_transitions": 2560
+  },
+  "convention": "widths alternate on one device; each width keeps its own synchronized elapsed time, transition count, and block length; a joint step advances every chain and wall time is not multiplied by the chain count; scalar logging is inside the measured block; length-finding probes are excluded",
+  "cost_ratio_wide_over_narrow": 1.1354747541540302,
+  "device": "cuda:0",
+  "h": 0.01,
+  "h_over_sigma2": 0.01,
+  "hardware": {
+    "cuda_available": true,
+    "device": "cuda:0",
+    "dtype": "float64",
+    "gpu": "NVIDIA A10",
+    "platform": "Linux-5.14.0-687.65.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "processor": "x86_64",
+    "python": "3.9.25",
+    "threads": 4,
+    "torch": "2.8.0+cu128"
+  },
+  "met_duration_rule": true,
+  "min_seconds": 1.0,
+  "narrow": "deep_m0032_r0",
+  "order": [
+    "deep_m0032_r0",
+    "deep_m0256_r0",
+    "deep_m0032_r0",
+    "deep_m0256_r0",
+    "deep_m0032_r0",
+    "deep_m0256_r0",
+    "deep_m0032_r0",
+    "deep_m0256_r0",
+    "deep_m0032_r0",
+    "deep_m0256_r0"
+  ],
+  "wide": "deep_m0256_r0",
+  "wide_wins_on_ess_per_second": true
+}

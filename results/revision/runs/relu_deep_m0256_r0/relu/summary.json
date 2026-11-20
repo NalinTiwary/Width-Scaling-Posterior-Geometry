@@ -1,0 +1,79 @@
+{
+  "device": "cuda:0",
+  "h": 0.01,
+  "hardware": {
+    "cuda_available": true,
+    "device": "cuda:0",
+    "dtype": "float64",
+    "gpu": "NVIDIA A10",
+    "platform": "Linux-5.14.0-687.65.1.el9_8.x86_64-x86_64-with-glibc2.34",
+    "processor": "x86_64",
+    "python": "3.9.25",
+    "threads": 4,
+    "torch": "2.8.0+cu128"
+  },
+  "run": {
+    "counters": {
+      "accepted": [
+        7659,
+        7704,
+        7682,
+        7649
+      ],
+      "evals": [
+        8193,
+        8193,
+        8193,
+        8193
+      ],
+      "grad_evals": [
+        8193,
+        8193,
+        8193,
+        8193
+      ],
+      "max_streak": [
+        4,
+        3,
+        3,
+        3
+      ],
+      "numerical_failures": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "streak": [
+        0,
+        0,
+        1,
+        0
+      ],
+      "transitions": [
+        8192,
+        8192,
+        8192,
+        8192
+      ]
+    },
+    "elapsed_s": 28.208876848220825,
+    "path": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/runs/relu_deep_m0256_r0/relu/fixed",
+    "record": {
+      "archive_stride": 0,
+      "n": 8192,
+      "partial": false,
+      "planned": 8192,
+      "stop_reason": null,
+      "wall_s": 28.229865789413452
+    }
+  },
+  "sigma": 1.0,
+  "task": {
+    "arch": "deep",
+    "id": "relu_deep_m0256_r0",
+    "kind": "relu",
+    "m": 256,
+    "rep": 0
+  }
+}

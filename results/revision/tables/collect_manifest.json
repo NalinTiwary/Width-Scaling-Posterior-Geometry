@@ -1,0 +1,10 @@
+{
+  "runs": 68,
+  "missing": [],
+  "partial": [],
+  "fixed_step_timing": 24,
+  "tuning_rows": 72,
+  "prior_start_batches": 96,
+  "cost_pilot": true,
+  "tables": "/scratch/nalint2/Width-Scaling-Posterior-Geometry/results/revision/tables"
+}
