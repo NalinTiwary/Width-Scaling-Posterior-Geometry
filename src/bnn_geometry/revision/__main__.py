@@ -15,6 +15,7 @@ import json
 
 from . import config as RC
 from .archive import run_archive
+from .collect import collect_revision
 from .prediction import rebuild_test_prob_0
 from .runner import cost_pilot, login_preflight, run_task, smoke_suite, tasks_for
 
@@ -22,7 +23,7 @@ from .runner import cost_pilot, login_preflight, run_task, smoke_suite, tasks_fo
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="AISTATS revision experiments")
     sub = parser.add_subparsers(dest="cmd", required=True)
-    for name in ("archive", "smoke", "tasks", "run", "cost-pilot", "prediction-acf", "preflight"):
+    for name in ("archive", "smoke", "tasks", "run", "cost-pilot", "prediction-acf", "preflight", "collect"):
         p = sub.add_parser(name)
         p.add_argument("--config", required=True)
         if name == "preflight":
@@ -62,6 +63,16 @@ def main(argv: list[str] | None = None) -> int:
         if report.get("traceback"):
             print(report["traceback"])
         return 0 if report["status"] in ("ok", "raw_series_absent") else 1
+    if args.cmd == "collect":
+        manifest = collect_revision(cfg)
+        print(f"collect status={manifest['status']} runs={manifest['runs']} "
+              f"missing={len(manifest['missing'])} partial={len(manifest['partial'])} "
+              f"tables={manifest['tables']}")
+        for label in manifest["missing"][:20]:
+            print(f"missing {label}")
+        for label in manifest["partial"][:20]:
+            print(f"partial {label}")
+        return 0 if manifest["status"] == "ok" else 1
     if args.cmd == "archive":
         manifest = run_archive(cfg)
         print(json.dumps(manifest, indent=2))

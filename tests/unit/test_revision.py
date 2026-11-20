@@ -29,6 +29,64 @@ def _smoke_cfg(tmp_path: Path) -> dict:
     return cfg
 
 
+def test_collect_revision_flattens_summaries_and_reports_missing(tmp_path):
+    import csv
+    import json
+
+    from bnn_geometry.revision.collect import collect_revision
+
+    cfg = yaml.safe_load((ROOT / "configs/revision.yaml").read_text())
+    cfg["output_root"] = str(tmp_path)
+    fixed = tmp_path / "runs" / "shallow_m0064_r0" / "fixed-step"
+    fixed.mkdir(parents=True)
+    (fixed / "summary.json").write_text(json.dumps({
+        "task": {"id": "shallow_m0064_r0", "arch": "shallow", "m": 64, "rep": 0, "kind": "baseline"},
+        "h": 0.01, "sigma": 1.0, "device": "cuda:0", "hardware": {"gpu": "NVIDIA A10"},
+        "run": {"record": {"n": 8192, "planned": 8192, "partial": False, "stop_reason": None},
+                "counters": {"accepted": [8000, 8100], "transitions": [8192, 8192]}, "elapsed_s": 12.5},
+        "timing": {"seconds_per_joint_step": 0.001, "seconds_per_chain_transition": 0.00025,
+                   "chain_transitions_per_wall_second": 4000.0, "transitions_per_block": 512,
+                   "doublings": 1, "total_seconds": 5.0, "total_transitions": 5120,
+                   "min_seconds": 1.1, "met_duration_rule": True, "batch_chains": 4},
+        "loss_rate": {"status": "ok", "ess_bulk": 100.0, "ess_tail": 80.0, "ess_mean": 90.0,
+                      "ess_per_transition": 0.01, "ess_per_second": 10.0, "tau": 90.0, "rhat": 1.01,
+                      "n_total": 16384},
+    }))
+    tune = tmp_path / "runs" / "shallow_m0064_r0" / "tune"
+    tune.mkdir()
+    (tune / "summary.json").write_text(json.dumps({
+        "task": {"id": "shallow_m0064_r0", "arch": "shallow", "m": 64, "rep": 0, "kind": "baseline"},
+        "tuning": {"scores_ess_per_transition": [[0.01, 1.5], [0.02, 2.0]],
+                   "selection": {"winner": 0.02, "score": 2.0, "status": "boundary", "boundary": True}},
+    }))
+    (tmp_path / "cost_pilot_deep_r0.json").write_text(json.dumps({
+        "narrow": "deep_m0032_r0", "wide": "deep_m0256_r0", "device": "cuda:0",
+        "hardware": {"gpu": "NVIDIA A10"}, "cost_ratio_wide_over_narrow": 1.135475,
+        "break_even_ess_ratio": 2.068404, "met_duration_rule": True,
+        "comparison": {"ess_per_second_ratio": 1.821621, "decision": "wide", "spans_break_even": False,
+                       "seconds_per_transition_narrow": 0.001, "seconds_per_transition_wide": 0.001135475},
+    }))
+    manifest = collect_revision(cfg)
+    assert manifest["status"] == "incomplete"
+    assert manifest["runs"] == 2
+    assert "cost-pilot/deep_r0" not in manifest["missing"]
+    with (tmp_path / "tables" / "runs.csv").open(newline="") as handle:
+        rows = list(csv.DictReader(handle))
+    fixed_row = next(row for row in rows if row["stage"] == "fixed-step")
+    assert fixed_row["n"] == "8192"
+    assert fixed_row["partial"] == "False"
+    assert float(fixed_row["accepted_fraction"]) == pytest.approx((8000 + 8100) / (8192 * 2))
+    assert float(fixed_row["ess_per_second"]) == pytest.approx(10.0)
+    with (tmp_path / "tables" / "tuning.csv").open(newline="") as handle:
+        scores = list(csv.DictReader(handle))
+    assert [float(row["h_over_sigma2"]) for row in scores] == [0.01, 0.02]
+    assert scores[1]["winner"] == "0.02"
+    with (tmp_path / "tables" / "cost_pilot.csv").open(newline="") as handle:
+        cost = next(csv.DictReader(handle))
+    assert cost["decision"] == "wide"
+    assert float(cost["ess_per_second_ratio"]) == pytest.approx(1.821621)
+
+
 def test_n4_fixture_matches_quoted_constants():
     row = bounds.n4_fixture()
     assert row["c0"] == pytest.approx(2.357361, abs=5e-7)
