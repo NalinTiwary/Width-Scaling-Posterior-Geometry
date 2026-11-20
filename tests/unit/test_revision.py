@@ -367,9 +367,27 @@ def test_interleaved_cost_keeps_four_chains_and_alternates(tmp_path):
     report = interleaved_cost([narrow, wide], transitions=4, blocks=2, min_seconds=0.0)
     assert report["order"] == [narrow["id"], "wide", narrow["id"], "wide"]
     assert report["cells"][narrow["id"]]["batch_chains"] == 4
+    assert report["cells"][narrow["id"]]["joint_transitions"] == 8
+    assert report["cells"]["wide"]["joint_transitions"] == 8
+    assert report["cells"]["wide"]["elapsed_seconds"] > 0
     assert report["cells"]["wide"]["scalar_logging"] is True
     assert report["cost_ratio_wide_over_narrow"] > 0
     assert math.isfinite(report["cells"][narrow["id"]]["scalar_checksum"])
+
+
+def test_width_comparison_uses_each_blocks_own_length_and_flags_overlap():
+    from bnn_geometry.revision.efficiency import timed_width_comparison
+
+    clear = timed_width_comparison([(1.0, 100), (1.0, 100)], [(1.2, 50), (1.2, 50)], 2.068404)
+    assert clear["seconds_per_transition_wide"] == pytest.approx(0.024)
+    assert clear["ess_per_second_ratio"] == pytest.approx(2.068404 / 2.4)
+    assert clear["decision"] == "narrow"
+    assert clear["spans_break_even"] is False
+
+    overlap = timed_width_comparison([(1.0, 100), (1.0, 100)], [(1.5, 100), (3.0, 100)], 2.068404)
+    assert overlap["cost_ratio_low"] < 2.068404 < overlap["cost_ratio_high"]
+    assert overlap["decision"] == "inconclusive"
+    assert overlap["favors_wide"] is None
 
 
 def test_interruption_resumes_without_a_gap(tmp_path):

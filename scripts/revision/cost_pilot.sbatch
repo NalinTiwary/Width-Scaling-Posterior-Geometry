@@ -14,9 +14,11 @@
 #SBATCH --output=logs/revision/%x_%j.out
 #SBATCH --error=logs/revision/%x_%j.err
 #
-# One GPU. Deep widths 32 and 256, replicate 0, interleaved.
-# Four chains, scalar logging inside each step, synchronized blocks of at least one second.
-# Compare the wide/narrow joint-step cost ratio with deep replicate 0 break-even 2.0684.
+# One GPU. Deep widths 32 and 256, replicate 0, alternating.
+# Four chains, scalar logging inside each step. Each width keeps its own block length,
+# synchronized elapsed time, and transition count. Blocks last at least one second.
+# ess_per_second_ratio = 2.068404 / (wide seconds per transition / narrow seconds per transition).
+# A value above one favors width 256. A block-rate range that contains 2.068404 is inconclusive.
 
 source "$(dirname "$0")/common.sh" 2>/dev/null || source scripts/revision/common.sh
 

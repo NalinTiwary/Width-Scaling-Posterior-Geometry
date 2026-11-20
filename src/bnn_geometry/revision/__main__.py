@@ -5,6 +5,7 @@
     python -m bnn_geometry.revision run --config configs/revision.yaml --stage fixed-step --task-id 0
     python -m bnn_geometry.revision tasks --config configs/revision.yaml --stage tune
     python -m bnn_geometry.revision cost-pilot --config configs/revision.yaml --device cuda
+    python -m bnn_geometry.revision prediction-acf --config configs/revision.yaml
 """
 
 from __future__ import annotations
@@ -14,13 +15,14 @@ import json
 
 from . import config as RC
 from .archive import run_archive
+from .prediction import rebuild_test_prob_0
 from .runner import cost_pilot, run_task, smoke_suite, tasks_for
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="AISTATS revision experiments")
     sub = parser.add_subparsers(dest="cmd", required=True)
-    for name in ("archive", "smoke", "tasks", "run", "cost-pilot"):
+    for name in ("archive", "smoke", "tasks", "run", "cost-pilot", "prediction-acf"):
         p = sub.add_parser(name)
         p.add_argument("--config", required=True)
         if name in ("tasks", "run"):
@@ -34,11 +36,17 @@ def main(argv: list[str] | None = None) -> int:
     cfg = RC.load(args.config)
     if args.cmd == "cost-pilot":
         report = cost_pilot(cfg, device=args.device)
-        ratio = report["cost_ratio_wide_over_narrow"]
-        print(f"cost_ratio={ratio:.6f} break_even={report['break_even_ess_ratio']:.6f} "
-              f"wide_wins_on_ess_per_second={report['wide_wins_on_ess_per_second']} "
+        compared = report["comparison"]
+        print(f"ess_per_second_ratio={compared['ess_per_second_ratio']:.6f} "
+              f"decision={compared['decision']} spans_break_even={compared['spans_break_even']} "
+              f"cost_ratio={report['cost_ratio_wide_over_narrow']:.6f} "
+              f"break_even={report['break_even_ess_ratio']:.6f} "
               f"met_duration={report['met_duration_rule']} path={report['path']}")
         return 0
+    if args.cmd == "prediction-acf":
+        report = rebuild_test_prob_0(cfg)
+        print(f"prediction_acf status={report['status']} path={report['path']}")
+        return 0 if report["status"] in ("ok", "raw_series_absent") else 1
     if args.cmd == "archive":
         manifest = run_archive(cfg)
         print(json.dumps(manifest, indent=2))

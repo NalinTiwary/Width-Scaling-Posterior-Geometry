@@ -39,6 +39,66 @@ def wins_on_time(cost_ratio: float, ess_ratio: float) -> Optional[bool]:
     return bool(cost_ratio < ess_ratio)
 
 
+def timed_width_comparison(narrow_blocks: Sequence[tuple[float, int]], wide_blocks: Sequence[tuple[float, int]],
+                           ess_ratio: float) -> dict[str, Any]:
+    """Compare two widths from their own synchronized blocks.
+
+    Each block is ``(elapsed_seconds, transitions)``. Seconds per transition is the total
+    elapsed time divided by the total transition count, so the two widths may use different
+    block lengths. The reported ratio is
+
+        (wide training-loss bulk ESS/s) / (narrow training-loss bulk ESS/s)
+        = ess_ratio / (wide seconds per transition / narrow seconds per transition).
+
+    A value above one favors the wide model. The comparison is inconclusive when the range
+    of block rates contains the break-even cost ratio.
+    """
+    def rates(blocks: Sequence[tuple[float, int]]) -> tuple[np.ndarray, float, float, int]:
+        if len(blocks) == 0:
+            raise ValueError("a width needs at least one timed block")
+        seconds = np.asarray([float(b[0]) for b in blocks], dtype=np.float64)
+        counts = np.asarray([int(b[1]) for b in blocks], dtype=np.float64)
+        if np.any(counts <= 0) or np.any(seconds < 0) or not np.isfinite(seconds).all():
+            raise ValueError("block times and transition counts must be finite and positive")
+        per = seconds / counts
+        return per, float(seconds.sum()), int(counts.sum()), float(seconds.sum() / counts.sum())
+
+    narrow_rates, narrow_seconds, narrow_count, narrow_spt = rates(narrow_blocks)
+    wide_rates, wide_seconds, wide_count, wide_spt = rates(wide_blocks)
+    cost = wide_spt / narrow_spt
+    if not np.isfinite(ess_ratio) or ess_ratio <= 0:
+        raise ValueError("ess_ratio must be a positive finite break-even threshold")
+    cost_low = float(wide_rates.min() / narrow_rates.max())
+    cost_high = float(wide_rates.max() / narrow_rates.min())
+    spans = bool(cost_low <= ess_ratio <= cost_high)
+    ratio = float(ess_ratio / cost)
+    if spans or not np.isfinite(ratio):
+        decision = "inconclusive"
+        favors_wide = None
+    elif ratio > 1.0:
+        decision, favors_wide = "wide", True
+    else:
+        decision, favors_wide = "narrow", False
+    return {
+        "narrow_elapsed_seconds": narrow_seconds,
+        "narrow_transitions": narrow_count,
+        "wide_elapsed_seconds": wide_seconds,
+        "wide_transitions": wide_count,
+        "seconds_per_transition_narrow": narrow_spt,
+        "seconds_per_transition_wide": wide_spt,
+        "cost_ratio_wide_over_narrow": float(cost),
+        "cost_ratio_low": cost_low,
+        "cost_ratio_high": cost_high,
+        "ess_ratio": float(ess_ratio),
+        "ess_per_second_ratio": ratio,
+        "ess_per_second_ratio_low": float(ess_ratio / cost_high),
+        "ess_per_second_ratio_high": float(ess_ratio / cost_low),
+        "spans_break_even": spans,
+        "decision": decision,
+        "favors_wide": favors_wide,
+    }
+
+
 def chain_centered_acf(values: np.ndarray, max_lag: int) -> np.ndarray:
     """rho(k) = sum_{t<N-k} (g_t-bar)(g_{t+k}-bar) / sum_{t<N} (g_t-bar)^2."""
     return acf_1d(np.asarray(values, dtype=np.float64), max_lag)

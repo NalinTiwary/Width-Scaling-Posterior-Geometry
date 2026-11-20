@@ -28,7 +28,7 @@ from ..probes import Observables, ProbeSpec
 from ..randomness import ChainRNG, numpy_rng, stream_seed
 from ..storage import StorageError, atomic_write_json, clean_json, read_trace_file, segment_path
 from . import config as RC
-from .efficiency import scalar_rate, select_step, warmup_steps
+from .efficiency import scalar_rate, select_step, timed_width_comparison, warmup_steps
 from .geometry import design_at_r, draw_latents, probe_train_indices
 from .gram import gram_spectrum
 from .timing import hardware_record, synchronize, time_blocks
@@ -281,12 +281,23 @@ def kernel_timing(built: dict[str, Any], cfg: dict[str, Any], h: float, *, trans
     return timed
 
 
+def _timed_block(arm: dict[str, Any], transitions: int) -> float:
+    synchronize(arm["device"])
+    t0 = time.perf_counter()
+    for _ in range(int(transitions)):
+        arm["step"]()
+    synchronize(arm["device"])
+    return time.perf_counter() - t0
+
+
 def interleaved_cost(arms: list[dict[str, Any]], *, transitions: int, blocks: int, min_seconds: float,
                      max_doublings: int = 8) -> dict[str, Any]:
-    """Time cells in interleaved order so both widths share one device and one clock.
+    """Alternate two widths on one device, with a separate clock and length for each.
 
-    The first arm is the narrow cell and the second is the wide cell. A block that is shorter
-    than min_seconds is discarded and the block length doubles, up to max_doublings.
+    The first arm is the narrow cell and the second is the wide cell. Length-finding probes
+    alternate as well and are not included in the reported elapsed time. A width whose probe
+    is shorter than min_seconds doubles its own block length. The measured blocks then
+    alternate, each width at its own length.
     """
     if len(arms) != 2:
         raise ValueError("the cost pilot compares exactly two cells")
@@ -294,50 +305,58 @@ def interleaved_cost(arms: list[dict[str, Any]], *, transitions: int, blocks: in
         raise ValueError("both cells must use the same device and the same chain batch")
     for arm in arms:
         arm["warmup"](4)
-    length = int(transitions)
-    doublings = 0
-    records: dict[str, list[float]] = {}
+    lengths = {arm["id"]: int(transitions) for arm in arms}
+    doublings = {arm["id"]: 0 for arm in arms}
+    ready = {arm["id"]: min_seconds <= 0 for arm in arms}
+    while not all(ready.values()):
+        for arm in arms:
+            if ready[arm["id"]]:
+                continue
+            elapsed = _timed_block(arm, lengths[arm["id"]])
+            if elapsed >= min_seconds or doublings[arm["id"]] >= max_doublings:
+                ready[arm["id"]] = True
+            else:
+                lengths[arm["id"]] *= 2
+                doublings[arm["id"]] += 1
+    records: dict[str, list[dict[str, float]]] = {arm["id"]: [] for arm in arms}
     order: list[str] = []
-    while True:
-        records = {arm["id"]: [] for arm in arms}
-        order = []
-        for _ in range(blocks):
-            for arm in arms:
-                synchronize(arm["device"])
-                t0 = time.perf_counter()
-                for _s in range(length):
-                    arm["step"]()
-                synchronize(arm["device"])
-                records[arm["id"]].append(time.perf_counter() - t0)
-                order.append(arm["id"])
-        short = min_seconds > 0 and any(min(v) < min_seconds for v in records.values())
-        if not short or doublings >= max_doublings:
-            break
-        length *= 2
-        doublings += 1
+    for _ in range(blocks):
+        for arm in arms:
+            elapsed = _timed_block(arm, lengths[arm["id"]])
+            records[arm["id"]].append({"seconds": elapsed, "transitions": lengths[arm["id"]]})
+            order.append(arm["id"])
     cells = {}
     for arm in arms:
-        secs = records[arm["id"]]
-        joint = float(sum(secs)) / (length * len(secs))
+        taken = records[arm["id"]]
+        elapsed_s = float(sum(item["seconds"] for item in taken))
+        joint_n = int(sum(item["transitions"] for item in taken))
+        joint = elapsed_s / joint_n
         cells[arm["id"]] = {
-            "batch_chains": arm["batch"], "scalar_logging": True, "block_seconds": secs,
-            "transitions_per_block": length, "seconds_per_joint_step": joint,
+            "batch_chains": arm["batch"], "scalar_logging": True,
+            "block_seconds": [item["seconds"] for item in taken],
+            "transitions_per_block": lengths[arm["id"]],
+            "doublings": doublings[arm["id"]],
+            "elapsed_seconds": elapsed_s,
+            "joint_transitions": joint_n,
+            "chain_transitions": joint_n * arm["batch"],
+            "seconds_per_joint_step": joint,
             "seconds_per_chain_transition": joint / arm["batch"],
             "chain_transitions_per_wall_second": arm["batch"] / joint,
-            "min_block_seconds": float(min(secs)),
+            "min_block_seconds": float(min(item["seconds"] for item in taken)),
             "scalar_checksum": float(arm["checksum"].detach().cpu()),
         }
     narrow, wide = arms[0]["id"], arms[1]["id"]
     return {
-        "order": order, "doublings": doublings, "transitions_per_block": length,
-        "blocks_per_cell": blocks, "min_seconds": min_seconds,
+        "order": order, "blocks_per_cell": blocks, "min_seconds": min_seconds,
         "met_duration_rule": bool(min_seconds <= 0 or all(
-            c["min_block_seconds"] >= min_seconds for c in cells.values())),
+            cell["min_block_seconds"] >= min_seconds for cell in cells.values())),
         "cells": cells, "narrow": narrow, "wide": wide,
-        "cost_ratio_wide_over_narrow": cells[wide]["seconds_per_joint_step"] / cells[narrow]["seconds_per_joint_step"],
-        "convention": ("each reported block is one synchronized run of joint steps on one device; "
-                       "a joint step advances every chain; wall time is not multiplied by the chain count; "
-                       "scalar logging is inside the block; widths alternate within each block"),
+        "cost_ratio_wide_over_narrow": (cells[wide]["seconds_per_joint_step"]
+                                        / cells[narrow]["seconds_per_joint_step"]),
+        "convention": ("widths alternate on one device; each width keeps its own synchronized "
+                       "elapsed time, transition count, and block length; a joint step advances "
+                       "every chain and wall time is not multiplied by the chain count; "
+                       "scalar logging is inside the measured block; length-finding probes are excluded"),
         "hardware": hardware_record(arms[0]["device"]),
     }
 
@@ -370,10 +389,25 @@ def cost_pilot(cfg: dict[str, Any], *, device: Optional[str] = None) -> dict[str
         arms, transitions=int(timing["transitions"]), blocks=int(timing["blocks"]),
         min_seconds=float(timing["min_seconds"]))
     threshold = _ess_ratio(cfg, "deep", 0)
+    narrow_id, wide_id = report["narrow"], report["wide"]
+    comparison = timed_width_comparison(
+        [(item, report["cells"][narrow_id]["transitions_per_block"])
+         for item in report["cells"][narrow_id]["block_seconds"]],
+        [(item, report["cells"][wide_id]["transitions_per_block"])
+         for item in report["cells"][wide_id]["block_seconds"]],
+        threshold)
+    if not report["met_duration_rule"]:
+        comparison["decision"] = "inconclusive"
+        comparison["favors_wide"] = None
+        comparison["duration_rule"] = "a measured block was shorter than one second"
+    else:
+        comparison["duration_rule"] = "every measured block lasted at least one second"
     report["h_over_sigma2"] = h_dim
+    report["h"] = h_dim * float(arms[0]["sigma"]) ** 2
     report["device"] = str(dev)
     report["break_even_ess_ratio"] = threshold
-    report["wide_wins_on_ess_per_second"] = bool(report["cost_ratio_wide_over_narrow"] < threshold)
+    report["comparison"] = comparison
+    report["wide_wins_on_ess_per_second"] = comparison["favors_wide"]
     out = RC.output_root(cfg) / "cost_pilot_deep_r0.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     atomic_write_json(out, clean_json(report))
