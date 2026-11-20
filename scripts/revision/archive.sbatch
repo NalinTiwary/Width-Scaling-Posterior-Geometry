@@ -7,6 +7,7 @@
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=16G
+#SBATCH --gres=gpu:1
 #SBATCH --account=arindamb-cs-eng
 #SBATCH --partition=eng-research-gpu
 #SBATCH --output=logs/revision/archive_%j.out

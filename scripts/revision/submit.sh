@@ -30,17 +30,24 @@ if [ "$STAGE" = "archive" ]; then
     exit 0
 fi
 
-N=$(PYTHONPATH=src python3 -m bnn_geometry.revision tasks --config "$CONFIG" --stage "$STAGE" | wc -l | tr -d ' ')
-if [ "$N" -lt 1 ]; then
-    echo "stage $STAGE has no tasks"
-    exit 1
-fi
+# Counts match tasks_for in src/bnn_geometry/revision/runner.py. The login node may not have h5py.
+case "$STAGE" in
+    fixed-step) N=24 ;;
+    tune|prior-starts) N=12 ;;
+    prior-only) N=2 ;;
+    geometry-pilot) N=6 ;;
+    geometry) N=36 ;;
+    relu|depth4|prior-scale|concentrated|nonlinear|sin) N=2 ;;
+    *)
+        echo "stage $STAGE has no tasks"
+        exit 1
+        ;;
+esac
 ARRAY="0-$((N - 1))"
 EXPORTS="ALL,CONFIG=$CONFIG,STAGE=$STAGE${DEVICE:+,DEVICE=$DEVICE}"
 echo "stage $STAGE: $N tasks, array $ARRAY, config $CONFIG"
 if [ "$DRY_RUN" = "1" ]; then
     echo "sbatch --array=$ARRAY --time=$TIME_LIMIT --export=$EXPORTS scripts/revision/target_stage.sbatch"
-    PYTHONPATH=src python3 -m bnn_geometry.revision tasks --config "$CONFIG" --stage "$STAGE"
     exit 0
 fi
 sbatch --array="$ARRAY" --time="$TIME_LIMIT" --export="$EXPORTS" scripts/revision/target_stage.sbatch
