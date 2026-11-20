@@ -30,7 +30,7 @@ def main(argv: list[str] | None = None) -> int:
         if name == "run":
             p.add_argument("--task-id", type=int, default=None)
             p.add_argument("--device", default=None)
-        if name == "cost-pilot":
+        if name in ("cost-pilot", "prediction-acf"):
             p.add_argument("--device", default=None)
     args = parser.parse_args(argv)
     cfg = RC.load(args.config)
@@ -44,8 +44,8 @@ def main(argv: list[str] | None = None) -> int:
               f"met_duration={report['met_duration_rule']} path={report['path']}")
         return 0
     if args.cmd == "prediction-acf":
-        report = rebuild_test_prob_0(cfg)
-        print(f"prediction_acf status={report['status']} path={report['path']}")
+        report = rebuild_test_prob_0(cfg, device=args.device)
+        print(f"prediction_acf status={report['status']} device={report.get('device')} path={report['path']}")
         return 0 if report["status"] in ("ok", "raw_series_absent") else 1
     if args.cmd == "archive":
         manifest = run_archive(cfg)

@@ -384,6 +384,7 @@ def cost_pilot(cfg: dict[str, Any], *, device: Optional[str] = None) -> dict[str
     arms = []
     for task in COST_TASKS:
         built = build_target(cfg, task, dev)
+        _require_model_device(dev, built["model"])
         arms.append(_arm(built, cfg, h_dim * float(built["identity"]["sigma"]) ** 2, "cost-pilot"))
     report = interleaved_cost(
         arms, transitions=int(timing["transitions"]), blocks=int(timing["blocks"]),
@@ -441,9 +442,16 @@ def ou_control(sigma: float, h: float, *, dim: int = 8, n: int = 400, chains: in
             "n": n, "chains": chains}
 
 
+def _require_model_device(requested: torch.device, model: Model) -> None:
+    landed = model.theta0.device
+    if landed.type != requested.type:
+        raise RuntimeError(f"requested {requested}, but the model parameters are on {landed}")
+
+
 def run_task(cfg: dict[str, Any], stage: str, task: dict[str, Any], *, device: Optional[str] = None) -> dict[str, Any]:
     dev = pick_device(device or cfg.get("device"))
     built = build_target(cfg, task, dev)
+    _require_model_device(dev, built["model"])
     root = RC.output_root(cfg) / "runs" / task["id"] / stage
     root.mkdir(parents=True, exist_ok=True)
     atomic_write_json(root / "identity.json", clean_json(built["identity"]))

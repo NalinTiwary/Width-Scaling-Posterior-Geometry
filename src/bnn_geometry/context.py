@@ -28,10 +28,21 @@ if hasattr(torch.backends, "cudnn"):
 
 
 def pick_device(pref: Optional[str] = None) -> torch.device:
-    pref = pref or os.environ.get("BNN_DEVICE")
-    if pref:
-        return torch.device(pref)
-    return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    """Resolve a device. ``auto`` or an empty preference uses CUDA when this process can see one.
+
+    A CUDA request fails immediately when no GPU is visible, so a sampling job cannot
+    silently continue on the CPU. SLURM exposes the allocated GPU as ``cuda:0``.
+    """
+    pref = (pref if pref is not None else os.environ.get("BNN_DEVICE") or "").strip().lower()
+    if pref in ("", "auto"):
+        dev = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    else:
+        dev = torch.device(pref)
+    if dev.type == "cuda" and not torch.cuda.is_available():
+        raise RuntimeError("CUDA was requested, but this process cannot see a GPU")
+    if dev.type == "cuda":
+        torch.cuda.set_device(dev)
+    return dev
 
 
 def h_id(h: float) -> str:

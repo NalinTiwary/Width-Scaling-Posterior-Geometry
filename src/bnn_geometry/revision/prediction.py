@@ -6,12 +6,13 @@ the unrounded per-point export. It runs only when the campaign HDF5 trajectories
 
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Optional
 
 import numpy as np
 import pandas as pd
 
 from .. import config as C
+from ..context import pick_device
 from ..diagnostics import scalar_diagnostics
 from ..paper_cleanup.supplement_export import _Ctx, read_trajectory
 from ..paper_figures.figure_metrics import acf_replicate
@@ -23,16 +24,17 @@ MAX_LAG = 400
 TARGET = C.Target("deep", 32, 0)
 
 
-def rebuild_test_prob_0(cfg: dict[str, Any]) -> dict[str, Any]:
+def rebuild_test_prob_0(cfg: dict[str, Any], *, device: Optional[str] = None) -> dict[str, Any]:
     root = RC.baseline_root(cfg)
     campaign = C.load(cfg["baseline_config"])
+    dev = pick_device(device or cfg.get("device"))
     stage = root / "targets" / TARGET.target_id / "dynamics" / "h_0p01" / "chain_0" / "stage_1.h5"
     if not stage.exists():
         report = {"status": "raw_series_absent", "target_id": TARGET.target_id,
-                  "observable": "test_prob_0", "looked_for": str(stage)}
+                  "observable": "test_prob_0", "looked_for": str(stage), "device": str(dev)}
         return _write(cfg, report)
     try:
-        ctxs = _Ctx(campaign, root, "cpu")
+        ctxs = _Ctx(campaign, root, str(dev))
         indices = [int(j) for j in campaign["probes"]["test_indices"]]
         columns = ["V"] + [f"test_prob_{j}" for j in indices]
         loaded = read_trajectory(campaign, root, TARGET, 0.01, ctxs, columns)
@@ -63,7 +65,7 @@ def rebuild_test_prob_0(cfg: dict[str, Any]) -> dict[str, Any]:
     ess_delta = float(diag.ess_bulk - float(ess_row.ess_bulk))
     report = {
         "status": "ok" if delta <= 1e-8 and abs(ess_delta) <= 1e-6 else "differs",
-        "target_id": TARGET.target_id, "observable": "test_prob_0", "h": 0.01,
+        "target_id": TARGET.target_id, "observable": "test_prob_0", "device": str(dev), "h": 0.01,
         "window": WINDOW, "max_abs_acf": delta, "lag1": float(curve[1]),
         "exported_lag1": float(exported[1]), "ess_bulk": float(diag.ess_bulk),
         "exported_ess_bulk": float(ess_row.ess_bulk), "ess_bulk_abs_diff": ess_delta,

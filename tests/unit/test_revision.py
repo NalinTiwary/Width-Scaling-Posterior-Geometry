@@ -375,6 +375,19 @@ def test_interleaved_cost_keeps_four_chains_and_alternates(tmp_path):
     assert math.isfinite(report["cells"][narrow["id"]]["scalar_checksum"])
 
 
+def test_auto_device_follows_gpu_visibility():
+    from bnn_geometry.context import pick_device
+
+    assert pick_device("cpu").type == "cpu"
+    assert pick_device("auto").type == ("cuda" if torch.cuda.is_available() else "cpu")
+    assert pick_device(None).type == pick_device("auto").type
+    if torch.cuda.is_available():
+        assert pick_device("cuda").type == "cuda"
+    else:
+        with pytest.raises(RuntimeError, match="CUDA was requested"):
+            pick_device("cuda")
+
+
 def test_width_comparison_uses_each_blocks_own_length_and_flags_overlap():
     from bnn_geometry.revision.efficiency import timed_width_comparison
 
