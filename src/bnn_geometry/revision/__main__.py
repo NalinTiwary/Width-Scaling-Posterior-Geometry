@@ -57,6 +57,10 @@ def main(argv: list[str] | None = None) -> int:
     if args.cmd == "prediction-acf":
         report = rebuild_test_prob_0(cfg, device=args.device)
         print(f"prediction_acf status={report['status']} device={report.get('device')} path={report['path']}")
+        if report.get("reason"):
+            print(report["reason"])
+        if report.get("traceback"):
+            print(report["traceback"])
         return 0 if report["status"] in ("ok", "raw_series_absent") else 1
     if args.cmd == "archive":
         manifest = run_archive(cfg)

@@ -17,7 +17,16 @@
 # from the frozen campaign and final_geometry_package.zip. This also runs on a laptop:
 #   python -m bnn_geometry.revision archive --config configs/revision.yaml
 
-source "$(dirname "$0")/common.sh" 2>/dev/null || source scripts/revision/common.sh
+cd "${SLURM_SUBMIT_DIR:-$(pwd)}"
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
+if [ -f "$(dirname "$0")/common.sh" ]; then
+    source "$(dirname "$0")/common.sh"
+elif [ -f scripts/revision/common.sh ]; then
+    source scripts/revision/common.sh
+else
+    echo "FAIL: scripts/revision/common.sh not found from $(pwd) (script $0)" >&2
+    exit 1
+fi
 mkdir -p logs/revision
 echo "=== archive at $(date) on $(hostname) ==="
 python3 -m bnn_geometry.revision archive --config "$CONFIG"

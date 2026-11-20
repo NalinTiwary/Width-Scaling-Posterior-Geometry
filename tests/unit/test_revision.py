@@ -375,6 +375,29 @@ def test_interleaved_cost_keeps_four_chains_and_alternates(tmp_path):
     assert math.isfinite(report["cells"][narrow["id"]]["scalar_checksum"])
 
 
+def test_prediction_rebuild_without_stage_files_exits_cleanly(tmp_path):
+    from bnn_geometry.revision.prediction import rebuild_test_prob_0
+
+    cfg = yaml.safe_load((ROOT / "configs/revision.yaml").read_text())
+    cfg["output_root"] = str(tmp_path)
+    cfg["baseline_root"] = str(tmp_path / "missing_campaign")
+    report = rebuild_test_prob_0(cfg, device="cpu")
+    assert report["status"] == "raw_series_absent"
+    assert report["device"] == "cpu"
+    assert (tmp_path / "prediction_acf_check.json").is_file()
+
+
+def test_prediction_rebuild_records_a_bad_config_instead_of_raising(tmp_path):
+    from bnn_geometry.revision.prediction import rebuild_test_prob_0
+
+    cfg = yaml.safe_load((ROOT / "configs/revision.yaml").read_text())
+    cfg["output_root"] = str(tmp_path)
+    cfg["baseline_config"] = str(tmp_path / "missing.yaml")
+    report = rebuild_test_prob_0(cfg, device="cpu")
+    assert report["status"] == "error"
+    assert "traceback" in report
+
+
 def test_login_preflight_runs_four_cpu_steps_without_a_gpu(tmp_path):
     from bnn_geometry.revision.runner import login_preflight
 
@@ -391,10 +414,23 @@ def test_auto_device_follows_gpu_visibility():
     assert pick_device("auto").type == ("cuda" if torch.cuda.is_available() else "cpu")
     assert pick_device(None).type == pick_device("auto").type
     if torch.cuda.is_available():
-        assert pick_device("cuda").type == "cuda"
+        assert pick_device("cuda") == torch.device("cuda:0")
     else:
         with pytest.raises(RuntimeError, match="CUDA was requested"):
             pick_device("cuda")
+
+
+def test_bare_cuda_name_is_given_index_zero_before_set_device(monkeypatch):
+    """torch 2.8 rejects set_device(torch.device('cuda')); the cluster job died on that."""
+    from bnn_geometry import context
+
+    seen = []
+    monkeypatch.setattr(context.torch.cuda, "is_available", lambda: True)
+    monkeypatch.setattr(context.torch.cuda, "set_device", lambda device: seen.append(device))
+    assert context.pick_device("cuda") == torch.device("cuda:0")
+    assert context.pick_device("auto") == torch.device("cuda:0")
+    assert context.pick_device("cuda:1") == torch.device("cuda:1")
+    assert seen == [0, 0, 1]
 
 
 def test_width_comparison_uses_each_blocks_own_length_and_flags_overlap():

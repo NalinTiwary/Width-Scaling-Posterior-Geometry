@@ -20,7 +20,16 @@
 # Finished checkpoints are reused, so a timed-out task can be resubmitted.
 # Submit with scripts/revision/submit.sh, which overrides the array range.
 
-source "$(dirname "$0")/common.sh" 2>/dev/null || source scripts/revision/common.sh
+cd "${SLURM_SUBMIT_DIR:-$(pwd)}"
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
+if [ -f "$(dirname "$0")/common.sh" ]; then
+    source "$(dirname "$0")/common.sh"
+elif [ -f scripts/revision/common.sh ]; then
+    source scripts/revision/common.sh
+else
+    echo "FAIL: scripts/revision/common.sh not found from $(pwd) (script $0)" >&2
+    exit 1
+fi
 
 : "${STAGE:?set STAGE to a revision stage}"
 TASK="${SLURM_ARRAY_TASK_ID:?must run as an array task}"
@@ -30,6 +39,11 @@ echo "=== revision $STAGE task $TASK at $(date) ==="
 echo "=== host $(hostname) job ${SLURM_JOB_ID:-none} array ${SLURM_ARRAY_JOB_ID:-}_${SLURM_ARRAY_TASK_ID:-} ==="
 echo "=== git $(git rev-parse --short HEAD 2>/dev/null || echo n/a) ==="
 echo "=== config $CONFIG device $DEVICE ==="
+echo "=== python $(command -v python3) PYTHONPATH=$PYTHONPATH ==="
+if ! python3 -c "import bnn_geometry, h5py, yaml, numpy, pandas, scipy, torch; print('imports ok')"; then
+    echo "FAIL: revision imports failed before any sampling" >&2
+    exit 1
+fi
 python3 -c "import sys, torch; print('python', sys.version.split()[0], 'torch', torch.__version__, 'cuda', torch.cuda.is_available(), torch.cuda.get_device_name(0) if torch.cuda.is_available() else '')" || true
 command -v nvidia-smi >/dev/null && nvidia-smi --query-gpu=name,memory.total --format=csv
 if [ "${ALLOW_CPU:-0}" != "1" ] && ! python3 -c "import torch, sys; sys.exit(0 if torch.cuda.is_available() else 1)"; then

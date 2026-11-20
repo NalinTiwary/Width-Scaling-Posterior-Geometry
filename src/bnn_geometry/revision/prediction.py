@@ -6,6 +6,7 @@ the unrounded per-point export. It runs only when the campaign HDF5 trajectories
 
 from __future__ import annotations
 
+import traceback
 from typing import Any, Optional
 
 import numpy as np
@@ -25,9 +26,17 @@ TARGET = C.Target("deep", 32, 0)
 
 
 def rebuild_test_prob_0(cfg: dict[str, Any], *, device: Optional[str] = None) -> dict[str, Any]:
+    try:
+        return _rebuild(cfg, device=device)
+    except Exception as exc:
+        return _write(cfg, {"status": "error", "reason": str(exc), "traceback": traceback.format_exc()})
+
+
+def _rebuild(cfg: dict[str, Any], *, device: Optional[str] = None) -> dict[str, Any]:
     root = RC.baseline_root(cfg)
     campaign = C.load(cfg["baseline_config"])
-    dev = pick_device(device or cfg.get("device"))
+    # This command's caller passes cpu. Do not turn the revision file's "auto" into a CUDA demand.
+    dev = pick_device(device or "cpu")
     stage = root / "targets" / TARGET.target_id / "dynamics" / "h_0p01" / "chain_0" / "stage_1.h5"
     if not stage.exists():
         report = {"status": "raw_series_absent", "target_id": TARGET.target_id,

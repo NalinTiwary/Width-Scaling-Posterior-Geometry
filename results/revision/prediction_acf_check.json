@@ -1,4 +1,5 @@
 {
+  "device": "cpu",
   "looked_for": "/Users/apple/Documents/Width Scaling Posterior Geometry/results/final_geometry/targets/deep_m0032_r0/dynamics/h_0p01/chain_0/stage_1.h5",
   "observable": "test_prob_0",
   "status": "raw_series_absent",

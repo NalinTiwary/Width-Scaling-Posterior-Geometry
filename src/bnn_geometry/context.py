@@ -41,7 +41,10 @@ def pick_device(pref: Optional[str] = None) -> torch.device:
     if dev.type == "cuda" and not torch.cuda.is_available():
         raise RuntimeError("CUDA was requested, but this process cannot see a GPU")
     if dev.type == "cuda":
-        torch.cuda.set_device(dev)
+        # torch.cuda.set_device rejects a bare "cuda" device. The allocated GPU is index 0.
+        index = 0 if dev.index is None else int(dev.index)
+        dev = torch.device("cuda", index)
+        torch.cuda.set_device(index)
     return dev
 
 

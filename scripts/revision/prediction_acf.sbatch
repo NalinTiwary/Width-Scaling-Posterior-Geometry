@@ -16,13 +16,23 @@
 # Rebuild the deep_m0032_r0 test_prob_0 autocorrelation from the raw stage files.
 # If those HDF5 trajectories are not on this checkout, the job records that and exits.
 
-source "$(dirname "$0")/common.sh" 2>/dev/null || source scripts/revision/common.sh
-mkdir -p logs/revision
-echo "=== prediction acf at $(date) on $(hostname) device $DEVICE ==="
-python3 -c "import sys, torch; print('python', sys.version.split()[0], 'torch', torch.__version__, 'cuda', torch.cuda.is_available(), torch.cuda.get_device_name(0) if torch.cuda.is_available() else '')" || true
-if [ "${ALLOW_CPU:-0}" != "1" ] && ! python3 -c "import torch, sys; sys.exit(0 if torch.cuda.is_available() else 1)"; then
-    echo "FAIL: CUDA is not visible on $(hostname). Refusing the prediction rebuild (ALLOW_CPU=1 overrides)."
+cd "${SLURM_SUBMIT_DIR:-$(pwd)}"
+export PYTHONPATH="$PWD/src${PYTHONPATH:+:$PYTHONPATH}"
+if [ -f "$(dirname "$0")/common.sh" ]; then
+    source "$(dirname "$0")/common.sh"
+elif [ -f scripts/revision/common.sh ]; then
+    source scripts/revision/common.sh
+else
+    echo "FAIL: scripts/revision/common.sh not found from $(pwd) (script $0)" >&2
     exit 1
 fi
-python3 -m bnn_geometry.revision prediction-acf --config "$CONFIG" --device "$DEVICE"
-exit $?
+mkdir -p logs/revision
+echo "=== prediction acf at $(date) on $(hostname) python=$(command -v python3) ==="
+# Reading the archived chains does not need the allocated GPU.
+python3 -m bnn_geometry.revision prediction-acf --config "${CONFIG:-configs/revision.yaml}" --device cpu
+status=$?
+echo "=== prediction exit=$status ==="
+if [ -f results/revision/prediction_acf_check.json ]; then
+    cat results/revision/prediction_acf_check.json
+fi
+exit $status
