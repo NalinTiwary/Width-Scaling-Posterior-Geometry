@@ -1,6 +1,9 @@
 # Source from the repository root. 'go' is the only function that submits.
+# The login node's plain python3 does not see the project packages. Prefer the
+# virtualenv that already ran recovery and the finalists.
+if [ -x .venv/bin/python ]; then PY=.venv/bin/python; else PY=python3; fi
 todo() {
-    python3 experiment_ops/pending.py "$@"
+    PYTHONPATH="${PYTHONPATH:-$PWD/src}" "$PY" experiment_ops/pending.py "$@"
 }
 go() {
     local job="$1" scope="$2" want="$3" level="${4:-1}" ids receipt
