@@ -25,6 +25,13 @@ def main():
     p.add_argument("--rep",type=int,choices=[0,1,2],default=0)
     p.add_argument("--config",default="configs/revision.yaml");p.add_argument("--out",type=Path,default=Path("results/revision_next/equilibrium"))
     a=p.parse_args(); cfg=rc.load(a.config); base=rc.baseline_root(cfg); campaign=core.load(cfg["baseline_config"])
+    width = 32 if a.arch == "deep" else 64
+    needed = base / "targets" / f"{a.arch}_m{width:04d}_r{a.rep}" / "dynamics" / "h_0p01" / "chain_0" / "stage_1.h5"
+    if not needed.is_file():
+        raise SystemExit(
+            f"STOP: the original trajectory is not in this checkout:\n  {needed}\n"
+            "This step needs the archived HDF5 stages. It is not an import failure, and there is nothing to resubmit."
+        )
     ctx=_Ctx(campaign,base,"cpu"); a.out.mkdir(parents=True,exist_ok=True)
     names=["V","test_prob_0","q_A","q_W"]
     with ZipFile(HERE/"a10_revision_attachment.zip") as z:
