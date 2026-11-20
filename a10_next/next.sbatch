@@ -13,6 +13,12 @@
 set -euo pipefail
 cd "${SLURM_SUBMIT_DIR:?submit from the project root}"
 source scripts/revision/common.sh
-python3 a10_next/cluster.py "${JOB:?specify JOB}" --scope "${SCOPE:-endpoint}" \
+set -euo pipefail
+if [ -x .venv/bin/python ]; then PY=.venv/bin/python; else PY=python3; fi
+"$PY" -c 'import h5py,yaml,numpy,pandas,scipy,torch,bnn_geometry' || {
+  echo "IMPORT FAILURE: $PY cannot import the project packages"
+  exit 1
+}
+"$PY" a10_next/cluster.py "${JOB:?specify JOB}" --scope "${SCOPE:-endpoint}" \
   --task "${SLURM_ARRAY_TASK_ID:?}" --level "${LEVEL:-1}" --config "$CONFIG" \
   --out "${NEXT_OUT:-results/revision_next}" --device cuda
