@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import importlib.util
+import os
+import subprocess
+import sys
 from pathlib import Path
 
 import numpy as np
@@ -38,5 +41,38 @@ def test_prior_start_accuracy_intervals_cover_a_known_shift():
 def test_index_lists_expand_and_reject_reversed_ranges():
     pending = _load(ROOT / "experiment_ops" / "pending.py", "pending_ops_indices")
     assert pending.indices("0-5,7-11") == set(range(0, 6)) | set(range(7, 12))
+    assert pending.indices("6-11") == set(range(6, 12))
     with pytest.raises(ValueError):
         pending.indices("5-1")
+
+
+def test_retained_length_matches_the_requested_level():
+    import sys
+    sys.path.insert(0, str(ROOT / "a10_next"))
+    import cluster
+    assert sum(n for _, n in cluster.production_segments(1)) == 8192
+    assert sum(n for _, n in cluster.production_segments(2)) == 16384
+    assert sum(n for _, n in cluster.production_segments(3)) == 32768
+    assert [name for name, _ in cluster.production_segments(3)] == [
+        "production_1", "production_2", "production_3"]
+
+
+def _pending(tmp_path, ledger_text, level):
+    ledger = tmp_path / "active.csv"
+    ledger.write_text(ledger_text)
+    env = os.environ.copy()
+    env["PYTHONPATH"] = str(ROOT / "src")
+    proc = subprocess.run(
+        [sys.executable, str(ROOT / "experiment_ops" / "pending.py"),
+         "reference", "endpoint", "6-11", str(level),
+         "--ledger", str(ledger), "--out", str(tmp_path / "empty")],
+        cwd=ROOT, env=env, text=True, capture_output=True, check=True)
+    return proc.stdout.strip()
+
+
+def test_a_finished_level_one_row_does_not_block_a_longer_run(tmp_path):
+    (tmp_path / "empty").mkdir()
+    old = 'job,scope,ids,slurm_id\nreference,endpoint,"6,9",12605023\n'
+    assert _pending(tmp_path, old, 3) == "6,7,8,9,10,11"
+    longer = 'job,scope,ids,slurm_id,level\nreference,endpoint,"6,9",12605023,3\n'
+    assert _pending(tmp_path, longer, 3) == "7,8,10,11"

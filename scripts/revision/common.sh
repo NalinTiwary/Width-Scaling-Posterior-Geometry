@@ -17,6 +17,11 @@ elif [ -f ".venv/bin/activate" ]; then
 elif [ -f "venv/bin/activate" ]; then
     source venv/bin/activate
 fi
+# Batch jobs do not source a login shell. Put the project interpreter first
+# even when the virtualenv has no activate file.
+if [ -x "$PROJ_DIR/.venv/bin/python" ]; then
+    export PATH="$PROJ_DIR/.venv/bin:$PATH"
+fi
 
 export PYTHONPATH="$PROJ_DIR/src${PYTHONPATH:+:$PYTHONPATH}"
 export PYTHONUNBUFFERED=1

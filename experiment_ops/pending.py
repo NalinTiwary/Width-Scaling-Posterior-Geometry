@@ -83,7 +83,11 @@ def main():
         with a.ledger.open() as f: ledger=list(csv.DictReader(f))
     active=set()
     for row in ledger:
-        if row["job"]==a.job and row["scope"]==a.scope:
+        if row["job"]!=a.job or row["scope"]!=a.scope:
+            continue
+        # A finished level-1 row must not block the level-3 extension of the same cells.
+        recorded=int(row["level"]) if row.get("level") else 1
+        if recorded>=a.level:
             active.update(indices(row["ids"]))
     todo=[i for i in sorted(wanted-active) if not complete(a.out,a.job,a.scope,tasks[i],N[a.level-1])]
     print(",".join(map(str,todo)))

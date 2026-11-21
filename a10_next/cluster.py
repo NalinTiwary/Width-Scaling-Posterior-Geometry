@@ -25,6 +25,14 @@ from traces import PROBES, four, one
 
 HERE=Path(__file__).resolve().parent
 STEPS=(.08,.16,.32)
+# Cumulative retained draws: level 1 is 8192, level 2 is 16384, level 3 is 32768.
+PRODUCTION=(("production_1",8192),("production_2",8192),("production_3",16384),
+            ("production_4",32768),("production_5",65536))
+
+def production_segments(level):
+    if not 1<=int(level)<=len(PRODUCTION):
+        raise ValueError(f"level must be 1..{len(PRODUCTION)}")
+    return PRODUCTION[:int(level)]
 
 def tasks(cfg,scope):
     if scope=="endpoint": return tasks_for(cfg,"tune")
@@ -70,8 +78,7 @@ def sample(a,cfg,task,built,h_dim,out,dev):
             rec=traj.run_segment(name,n)
             if rec["partial"] or rec["n"]!=n: raise RuntimeError(f"incomplete {name}")
         # A new segment contributes only the extra draws required to double the pooled window.
-        segments=[("production_1",8192),("production_2",8192),("production_3",16384),
-                  ("production_4",32768),("production_5",65536)][:a.level]
+        segments=list(production_segments(a.level))
         if a.job=="finalists": segments=segments[:1]
         ledger=path/"production_clock.json"
         times=json.loads(ledger.read_text()) if ledger.exists() else {}
