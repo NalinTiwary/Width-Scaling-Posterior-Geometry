@@ -1,0 +1,5 @@
+Jobs 12627310 and 12627313 are the 18 geometry Langevin runs at 32768 steps.
+Job 12627316 is the 12 geometry slice references for datasets 1 and 2.
+Job 12627317 is the 6 deep slice runs at 32768 steps.
+Job 12627318 is the shallow dataset-0 slice pair at 16384 steps.
+compare_32768_loss_rows=18 chain_pass=17 full_pass=17
