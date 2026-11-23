@@ -3,14 +3,18 @@ import argparse
 from contextlib import contextmanager
 import fcntl
 import json
+import math
+import os
 from pathlib import Path
+import subprocess
 import time
 
 import numpy as np
 import pandas as pd
 
-from .core import CHAINS, EXPECTED_CHI, PROBES, metrics_rates, production_seconds
-from .core import segments_for, spectrum, task_matrix
+from .core import CHAINS, EXPECTED_CHI, PROBES, gate_decision, metrics_rates
+from .core import needs_inline_check, parse_duration, production_seconds
+from .core import remaining_joint_steps, segments_for, spectrum, task_matrix
 
 HERE = Path(__file__).resolve().parent
 
@@ -197,6 +201,100 @@ def sample(args, cfg, task):
         print(f"Peak CUDA allocated bytes: {peak}. Metrics: {metrics}")
 
 
+def read_short_run(path, steps):
+    """Read the short check written by ``sample``. Raise ``SystemExit`` when it is unusable."""
+    clock_path = path / "production_clock.json"
+    run_path = path / f"run_{steps}.json"
+    metrics_path = path / f"metrics_{steps}.csv"
+    missing = [str(item) for item in (clock_path, run_path, metrics_path) if not item.exists()]
+    if missing:
+        raise SystemExit("GATE_STOP: short run did not finish. Missing " + ", ".join(missing)
+                         + ". Production was not started.")
+    seconds = json.loads(clock_path.read_text()).get("pilot")
+    run = json.loads(run_path.read_text())
+    metrics = pd.read_csv(metrics_path)
+    if (set(metrics["probe"]) != set(PROBES) or not metrics["steps"].eq(steps).all()
+            or not metrics["chains"].eq(len(CHAINS)).all()
+            or not np.isfinite(metrics["acceptance"]).all()
+            or not np.isfinite(metrics["mean"]).all()):
+        raise SystemExit("GATE_STOP: short-run metrics are incomplete or non-finite. "
+                         "Production was not started.")
+    acceptance = float(metrics["acceptance"].iloc[0])
+    if not np.isclose(metrics["acceptance"], acceptance).all():
+        raise SystemExit("GATE_STOP: acceptance differs across probes. Production was not started.")
+    seconds_per_step = None
+    if isinstance(seconds, (int, float)) and math.isfinite(seconds) and seconds > 0:
+        seconds_per_step = float(seconds) / steps
+    return dict(seconds_per_step=seconds_per_step, acceptance=acceptance,
+                failures=list(run["counters"]["numerical_failures"]),
+                peak_reserved_bytes=run.get("peak_cuda_reserved_bytes"))
+
+
+def slurm_remaining_seconds():
+    """Remaining allocation, or ``None`` when this process is not a running Slurm job."""
+    job_id = os.environ.get("SLURM_JOB_ID")
+    if not job_id:
+        return None
+    try:
+        output = subprocess.check_output(
+            ["squeue", "-h", "-j", job_id, "-o", "%L"], text=True, timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        print("GATE_TIME_UNKNOWN: squeue did not return a remaining time; continuing")
+        return None
+    lines = [line.strip() for line in output.splitlines() if line.strip()]
+    if not lines:
+        print("GATE_TIME_UNKNOWN: job is not visible to squeue; continuing")
+        return None
+    return parse_duration(lines[-1])
+
+
+def gpu_capacity_bytes(device_name):
+    if device_name != "cuda" and not str(device_name).startswith("cuda"):
+        return None
+    import torch
+    if not torch.cuda.is_available():
+        return None
+    return int(torch.cuda.get_device_properties(0).total_memory)
+
+
+def continue_after_short_check(args, task, info, *, remaining_seconds, total_gpu_bytes, ledger):
+    warmup, production = segments_for(args.kernel, args.level, args.step)
+    remaining = remaining_joint_steps(warmup, production, ledger)
+    decision = gate_decision(
+        seconds_per_step=info["seconds_per_step"], acceptance=info["acceptance"],
+        failures=info["failures"], remaining_steps=remaining,
+        remaining_seconds=remaining_seconds, peak_reserved_bytes=info["peak_reserved_bytes"],
+        total_gpu_bytes=total_gpu_bytes)
+    if not decision["ok"]:
+        raise SystemExit("GATE_STOP: " + "; ".join(decision["reasons"])
+                         + ". Production was not started.")
+    projected = decision["projected_s"]
+    projected_text = "n/a" if projected is None else f"{projected / 3600:.2f}h"
+    low = " acceptance_low=true" if info["acceptance"] < 0.05 else ""
+    print(f"GATE_PASS {task['id']} acceptance={info['acceptance']:.6f} "
+          f"seconds_per_joint_step={info['seconds_per_step']:.6g} "
+          f"remaining_steps={remaining} projected_with_headroom={projected_text}{low}")
+    return decision
+
+
+def short_check_then_run(args, cfg, task):
+    import copy
+    pilot_args = copy.copy(args)
+    pilot_args.action = "pilot"
+    sample(pilot_args, cfg, task)
+    arm = f"pcnl_h_{args.step:g}"
+    info = read_short_run(args.out / "pilot" / arm / task["id"], args.pilot_steps)
+    production_path = args.out / "run" / arm / task["id"]
+    ledger = None
+    clock_path = production_path / "production_clock.json"
+    if clock_path.exists():
+        ledger = json.loads(clock_path.read_text())
+    continue_after_short_check(
+        args, task, info, remaining_seconds=slurm_remaining_seconds(),
+        total_gpu_bytes=gpu_capacity_bytes(args.device), ledger=ledger)
+    sample(args, cfg, task)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=["list", "inputs", "pilot", "run"])
@@ -208,6 +306,8 @@ def main():
     parser.add_argument("--out", type=Path, default=Path("results/deep_width"))
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--pilot-steps", type=int, default=128)
+    parser.add_argument("--no-gate", action="store_true",
+                        help="Skip the in-job width-4096 check and start production directly")
     args = parser.parse_args()
     tasks = task_matrix()
     if args.action == "list":
@@ -220,6 +320,8 @@ def main():
     cfg = rc.load(args.config)
     if args.action == "inputs":
         export_inputs(cfg, args.out)
+    elif needs_inline_check(args.action, args.kernel, tasks[args.task]["m"]) and not args.no_gate:
+        short_check_then_run(args, cfg, tasks[args.task])
     else:
         sample(args, cfg, tasks[args.task])
 

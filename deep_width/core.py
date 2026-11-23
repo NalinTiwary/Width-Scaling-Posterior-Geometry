@@ -70,3 +70,85 @@ def reference_agreement(row, reference):
     gap = abs(row["mean"] - reference["mean"])
     threshold = 3 * math.hypot(row["mcse"], reference["mcse"]) + 0.05 * reference["sd"]
     return bool(diagnostic_pass(row) and gap <= threshold), gap, threshold
+
+
+def needs_inline_check(action, kernel, width):
+    """The width-4,096 Langevin production job checks itself, then continues."""
+    return action == "run" and kernel == "pcnl" and int(width) == 4096
+
+
+def parse_duration(text):
+    """Parse a Slurm remaining-time field. ``None`` means the value does not limit the job."""
+    text = str(text).strip()
+    if text == "UNLIMITED":
+        return None
+    if not text or text in {"INVALID", "NOT_SET", "N/A"}:
+        return None
+    days = 0
+    if "-" in text:
+        day_text, text = text.split("-", 1)
+        days = int(day_text)
+    parts = [int(part) for part in text.split(":")]
+    if len(parts) == 3:
+        hours, minutes, seconds = parts
+    elif len(parts) == 2:
+        hours, minutes, seconds = 0, parts[0], parts[1]
+    elif len(parts) == 1:
+        hours, minutes, seconds = 0, parts[0], 0
+    else:
+        raise ValueError(f"Unrecognised Slurm duration {text!r}")
+    return days * 86400 + hours * 3600 + minutes * 60 + seconds
+
+
+def slurm_time(seconds):
+    seconds = int(math.ceil(seconds))
+    hours, rem = divmod(seconds, 3600)
+    minutes, secs = divmod(rem, 60)
+    return f"{hours:02d}:{minutes:02d}:{secs:02d}"
+
+
+def remaining_joint_steps(warmup, production, ledger):
+    """Joint steps still to run. A missing ledger means production has not started."""
+    if ledger is None:
+        return sum(n for _, n in warmup) + sum(n for _, n in production)
+    remaining = 0
+    for name, steps in production:
+        elapsed = ledger.get(name)
+        if isinstance(elapsed, (int, float)) and math.isfinite(elapsed) and elapsed > 0:
+            continue
+        remaining += steps
+    return remaining
+
+
+def gate_decision(*, seconds_per_step, acceptance, failures, remaining_steps,
+                  remaining_seconds, peak_reserved_bytes, total_gpu_bytes,
+                  headroom=1.5, reserve_s=600, memory_fraction=0.80):
+    """Decide whether the short check may continue into production in this allocation.
+
+    A low but finite acceptance is a sampling result and does not stop the job.
+    The gate stops for a broken run, a GPU allocation that is already near full,
+    or a projected wall time that would be killed before the production clock closes.
+    """
+    reasons = []
+    if any(failures):
+        reasons.append(f"numerical failures {list(failures)}")
+    if acceptance is None or not math.isfinite(acceptance) or not 0.0 <= acceptance <= 1.0:
+        reasons.append(f"acceptance unusable ({acceptance})")
+    if (seconds_per_step is None or not math.isfinite(seconds_per_step)
+            or seconds_per_step <= 0):
+        reasons.append("short-run clock is missing")
+    projected = None
+    clock_ok = not any(reason.startswith("short-run") for reason in reasons)
+    if clock_ok and remaining_steps > 0 and remaining_seconds is not None:
+        projected = seconds_per_step * remaining_steps * headroom + reserve_s
+        if projected > remaining_seconds:
+            reasons.append(
+                f"projected {projected / 3600:.2f}h exceeds remaining "
+                f"{remaining_seconds / 3600:.2f}h; resubmit with --time={slurm_time(projected)}")
+    if (peak_reserved_bytes is not None and total_gpu_bytes
+            and peak_reserved_bytes > memory_fraction * total_gpu_bytes):
+        reasons.append(
+            f"reserved GPU memory {peak_reserved_bytes} exceeds "
+            f"{memory_fraction:.0%} of {total_gpu_bytes}")
+    return dict(ok=not reasons, reasons=reasons, projected_s=projected,
+                seconds_per_step=seconds_per_step, acceptance=acceptance)

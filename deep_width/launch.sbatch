@@ -22,7 +22,13 @@ if [ -x .venv/bin/python ]; then PY=.venv/bin/python; else PY=python3; fi
   echo "IMPORT FAILURE: $PY cannot import the project or deep_width"
   exit 1
 }
+gate_arg=""
+if [ "${NO_GATE:-0}" = 1 ]; then
+  gate_arg="--no-gate"
+fi
+# shellcheck disable=SC2086
 "$PY" -m deep_width.run "${MODE:-pilot}" --task "${SLURM_ARRAY_TASK_ID:?}" \
     --config "${CONFIG:-configs/revision.yaml}" --device cuda \
     --kernel "${KERNEL:-pcnl}" --step "${STEP:-0.16}" --level "${LEVEL:-1}" \
-    --pilot-steps "${PILOT_STEPS:-128}" --out "${DEEP_OUT:-results/deep_width}"
+    --pilot-steps "${PILOT_STEPS:-128}" --out "${DEEP_OUT:-results/deep_width}" \
+    $gate_arg

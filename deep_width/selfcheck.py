@@ -6,8 +6,9 @@ from tempfile import TemporaryDirectory
 import numpy as np
 import pandas as pd
 
-from .core import PROBES, metrics_rates, production_seconds, reference_agreement
-from .core import segments_for, spectrum, task_matrix
+from .core import PROBES, gate_decision, metrics_rates, needs_inline_check
+from .core import parse_duration, production_seconds, reference_agreement
+from .core import remaining_joint_steps, segments_for, spectrum, task_matrix
 from .report import HERE, collect, figure, pairs
 
 
@@ -15,6 +16,26 @@ def main():
     tasks = task_matrix()
     assert len({t["id"] for t in tasks}) == 24
     assert [tasks[i]["m"] for i in (9, 15, 21)] == [256, 1024, 4096]
+    assert [needs_inline_check("run", "pcnl", tasks[i]["m"]) for i in (9, 21)] == [False, True]
+    assert not needs_inline_check("run", "slice", 4096)
+    assert not needs_inline_check("pilot", "pcnl", 4096)
+    assert parse_duration("01:30:00") == 5400
+    assert parse_duration("1-02:00:00") == 93600
+    assert parse_duration("UNLIMITED") is None
+    warmup, production = segments_for("pcnl", 1, 0.16)
+    assert remaining_joint_steps(warmup, production, None) == 1024 + 8192
+    assert remaining_joint_steps(warmup, production, {"production_1": 10.0}) == 0
+    assert remaining_joint_steps(warmup, production, {"production_1": None}) == 8192
+    healthy = dict(seconds_per_step=0.5, acceptance=0.01, failures=[0, 0, 0, 0],
+                   remaining_steps=9216, remaining_seconds=8 * 3600,
+                   peak_reserved_bytes=2_000_000_000, total_gpu_bytes=24_000_000_000)
+    assert gate_decision(**healthy)["ok"]
+    too_slow = dict(healthy, seconds_per_step=5.0)
+    stopped = gate_decision(**too_slow)
+    assert not stopped["ok"] and any("projected" in reason for reason in stopped["reasons"])
+    full = dict(healthy, peak_reserved_bytes=22_000_000_000)
+    assert not gate_decision(**full)["ok"]
+    assert not gate_decision(**dict(healthy, acceptance=float("nan")))["ok"]
     X = np.array([[1., 0.], [1., 0.], [0., 1.]])
     assert math.isclose(spectrum(X)["chi"], 2)
     assert (8192 + 8192 + 16384) == sum(n for _, n in segments_for("pcnl", 3, .16)[1])
