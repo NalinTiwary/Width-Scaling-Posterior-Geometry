@@ -8,8 +8,10 @@ The queued A10 job writes ``results/deep_width``. This writer uses
 import argparse
 import os
 from pathlib import Path
+import stat
 import subprocess
 import sys
+import tempfile
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -56,27 +58,45 @@ def require_cuda():
     return name
 
 
-def git_env(token=None):
-    """Public pulls stay anonymous. A token is used only to push."""
+def _git(repo, args, token=None):
+    """Run git. A token is used only for push, through an askpass script."""
     env = os.environ.copy()
     env["GIT_TERMINAL_PROMPT"] = "0"
-    keys = ["credential.helper"]
-    values = [""]
+    command = ["git"]
+    askpass_path = None
     if token:
-        keys.append(f"url.https://x-access-token:{token}@github.com/.insteadOf")
-        values.append("https://github.com/")
-    env["GIT_CONFIG_COUNT"] = str(len(keys))
-    for index, (key, value) in enumerate(zip(keys, values)):
-        env[f"GIT_CONFIG_KEY_{index}"] = key
-        env[f"GIT_CONFIG_VALUE_{index}"] = value
-    return env
-
-
-def _git(repo, args, token=None):
+        handle, name = tempfile.mkstemp(prefix="bnn-askpass-", suffix=".sh")
+        os.close(handle)
+        askpass_path = Path(name)
+        askpass_path.write_text(
+            "#!/bin/sh\n"
+            "case \"$1\" in\n"
+            "*[Uu]sername*) printf '%s\\n' 'x-access-token' ;;\n"
+            "*) printf '%s\\n' \"$GITHUB_TOKEN\" ;;\n"
+            "esac\n"
+        )
+        askpass_path.chmod(askpass_path.stat().st_mode | stat.S_IEXEC)
+        env["GITHUB_TOKEN"] = token
+        env["GIT_ASKPASS"] = str(askpass_path)
+        env["SSH_ASKPASS"] = str(askpass_path)
+        # Drop helpers that try to open a terminal. The empty value clears the list.
+        command += ["-c", "credential.helper="]
+    command += list(args)
     try:
-        subprocess.check_call(["git", *args], cwd=repo, env=git_env(token))
-    except subprocess.CalledProcessError as exc:
-        raise SystemExit(f"git {' '.join(args)} failed with status {exc.returncode}") from None
+        result = subprocess.run(command, cwd=repo, env=env, text=True, capture_output=True)
+    finally:
+        if askpass_path is not None:
+            askpass_path.unlink(missing_ok=True)
+    if result.returncode != 0:
+        detail = (result.stderr or result.stdout or "").strip()
+        if token:
+            detail = detail.replace(token, "TOKEN")
+        print(detail, flush=True)
+        shown = " ".join(args)
+        print(f"GIT_FAILED: git {shown} status {result.returncode}", flush=True)
+        raise SystemExit(f"GIT_FAILED: git {shown} status {result.returncode}")
+    if result.stdout.strip():
+        print(result.stdout.strip(), flush=True)
 
 
 def _ensure_identity(repo):
@@ -107,7 +127,7 @@ def publish(repo, root, message, token=None):
     _git(repo, ["commit", "-m", message])
     print(f"Committed {len(relative)} files")
     if token:
-        _git(repo, ["pull", "--rebase", "--autostash", "origin", "main"])
+        _git(repo, ["pull", "--ff-only"])
         _git(repo, ["push", "origin", "HEAD:main"], token)
         print("Pushed to main")
     return relative
@@ -143,7 +163,7 @@ def main():
             status = subprocess.call(run_argv(task, out, args.step, args.level))
             cell = task_matrix()[task]["id"]
             arm = f"pcnl_h_{args.step:g}"
-            _git(repo, ["pull", "--rebase", "--autostash", "origin", "main"])
+            _git(repo, ["pull", "--ff-only"])
             publish(repo, [out / "inputs", out / "run" / arm / cell, out / "pilot" / arm / cell],
                     f"Add Colab deep-width task {task}.", token)
             if status != 0:
@@ -154,7 +174,7 @@ def main():
             detail = ", ".join(f"{task}={status}" for task, status in failed)
             raise SystemExit(f"Some tasks failed: {detail}")
     if args.report:
-        _git(repo, ["pull", "--rebase", "--autostash", "origin", "main"])
+        _git(repo, ["pull", "--ff-only"])
         subprocess.check_call([sys.executable, "-m", "deep_width.report",
                                "--out", str(out), "--step", str(args.step), "--steps", "8192"])
         publish(repo, out, "Add the Colab deep-width report.", token)
