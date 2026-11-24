@@ -77,6 +77,19 @@ def needs_inline_check(action, kernel, width):
     return action == "run" and kernel == "pcnl" and int(width) == 4096
 
 
+def require_comparative_device(action, device_type, device_name, allow_any_device=False):
+    """Keep the cluster comparison on an A10. A Colab run must name its own CUDA GPU."""
+    if device_type == "mps":
+        raise ValueError("Use CPU for the float64 Mac pilot")
+    if allow_any_device:
+        if action == "run" and device_type != "cuda":
+            raise ValueError("A non-A10 production run needs a CUDA GPU")
+        return device_name
+    if (action == "run" or device_type == "cuda") and device_name != "NVIDIA A10":
+        raise ValueError(f"Comparative production requires an A10, got {device_name}")
+    return device_name
+
+
 def parse_duration(text):
     """Parse a Slurm remaining-time field. ``None`` means the value does not limit the job."""
     text = str(text).strip()

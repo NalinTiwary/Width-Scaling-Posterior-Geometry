@@ -15,6 +15,13 @@ HERE = Path(__file__).resolve().parent
 COLORS = ("#196088", "#9C4A0F", "#535377")
 
 
+def one_device(names):
+    found = sorted({str(name) for name in names if str(name)})
+    if len(found) != 1:
+        raise ValueError(f"Metrics must come from one GPU, found {found}")
+    return found[0]
+
+
 def latest(path, steps=None):
     files = list(path.glob("metrics_*.csv"))
     if steps is not None:
@@ -53,8 +60,8 @@ def collect(out, step, steps=None):
                     & ref.stage.eq("reference_production_4")).all():
                 raise ValueError(f"Invalid archive reference in {path.name}")
         frame = pd.read_csv(data)
+        one_device(frame.device)
         if (set(frame.probe) != set(PROBES) or not frame.chains.eq(4).all()
-                or not frame.device.eq("NVIDIA A10").all()
                 or not frame.target_hash.eq(ident["target_hash"]).all()):
             raise ValueError(f"Unexpected metrics identity in {data}")
         for row in frame.to_dict("records"):
@@ -132,35 +139,39 @@ def main():
     for rep, group in work.groupby("rep"):
         np.testing.assert_allclose(group.chi, inputs.set_index("rep").at[rep, "chi"])
     window = args.steps if args.steps is not None else "latest"
-    out = args.out / f"report_h_{args.step:g}_{window}"
-    out.mkdir(parents=True, exist_ok=True)
-    work.to_csv(out / "probe_metrics.csv", index=False)
-    pairs(work).to_csv(out / "ratios_vs_256.csv", index=False)
-
     chi = ", ".join(f"{v:.3f}" for v in inputs.chi)
-    desc = ("Two-hidden-layer tanh BNNs on three frozen synthetic binary-classification datasets. "
-            "Rows of each training input matrix X are unit length, with X of shape 128 by 32. "
-            f"The largest eigenvalues of X X^T are {chi} in dataset order 0, 1, 2. "
-            "Each dataset uses the same X across widths. See inputs/ for the actual matrices and hashes. "
-            f"Four float64 adjusted Langevin chains ran on one A10 per cell at h/sigma^2={args.step:g}. "
-            "The production clock includes scalar recording and checkpoint writes. "
-            "Open markers indicate incomplete diagnostic or reference qualification.")
-    loss = work[work.probe.eq("V")]
-    figure(out, loss, [("ess_mean_per_second", "Loss mean ESS per second", "timed_pass"),
-                       ("ess_mean_per_1000_transitions", "Loss mean ESS per 1,000 transitions", "passed")],
-           "loss_throughput", desc)
-    pred = (work[work.probe.str.startswith("test_prob_")].groupby(["rep","width"], as_index=False)
-            .agg(ess_mean_per_second=("ess_mean_per_second","median"),
-                 seconds_per_joint_step=("seconds_per_joint_step","first"),
-                 plot_pass=("timed_pass","all"), probes=("probe","size")))
-    if not pred.probes.eq(8).all():
-        raise ValueError("Each prediction summary needs eight predeclared predictions")
-    pred["clock_present"] = np.isfinite(pred["seconds_per_joint_step"])
-    figure(out, pred, [("ess_mean_per_second", "Median prediction mean ESS per second", "plot_pass"),
-                       ("seconds_per_joint_step", "Seconds per four-chain joint step", "clock_present")],
-           "prediction_throughput_and_cost",
-           desc + " The prediction panel shows the median rate across the eight fixed held-out probabilities. The cost panel uses all available production clocks.")
-    print(f"Wrote {out}")
+    groups = list(work.groupby("device", sort=True))
+    for device_name, part in groups:
+        slug = ""
+        if len(groups) > 1:
+            slug = "_" + "".join(ch.lower() if ch.isalnum() else "_" for ch in str(device_name)).strip("_")
+        out = args.out / f"report_h_{args.step:g}_{window}{slug}"
+        out.mkdir(parents=True, exist_ok=True)
+        part.to_csv(out / "probe_metrics.csv", index=False)
+        pairs(part).to_csv(out / "ratios_vs_256.csv", index=False)
+        desc = ("Two-hidden-layer tanh BNNs on three frozen synthetic binary-classification datasets. "
+                "Rows of each training input matrix X are unit length, with X of shape 128 by 32. "
+                f"The largest eigenvalues of X X^T are {chi} in dataset order 0, 1, 2. "
+                "Each dataset uses the same X across widths. See inputs/ for the actual matrices and hashes. "
+                f"Four float64 adjusted Langevin chains ran on one {device_name} per cell at h/sigma^2={args.step:g}. "
+                "The production clock includes scalar recording and checkpoint writes. "
+                "Open markers indicate incomplete diagnostic or reference qualification.")
+        loss = part[part.probe.eq("V")]
+        figure(out, loss, [("ess_mean_per_second", "Loss mean ESS per second", "timed_pass"),
+                           ("ess_mean_per_1000_transitions", "Loss mean ESS per 1,000 transitions", "passed")],
+               "loss_throughput", desc)
+        pred = (part[part.probe.str.startswith("test_prob_")].groupby(["rep", "width"], as_index=False)
+                .agg(ess_mean_per_second=("ess_mean_per_second", "median"),
+                     seconds_per_joint_step=("seconds_per_joint_step", "first"),
+                     plot_pass=("timed_pass", "all"), probes=("probe", "size")))
+        if not pred.probes.eq(8).all():
+            raise ValueError("Each prediction summary needs eight predeclared predictions")
+        pred["clock_present"] = np.isfinite(pred["seconds_per_joint_step"])
+        figure(out, pred, [("ess_mean_per_second", "Median prediction mean ESS per second", "plot_pass"),
+                           ("seconds_per_joint_step", "Seconds per four-chain joint step", "clock_present")],
+               "prediction_throughput_and_cost",
+               desc + " The prediction panel shows the median rate across the eight fixed held-out probabilities. The cost panel uses all available production clocks.")
+        print(f"Wrote {out}")
 
 
 if __name__ == "__main__":

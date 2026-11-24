@@ -14,7 +14,8 @@ import pandas as pd
 
 from .core import CHAINS, EXPECTED_CHI, PROBES, gate_decision, metrics_rates
 from .core import needs_inline_check, parse_duration, production_seconds
-from .core import remaining_joint_steps, segments_for, spectrum, task_matrix
+from .core import remaining_joint_steps, require_comparative_device, segments_for
+from .core import spectrum, task_matrix
 
 HERE = Path(__file__).resolve().parent
 
@@ -80,10 +81,8 @@ def sample(args, cfg, task):
     data, geometry = inputs(cfg, task["rep"])
     device = pick_device(args.device)
     device_name = torch.cuda.get_device_name(device) if device.type == "cuda" else str(device)
-    if (args.action == "run" or device.type == "cuda") and device_name != "NVIDIA A10":
-        raise ValueError(f"Comparative production requires an A10, got {device_name}")
-    if device.type == "mps":
-        raise ValueError("Use CPU for the float64 Mac pilot")
+    require_comparative_device(args.action, device.type, device_name,
+                               allow_any_device=args.allow_any_device)
     built = build_target(cfg, task, device)
     model, identity = built["model"], built["identity"]
     p_expected = task["m"] ** 2 + 33 * task["m"]
@@ -308,6 +307,8 @@ def main():
     parser.add_argument("--pilot-steps", type=int, default=128)
     parser.add_argument("--no-gate", action="store_true",
                         help="Skip the in-job width-4096 check and start production directly")
+    parser.add_argument("--allow-any-device", action="store_true",
+                        help="Record the actual CUDA GPU instead of requiring an A10")
     args = parser.parse_args()
     tasks = task_matrix()
     if args.action == "list":

@@ -7,7 +7,7 @@ import pandas as pd
 import pytest
 
 from deep_width.core import PROBES, gate_decision, needs_inline_check, remaining_joint_steps
-from deep_width.core import segments_for
+from deep_width.core import require_comparative_device, segments_for
 from deep_width.run import continue_after_short_check, read_short_run, short_check_then_run
 
 
@@ -30,6 +30,15 @@ def _write_short_run(path, steps, *, acceptance=0.4, seconds=8.0, failures=None,
         for probe in PROBES
     ])
     frame.to_csv(path / f"metrics_{steps}.csv", index=False)
+
+
+def test_colab_can_name_its_gpu_and_the_cluster_path_stays_on_a10():
+    assert require_comparative_device("run", "cuda", "NVIDIA A10") == "NVIDIA A10"
+    with pytest.raises(ValueError, match="A10"):
+        require_comparative_device("run", "cuda", "Tesla T4")
+    assert require_comparative_device("run", "cuda", "Tesla T4", allow_any_device=True) == "Tesla T4"
+    with pytest.raises(ValueError, match="CUDA"):
+        require_comparative_device("run", "cpu", "cpu", allow_any_device=True)
 
 
 def test_only_width_4096_langevin_production_is_gated():

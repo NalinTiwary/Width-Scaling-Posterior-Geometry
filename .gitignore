@@ -30,6 +30,10 @@ results/final_geometry/benchmark_tmp/
 # revision sampling traces stay on scratch; summary JSON and tables are committed
 results/revision/runs/**/*.h5
 results/revision/runs/**/*.pt
+results/deep_width/**/*.h5
+results/deep_width/**/*.pt
+results/deep_width_colab/**/*.h5
+results/deep_width_colab/**/*.pt
 results/fixture/
 !results/final_geometry/data/*.npz
 !results/final_geometry/centers/*.npz
