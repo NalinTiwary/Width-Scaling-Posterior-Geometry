@@ -1,0 +1,57 @@
+{
+  "checkpoint_bytes": 1082400669,
+  "counters": {
+    "accepted": [
+      70,
+      83,
+      74,
+      69
+    ],
+    "evals": [
+      133,
+      133,
+      133,
+      133
+    ],
+    "grad_evals": [
+      133,
+      133,
+      133,
+      133
+    ],
+    "max_streak": [
+      5,
+      6,
+      6,
+      10
+    ],
+    "numerical_failures": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "streak": [
+      2,
+      1,
+      0,
+      1
+    ],
+    "transitions": [
+      132,
+      132,
+      132,
+      132
+    ]
+  },
+  "likelihood_evaluations_total": 532,
+  "peak_cuda_allocated_bytes": 5016840704,
+  "peak_cuda_reserved_bytes": 6113198080,
+  "seconds": 58.01454075299989,
+  "segments": [
+    [
+      "pilot",
+      128
+    ]
+  ]
+}

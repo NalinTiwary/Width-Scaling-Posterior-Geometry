@@ -1,0 +1,57 @@
+{
+  "checkpoint_bytes": 1082400669,
+  "counters": {
+    "accepted": [
+      5255,
+      5209,
+      5284,
+      5193
+    ],
+    "evals": [
+      9217,
+      9217,
+      9217,
+      9217
+    ],
+    "grad_evals": [
+      9217,
+      9217,
+      9217,
+      9217
+    ],
+    "max_streak": [
+      15,
+      17,
+      11,
+      15
+    ],
+    "numerical_failures": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "streak": [
+      0,
+      1,
+      0,
+      1
+    ],
+    "transitions": [
+      9216,
+      9216,
+      9216,
+      9216
+    ]
+  },
+  "likelihood_evaluations_total": 36868,
+  "peak_cuda_allocated_bytes": 5017614848,
+  "peak_cuda_reserved_bytes": 6113198080,
+  "seconds": 2951.450109551999,
+  "segments": [
+    [
+      "production_1",
+      8192
+    ]
+  ]
+}
