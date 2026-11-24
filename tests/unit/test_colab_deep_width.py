@@ -1,8 +1,18 @@
 """Colab publishes the small result files and keeps each task independent."""
 import subprocess
 
-from colab.run_deep_width import files_to_publish, publish, run_argv
+from colab.run_deep_width import files_to_publish, git_env, publish, run_argv
 from deep_width.report import one_device
+
+
+def test_pull_stays_anonymous_and_push_carries_the_token():
+    pull = git_env()
+    assert pull["GIT_TERMINAL_PROMPT"] == "0"
+    assert pull["GIT_CONFIG_VALUE_0"] == ""
+    assert "x-access-token" not in "".join(pull.values())
+    push = "\n".join(git_env("secret-token").values())
+    assert "url.https://x-access-token:secret-token@github.com/.insteadOf" in push
+    assert "https://github.com/" in push
 
 
 def test_colab_command_records_the_assigned_gpu():

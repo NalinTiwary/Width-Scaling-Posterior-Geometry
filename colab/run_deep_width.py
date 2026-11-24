@@ -56,12 +56,25 @@ def require_cuda():
     return name
 
 
-def _git(repo, args, token=None):
-    command = ["git", *args]
+def git_env(token=None):
+    """Public pulls stay anonymous. A token is used only to push."""
+    env = os.environ.copy()
+    env["GIT_TERMINAL_PROMPT"] = "0"
+    keys = ["credential.helper"]
+    values = [""]
     if token:
-        command = ["git", "-c", f"http.extraheader=AUTHORIZATION: bearer {token}", *args]
+        keys.append(f"url.https://x-access-token:{token}@github.com/.insteadOf")
+        values.append("https://github.com/")
+    env["GIT_CONFIG_COUNT"] = str(len(keys))
+    for index, (key, value) in enumerate(zip(keys, values)):
+        env[f"GIT_CONFIG_KEY_{index}"] = key
+        env[f"GIT_CONFIG_VALUE_{index}"] = value
+    return env
+
+
+def _git(repo, args, token=None):
     try:
-        subprocess.check_call(command, cwd=repo)
+        subprocess.check_call(["git", *args], cwd=repo, env=git_env(token))
     except subprocess.CalledProcessError as exc:
         raise SystemExit(f"git {' '.join(args)} failed with status {exc.returncode}") from None
 
@@ -94,7 +107,7 @@ def publish(repo, root, message, token=None):
     _git(repo, ["commit", "-m", message])
     print(f"Committed {len(relative)} files")
     if token:
-        _git(repo, ["pull", "--rebase", "--autostash", "origin", "main"], token)
+        _git(repo, ["pull", "--rebase", "--autostash", "origin", "main"])
         _git(repo, ["push", "origin", "HEAD:main"], token)
         print("Pushed to main")
     return relative
@@ -114,7 +127,7 @@ def main():
     args = parser.parse_args()
     os.chdir(ROOT)
     repo = ROOT
-    token = os.environ.get(args.token_env) or None
+    token = (os.environ.get(args.token_env) or "").strip() or None
     out = Path(args.out)
     if not out.is_absolute():
         out = repo / out
@@ -130,8 +143,7 @@ def main():
             status = subprocess.call(run_argv(task, out, args.step, args.level))
             cell = task_matrix()[task]["id"]
             arm = f"pcnl_h_{args.step:g}"
-            if token:
-                _git(repo, ["pull", "--rebase", "--autostash", "origin", "main"], token)
+            _git(repo, ["pull", "--rebase", "--autostash", "origin", "main"])
             publish(repo, [out / "inputs", out / "run" / arm / cell, out / "pilot" / arm / cell],
                     f"Add Colab deep-width task {task}.", token)
             if status != 0:
@@ -142,8 +154,7 @@ def main():
             detail = ", ".join(f"{task}={status}" for task, status in failed)
             raise SystemExit(f"Some tasks failed: {detail}")
     if args.report:
-        if token:
-            _git(repo, ["pull", "--rebase", "--autostash", "origin", "main"], token)
+        _git(repo, ["pull", "--rebase", "--autostash", "origin", "main"])
         subprocess.check_call([sys.executable, "-m", "deep_width.report",
                                "--out", str(out), "--step", str(args.step), "--steps", "8192"])
         publish(repo, out, "Add the Colab deep-width report.", token)
