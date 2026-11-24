@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT / "src"))
 os.environ["PYTHONPATH"] = os.pathsep.join(
     [str(ROOT), str(ROOT / "src"), os.environ.get("PYTHONPATH", "")])
 
-KEEP = {".csv", ".json", ".pdf", ".png", ".txt", ".yaml", ".yml", ".npz"}
+KEEP = {".csv", ".json", ".pdf", ".png", ".txt", ".yaml", ".yml"}
 MAX_BYTES = 50 * 1024 * 1024
 PUBLIC_REMOTE = "https://github.com/NalinTiwary/Width-Scaling-Posterior-Geometry.git"
 

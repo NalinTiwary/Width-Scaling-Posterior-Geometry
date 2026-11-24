@@ -35,8 +35,6 @@ results/deep_width/**/*.pt
 results/deep_width_colab/**/*.h5
 results/deep_width_colab/**/*.pt
 results/fixture/
-!results/deep_width/inputs/*.npz
-!results/deep_width_colab/inputs/*.npz
 !results/final_geometry/data/*.npz
 !results/final_geometry/centers/*.npz
 !results/final_geometry/controls/prior_spectral_values.npz
