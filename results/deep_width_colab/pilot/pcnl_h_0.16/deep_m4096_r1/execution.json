@@ -1,0 +1,55 @@
+{
+  "arm": "pcnl_h_0.16",
+  "chains": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "checkpoint_stride": 1024,
+  "device": "NVIDIA L4",
+  "dtype": "float64",
+  "h_over_sigma2": 0.16,
+  "input_geometry": {
+    "archived_width256_target_hash": "09d81740c09e1434a4c78134a13a48b854f29cf5822e72d75983713cdb747963",
+    "chi": 8.365186026535099,
+    "d": 32,
+    "hash_X": "c8706cc84318ccb31b84133bf2b1bdea53526065ea51c5babbeb109b13f8f6ac",
+    "hash_X_test": "7cfc325a6651116fae3ecafdeabe2a05977fd8cc6aadb7fc0b566de059590bec",
+    "hash_center_bank": "bc94d1c26443ef9f0839f4ba19598d3e8a4fab0f1effe8cbe8cf90893e6291ae",
+    "hash_y": "07085e1c37c16a6c435464ac7a64192a576fe34d608fb9fd4eb1e8bed485b422",
+    "n": 128,
+    "rep": 1,
+    "row_norm_max": 1.0000000000000002,
+    "row_norm_min": 0.9999999999999998,
+    "svd_squared": 8.36518602653512
+  },
+  "master_seed": 20260930,
+  "target": {
+    "L": 3,
+    "activation": "tanh",
+    "arch": "deep",
+    "campaign_id": "aistats_revision_v1",
+    "cell": "deep_m4096_r1",
+    "chi": null,
+    "cutoff": 2.1,
+    "d": 32,
+    "hash_X": "c8706cc84318ccb31b84133bf2b1bdea53526065ea51c5babbeb109b13f8f6ac",
+    "hash_y": "07085e1c37c16a6c435464ac7a64192a576fe34d608fb9fd4eb1e8bed485b422",
+    "kind": "baseline",
+    "likelihood_scale": 1.0,
+    "m": 4096,
+    "n": 128,
+    "p": 16912384,
+    "rep": 1,
+    "sigma": 1.0,
+    "target_hash": "3f27ce1d0f1b0e2a3121a5c21b96e3356653e418b427567d310f9ed913e72eb7"
+  },
+  "torch_version": "2.14.1+cu130",
+  "warmup": [
+    [
+      "burnin",
+      4
+    ]
+  ]
+}
