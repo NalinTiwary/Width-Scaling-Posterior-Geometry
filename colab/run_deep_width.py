@@ -108,6 +108,19 @@ def _ensure_identity(repo):
             subprocess.check_call(["git", "config", key, value], cwd=repo)
 
 
+def trackable(repo, relative):
+    """Drop paths Git is configured to ignore. Adding those makes git add exit 1."""
+    if not relative:
+        return []
+    result = subprocess.run(["git", "check-ignore", "--stdin"], cwd=repo,
+                            input="\n".join(relative) + "\n", text=True, capture_output=True)
+    ignored = set(result.stdout.splitlines())
+    kept = [path for path in relative if path not in ignored]
+    if ignored:
+        print("Skipping ignored files: " + ", ".join(sorted(ignored)), flush=True)
+    return kept
+
+
 def publish(repo, root, message, token=None):
     """Commit the small result files. Push when a GitHub token is supplied."""
     repo = Path(repo)
@@ -119,7 +132,10 @@ def publish(repo, root, message, token=None):
     if not files:
         print(f"No small result files under {root}")
         return []
-    relative = [str(path.relative_to(repo)) for path in files]
+    relative = trackable(repo, [str(path.relative_to(repo)) for path in files])
+    if not relative:
+        print(f"No trackable result files under {root}")
+        return []
     _git(repo, ["add", "--", *relative])
     cached = subprocess.call(["git", "diff", "--cached", "--quiet"], cwd=repo)
     if cached == 0:

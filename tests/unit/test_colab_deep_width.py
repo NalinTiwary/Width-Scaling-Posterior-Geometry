@@ -45,6 +45,25 @@ def test_one_gpu_name_is_required():
         raise AssertionError("mixed GPUs were accepted")
 
 
+def test_publish_skips_ignored_archives_and_commits_the_tables(tmp_path):
+    repo = tmp_path / "repo"
+    repo.mkdir()
+    subprocess.check_call(["git", "init"], cwd=repo)
+    subprocess.check_call(["git", "config", "user.email", "nalint2@illinois.edu"], cwd=repo)
+    subprocess.check_call(["git", "config", "user.name", "NalinTiwaryUIUC"], cwd=repo)
+    (repo / ".gitignore").write_text("*.npz\n")
+    subprocess.check_call(["git", "add", ".gitignore"], cwd=repo)
+    subprocess.check_call(["git", "commit", "-m", "ignore archives"], cwd=repo)
+    out = repo / "results" / "deep_width_colab" / "inputs"
+    out.mkdir(parents=True)
+    (out / "input_geometry.csv").write_text("rep,chi\n0,1\n")
+    (out / "rep0.npz").write_bytes(b"not-a-real-archive")
+    committed = publish(repo, repo / "results" / "deep_width_colab", "Add the inputs.")
+    assert committed == ["results/deep_width_colab/inputs/input_geometry.csv"]
+    tracked = subprocess.check_output(["git", "ls-files"], cwd=repo, text=True)
+    assert "rep0.npz" not in tracked
+
+
 def test_publish_commits_tables_and_leaves_checkpoints(tmp_path):
     repo = tmp_path / "repo"
     repo.mkdir()
