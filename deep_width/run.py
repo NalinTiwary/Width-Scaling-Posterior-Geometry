@@ -66,6 +66,20 @@ def lock(path):
         yield
 
 
+def protocol_difference(saved, current):
+    """Machine fields may change. The sampling protocol may not."""
+    keys = ("dtype", "target", "input_geometry", "arm", "chains", "h_over_sigma2",
+            "checkpoint_stride", "warmup", "master_seed")
+    return [key for key in keys if saved.get(key) != current.get(key)]
+
+
+def reported_device(saved_device, current_device, timed_here):
+    """Keep the device that timed a finished run when a later GPU only reopens it."""
+    if timed_here or not saved_device:
+        return current_device
+    return saved_device
+
+
 def sample(args, cfg, task):
     import torch
     from bnn_geometry.chains import Trajectory, prior_draws
@@ -121,8 +135,18 @@ def sample(args, cfg, task):
     with lock(path):
         execution_path = path / "execution.json"
         execution = json.loads(json.dumps(execution))
-        if execution_path.exists() and json.loads(execution_path.read_text()) != execution:
-            raise ValueError("Execution manifest mismatch. Use a separate output directory.")
+        saved_device = None
+        if execution_path.exists():
+            saved = json.loads(execution_path.read_text())
+            saved_device = saved.get("device")
+            changed = protocol_difference(saved, execution)
+            if changed:
+                raise ValueError(
+                    "Execution manifest mismatch in " + ", ".join(changed)
+                    + ". Use a separate output directory.")
+            if saved_device and saved_device != device_name:
+                print(f"Resuming on {device_name}. Previously timed on {saved_device}.")
+        execution["device"] = device_name
         write_json(execution_path, execution)
         traj = Trajectory(path, kind="ess" if ref else "pcnl", sampler=sampler,
                           rngs=rngs("sampler"), chains=CHAINS,
@@ -135,6 +159,7 @@ def sample(args, cfg, task):
             if result["partial"] or result["n"] != steps:
                 raise RuntimeError(f"Incomplete warmup {name}")
         ledger = json.loads(elapsed_path.read_text()) if elapsed_path.exists() else {}
+        timed_here = False
         for name, steps in production:
             if traj.done(name):
                 continue
@@ -149,6 +174,9 @@ def sample(args, cfg, task):
             if result["partial"] or result["n"] != steps:
                 raise RuntimeError(f"Incomplete production segment {name}")
             ledger[name] = seconds if new else None
+            if new:
+                timed_here = True
+                ledger["device"] = device_name
             write_json(elapsed_path, ledger)
         counters = traj.ck["counters"]
         if any(counters["numerical_failures"]):
@@ -180,7 +208,9 @@ def sample(args, cfg, task):
             row.update(cell=task["id"], width=task["m"], rep=task["rep"], probe=probe,
                        step=args.step if not ref else None, chains=len(CHAINS), steps=count,
                        chi=geometry["chi"], elapsed_seconds=elapsed, acceptance=acceptance,
-                       device=device_name, target_hash=identity["target_hash"],
+                       device=reported_device(saved_device or ledger.get("device"),
+                                              device_name, timed_here),
+                       target_hash=identity["target_hash"],
                        **metrics_rates(row["ess_mean"], elapsed, count))
             if args.action == "run":
                 half = count // 2

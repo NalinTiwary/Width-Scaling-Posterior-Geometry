@@ -12,6 +12,7 @@ import stat
 import subprocess
 import sys
 import tempfile
+import traceback
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
@@ -181,4 +182,13 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except SystemExit as exc:
+        if exc.code not in (0, None):
+            print(f"RUNNER_ERROR: {exc}", flush=True)
+        raise
+    except Exception:
+        traceback.print_exc()
+        print("RUNNER_ERROR: the traceback above is the failure", flush=True)
+        raise SystemExit(1)

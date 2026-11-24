@@ -8,7 +8,8 @@ import pytest
 
 from deep_width.core import PROBES, gate_decision, needs_inline_check, remaining_joint_steps
 from deep_width.core import require_comparative_device, segments_for
-from deep_width.run import continue_after_short_check, read_short_run, short_check_then_run
+from deep_width.run import continue_after_short_check, protocol_difference, read_short_run
+from deep_width.run import reported_device, short_check_then_run
 
 
 def _args(out, **kwargs):
@@ -39,6 +40,17 @@ def test_colab_can_name_its_gpu_and_the_cluster_path_stays_on_a10():
     assert require_comparative_device("run", "cuda", "Tesla T4", allow_any_device=True) == "Tesla T4"
     with pytest.raises(ValueError, match="CUDA"):
         require_comparative_device("run", "cpu", "cpu", allow_any_device=True)
+
+
+def test_a_finished_run_can_resume_on_a_different_gpu():
+    saved = dict(device="NVIDIA L4", dtype="float64", target={"m": 256}, arm="pcnl_h_0.16",
+                 chains=[0, 1, 2, 3], h_over_sigma2=0.16, checkpoint_stride=1024,
+                 warmup=[["burnin", 1024]], master_seed=1)
+    current = dict(saved, device="Tesla T4")
+    assert protocol_difference(saved, current) == []
+    assert protocol_difference(saved, dict(current, h_over_sigma2=0.08)) == ["h_over_sigma2"]
+    assert reported_device("NVIDIA L4", "Tesla T4", timed_here=False) == "NVIDIA L4"
+    assert reported_device("NVIDIA L4", "Tesla T4", timed_here=True) == "Tesla T4"
 
 
 def test_only_width_4096_langevin_production_is_gated():
